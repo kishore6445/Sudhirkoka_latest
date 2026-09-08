@@ -1168,6 +1168,11 @@
 
  @media (max-width: 950px) {
 
+    .video-library-scroll {
+        right: var(--site-gutter);
+        bottom: 0;
+    }
+
     .video-library-container,
     .video-library-hero-container {
         width:
