@@ -1,11 +1,8 @@
 import {
-     Play,
+    Play,
     FileText,
-     Sparkles,
     Zap,
 } from "lucide-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 
 import "../../styles/insights.css";

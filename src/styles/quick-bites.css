@@ -578,7 +578,7 @@
 
     z-index: 8;
 
-    left: 120px;
+    left: max(0px, calc((100% - var(--site-container-width)) / 2));
 
     bottom: 67px;
 
@@ -1508,6 +1508,15 @@
 ========================================================= */
 
 @media (max-width: 1100px) {
+
+    .quick-bites-hero-line {
+        left: var(--site-gutter);
+        width: min(48%, calc(100% - (var(--site-gutter) * 2)));
+    }
+
+    .quick-bites-scroll {
+        right: var(--site-gutter);
+    }
 
     .quick-bites-container {
         width: var(--site-container-width);
