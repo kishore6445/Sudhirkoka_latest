@@ -1,16 +1,20 @@
-import React from "react";
+import React,{useState} from "react";
+
 import {
     UserRound,
     GraduationCap,
     UsersRound,
     MessageCircle,
     Award,
-    Check
+    Check,
+    Play,
+    ArrowUpRight,
 } from "lucide-react";
-
 import "./about.css";
-
+import ceoInsightsPdf from "../../../assets/documents/CEO Insights 1.pdf";
 import sudhirImage from "../../../assets/images/about/sudhir.jpeg";
+import YouTubeModal from "../../../components/insights/YouTubeModal";
+
 
 
 const focusAreas = [
@@ -49,6 +53,11 @@ const recognitions = [
 
 
 const About = () => {
+    const [selectedPodcast, setSelectedPodcast] = useState(null);
+    const podcastVideo = {
+    title: "Sudhir Koka — Podcast",
+    youtubeUrl: "https://www.youtube.com/watch?v=7toK3gr0cLE",
+};
     return (
         <section className="about-section" id="about">
 
@@ -60,9 +69,9 @@ const About = () => {
 
                 <div className="about-visual">
 
-                    <div className="about-image-shape" />
+                    {/* <div className="about-image-shape" />
 
-                    <div className="about-gold-circle" />
+                    <div className="about-gold-circle" /> */}
 
                     <div className="about-image-wrapper">
 
@@ -94,7 +103,7 @@ const About = () => {
 
                     {/* Recognition Badge */}
 
-                    <div className="about-recognition-badge">
+                    {/* <div className="about-recognition-badge">
 
                         <div className="about-recognition-icon">
                             <Award size={20} strokeWidth={2} />
@@ -110,7 +119,39 @@ const About = () => {
                             </span>
                         </div>
 
-                    </div>
+                    </div> */}
+                     <button
+    type="button"
+    className="about-podcast-link"
+    onClick={() => setSelectedPodcast(podcastVideo)}
+>
+    <span className="about-podcast-play">
+        <Play
+            size={14}
+            fill="currentColor"
+            strokeWidth={0}
+        />
+    </span>
+
+    <span className="about-podcast-content">
+        <span className="about-podcast-eyebrow">
+            FEATURED PODCAST
+        </span>
+
+        <span className="about-podcast-title">
+            A conversation on leadership
+        </span>
+
+        <span className="about-podcast-meta">
+            Listen to the conversation
+        </span>
+    </span>
+
+    <span className="about-podcast-arrow">
+        <ArrowUpRight size={17} />
+    </span>
+</button>
+
 
                 </div>
 
@@ -139,7 +180,7 @@ const About = () => {
 </p> */}
 
 <p className="about-description">
-    Sudhir works with individuals and organisations to
+    Sudhir Koka works with individuals and organisations to
     develop stronger leadership capabilities, build
     high-performing teams, and create cultures where
     people and businesses can grow together.
@@ -191,7 +232,33 @@ const About = () => {
                         RECOGNITION
                     ========================================= */}
 
-                    <div className="about-recognition">
+                    <div
+    className="about-recognition"
+    role="button"
+    tabIndex={0}
+    onClick={() =>
+        window.open(
+            ceoInsightsPdf,
+            "_blank",
+            "noopener,noreferrer"
+        )
+    }
+    onKeyDown={(event) => {
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+            event.preventDefault();
+
+            window.open(
+                ceoInsightsPdf,
+                "_blank",
+                "noopener,noreferrer"
+            );
+        }
+    }}
+    aria-label="Open Editor's Choice 2024 recognition PDF"
+>
 
                         <div className="about-recognition-header">
 
@@ -248,9 +315,12 @@ const About = () => {
 
                         </div>
 
-                    </div>
+                    
 
-
+<span className="about-recognition-arrow" aria-hidden="true">
+    <ArrowUpRight size={18} strokeWidth={2} />
+</span>
+   </div>            
                     {/* Signature */}
 
                     <div className="about-signature">
@@ -270,7 +340,12 @@ const About = () => {
                 </div>
 
             </div>
-
+                      <YouTubeModal
+                isOpen={Boolean(selectedPodcast)}
+                videoUrl={selectedPodcast?.youtubeUrl}
+                title={selectedPodcast?.title}
+                onClose={() => setSelectedPodcast(null)}
+            />
         </section>
     );
 };

@@ -1,63 +1,89 @@
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 
 import { contactData } from "./contactData";
 
 export default function ContactSuccess({ onClose }) {
-  return (
-    <div className="contact-success">
 
-      {/* Icon */}
+    return (
+        <div className="contact-success">
 
-      <div className="contact-success__icon">
-        <CheckCircle2 size={72} />
-      </div>
+            <div className="contact-success__icon">
+                <CheckCircle2 size={32} />
+            </div>
 
-      {/* Heading */}
 
-      <h2 className="contact-success__title">
-        {contactData.success.title}
-      </h2>
+            <span className="contact-success__eyebrow">
+                CONVERSATION STARTED
+            </span>
 
-      {/* Description */}
 
-      <p className="contact-success__description">
-        {contactData.success.description}
-      </p>
+            <h2 className="contact-success__title">
+                {contactData.success.title}
+            </h2>
 
-      {/* Information Card */}
 
-      <div className="contact-success__info">
+            <p className="contact-success__description">
+                {contactData.success.description}
+            </p>
 
-        <div className="contact-success__item">
-          <span>✓</span>
 
-          <p>We'll review your request carefully.</p>
+            <div className="contact-success__info">
+
+                <div className="contact-success__item">
+
+                    <span>
+                        01
+                    </span>
+
+                    <p>
+                        We’ll review your message carefully.
+                    </p>
+
+                </div>
+
+
+                <div className="contact-success__item">
+
+                    <span>
+                        02
+                    </span>
+
+                    <p>
+                        We’ll get back to you as soon as we can.
+                    </p>
+
+                </div>
+
+
+                <div className="contact-success__item">
+
+                    <span>
+                        03
+                    </span>
+
+                    <p>
+                        Your information will be treated confidentially.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                onClick={onClose}
+                className="contact-success__button"
+            >
+
+                <span>
+                    {contactData.success.button}
+                </span>
+
+                <ArrowRight size={18} />
+
+            </button>
+
         </div>
-
-        <div className="contact-success__item">
-          <span>✓</span>
-
-          <p>You'll receive a response within 24 hours.</p>
-        </div>
-
-        <div className="contact-success__item">
-          <span>✓</span>
-
-          <p>Your information remains completely confidential.</p>
-        </div>
-
-      </div>
-
-      {/* Close Button */}
-
-      <button
-        type="button"
-        onClick={onClose}
-        className="contact-success__button"
-      >
-        {contactData.success.button}
-      </button>
-
-    </div>
-  );
+    );
 }

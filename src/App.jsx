@@ -1,9 +1,11 @@
+
 import {
     BrowserRouter,
     Routes,
     Route,
     useLocation,
 } from "react-router-dom";
+import { useEffect } from "react";
 
 // =========================================================
 // LAYOUT
@@ -36,31 +38,54 @@ import VideoCategory from "./pages/insights/VideoCategory";
 import VideoDetail from "./pages/insights/VideoDetail";
 
 import ArticleLibrary from "./pages/insights/ArticleLibrary";
-import ArticleCategory from "./pages/insights/ArticleCategory";
+import ArticleDetail from "./pages/insights/ArticleDetail";
 
-import ReflectionLibrary from "./pages/insights/ReflectionLibrary";
-import ReflectionCategory from "./pages/insights/ReflectionCategory";
+import QuickBites from "./pages/insights/QuickBites";
+import CarouselLibrary from "./pages/insights/CarouselLibrary";
+
+import MiniCoachingGuide from "./pages/insights/MiniCoachingGuide";
 
 // =========================================================
 // SCROLL TO TOP
 // =========================================================
 
 function ScrollToTop() {
-    const { pathname } = useLocation();
+    const { pathname, hash } = useLocation();
 
-    // pathname is intentionally used so this runs
-    // whenever the route changes.
-    window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "instant",
-    });
+    useEffect(() => {
+        // If there is a hash, scroll to that section
+        if (hash) {
+            const id = hash.replace("#", "");
+
+            // Small delay allows the new page/DOM to finish rendering
+            const timer = setTimeout(() => {
+                const element = document.getElementById(id);
+
+                if (element) {
+                    element.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                    });
+                }
+            }, 50);
+
+            return () => clearTimeout(timer);
+        }
+
+        // Normal route change → go to top
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "instant",
+        });
+    }, [pathname, hash]);
 
     return null;
 }
 
 // =========================================================
 // HOME PAGE
+// /
 // =========================================================
 
 function HomePage() {
@@ -74,6 +99,7 @@ function HomePage() {
                 <Purpose />
 
                 <InsightsPage />
+                <MiniCoachingGuide />
 
                 <Challenges />
 
@@ -192,17 +218,28 @@ function ArticlesPage() {
 }
 
 // =========================================================
-// ARTICLE CATEGORY
-// /insights/articles/:category
+// ARTICLE DETAIL
+// /insights/articles/:category/:articleId
+//
+// There is NO Article Category page.
+//
+// Flow:
+//
+// Article Library
+//      ↓
+// Article Detail
+//
+// Example:
+// /insights/articles/leadership/article-01
 // =========================================================
 
-function ArticleCategoryPage() {
+function ArticleDetailPage() {
     return (
         <>
             <Navbar light />
 
             <main>
-                <ArticleCategory />
+                <ArticleDetail />
             </main>
 
             <Footer />
@@ -211,17 +248,17 @@ function ArticleCategoryPage() {
 }
 
 // =========================================================
-// REFLECTION LIBRARY
-// /insights/reflections
+// QUICK BITES
+// /insights/quick-bites
 // =========================================================
 
-function ReflectionsPage() {
+function QuickBitesPage() {
     return (
         <>
             <Navbar light />
 
             <main>
-                <ReflectionLibrary />
+                <QuickBites />
             </main>
 
             <Footer />
@@ -230,17 +267,17 @@ function ReflectionsPage() {
 }
 
 // =========================================================
-// REFLECTION CATEGORY
-// /insights/reflections/:category
+// CAROUSEL LIBRARY
+// /insights/carousels
 // =========================================================
 
-function ReflectionCategoryPage() {
+function CarouselsPage() {
     return (
         <>
             <Navbar light />
 
             <main>
-                <ReflectionCategory />
+                <CarouselLibrary />
             </main>
 
             <Footer />
@@ -255,7 +292,6 @@ function ReflectionCategoryPage() {
 function App() {
     return (
         <BrowserRouter>
-
             <ScrollToTop />
 
             <Routes>
@@ -269,7 +305,6 @@ function App() {
                     element={<HomePage />}
                 />
 
-
                 {/* =================================================
                     INSIGHTS
                 ================================================= */}
@@ -278,7 +313,6 @@ function App() {
                     path="/insights"
                     element={<InsightsLandingPage />}
                 />
-
 
                 {/* =================================================
                     VIDEOS
@@ -289,7 +323,6 @@ function App() {
                     element={<VideosPage />}
                 />
 
-
                 {/* =================================================
                     VIDEO CATEGORY
                 ================================================= */}
@@ -299,16 +332,14 @@ function App() {
                     element={<VideoCategoryPage />}
                 />
 
-
                 {/* =================================================
-                    INDIVIDUAL VIDEO
+                    VIDEO DETAIL
                 ================================================= */}
 
                 <Route
                     path="/insights/videos/:category/:videoId"
                     element={<VideoDetailPage />}
                 />
-
 
                 {/* =================================================
                     ARTICLES
@@ -319,48 +350,39 @@ function App() {
                     element={<ArticlesPage />}
                 />
 
-
                 {/* =================================================
-                    ARTICLE CATEGORY
+                    ARTICLE DETAIL
+                    No Article Category Page
                 ================================================= */}
 
                 <Route
-                    path="/insights/articles/:category"
-                    element={<ArticleCategoryPage />}
+                    path="/insights/articles/:category/:articleId"
+                    element={<ArticleDetailPage />}
                 />
 
-
                 {/* =================================================
-                    REFLECTIONS
+                    QUICK BITES
                 ================================================= */}
 
                 <Route
-                    path="/insights/reflections"
-                    element={<ReflectionsPage />}
+                    path="/insights/quick-bites"
+                    element={<QuickBitesPage />}
                 />
 
-
                 {/* =================================================
-                    REFLECTION CATEGORY
+                    CAROUSEL LIBRARY
                 ================================================= */}
 
                 <Route
-                    path="/insights/reflections/:category"
-                    element={<ReflectionCategoryPage />}
+                    path="/insights/carousels"
+                    element={<CarouselsPage />}
                 />
-
 
                 {/* =================================================
-                    FALLBACK
+                    NO FALLBACK TO HOME
                 ================================================= */}
-
-                <Route
-                    path="*"
-                    element={<HomePage />}
-                />
 
             </Routes>
-
         </BrowserRouter>
     );
 }

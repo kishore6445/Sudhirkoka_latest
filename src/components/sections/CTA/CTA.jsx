@@ -1,8 +1,10 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
 import "./cta.css";
+import { useContact } from "../../sections/Contact/ContactContext";
 
 const CTA = () => {
+    const { openModal } = useContact();
+
     return (
         <section className="cta-section">
             <div className="cta-container">
@@ -14,7 +16,7 @@ const CTA = () => {
                 <div className="cta-content">
 
                     <span className="cta-eyebrow">
-                        READY TO GROW?
+                        READY TO WIN?
                     </span>
 
                     <h2 className="cta-heading">
@@ -25,20 +27,16 @@ const CTA = () => {
 
                     <p className="cta-description">
                         Whether you're developing yourself, your leaders,
-                        or your organisation, let's explore what's possible.
+                        or your organisation,<br /> let's explore what's possible.
                     </p>
 
-                    <a
-                        href="#conversation"
+                    <button
+                        type="button"
                         className="cta-button"
+                        onClick={openModal}
                     >
-                        <span>Let's Talk</span>
-
-                        <ArrowRight
-                            size={18}
-                            strokeWidth={1.8}
-                        />
-                    </a>
+                        Let's Talk
+                    </button>
 
                 </div>
 

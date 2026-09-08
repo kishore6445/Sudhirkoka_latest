@@ -1,41 +1,37 @@
 /* =========================================================
    CONVERSATION / ENQUIRY SECTION
-========================================================= */
+   ========================================================= */
 
 .conversation-section {
     width: 100%;
-
     padding: 80px 0 90px;
-
     background: #ffffff;
-
     overflow: hidden;
 }
 
 
 /* =========================================================
    CONTAINER
-========================================================= */
+   SHARED SITE GRID
+   ========================================================= */
 
 .conversation-container {
-    width: min(1200px, calc(100% - 64px));
-
-    margin: 0 auto;
+    width: var(--site-container-width);
+    max-width: var(--site-max-width);
+    margin-left: auto;
+    margin-right: auto;
 
     display: grid;
-
     grid-template-columns:
         minmax(0, 1.15fr) minmax(360px, 0.85fr);
-
     gap: 70px;
-
     align-items: center;
 }
 
 
 /* =========================================================
    LEFT CONTENT
-========================================================= */
+   ========================================================= */
 
 .conversation-content {
     min-width: 0;
@@ -44,50 +40,36 @@
 
 /* =========================================================
    EYEBROW
-========================================================= */
+   ========================================================= */
 
 .conversation-eyebrow {
     display: inline-flex;
-
     align-items: center;
-
     padding: 8px 17px;
-
     border-radius: 999px;
-
     background: rgba(16, 42, 67, 0.055);
-
     border: 1px solid rgba(16, 42, 67, 0.08);
 
     font-family: "Manrope", sans-serif;
-
     font-size: 11px;
-
     font-weight: 800;
-
     letter-spacing: 0.08em;
-
     color: #102a43;
 }
 
 
 /* =========================================================
    HEADING
-========================================================= */
+   ========================================================= */
 
 .conversation-heading {
     margin: 23px 0 0;
 
     font-family: "Manrope", sans-serif;
-
-    font-size: clamp(42px, 4vw, 56px);
-
+    font-size: clamp(42px, 3.3vw, 56px);
     font-weight: 700;
-
     line-height: 1.02;
-
     letter-spacing: -0.03em;
-
     color: #102a43;
 }
 
@@ -98,54 +80,45 @@
 
 /* =========================================================
    INTRO
-========================================================= */
+   ========================================================= */
 
 .conversation-intro {
     max-width: 620px;
-
     margin: 20px 0 0;
 
     font-family: "Manrope", sans-serif;
-
     font-size: 15px;
-
     line-height: 1.7;
-
     color: #486581;
 }
 
 
 /* =========================================================
    QUESTIONS
-========================================================= */
+   ========================================================= */
 
 .conversation-questions {
     margin-top: 35px;
-
     border-top: 1px solid rgba(16, 42, 67, 0.13);
 }
 
 
 /* =========================================================
    QUESTION
-========================================================= */
+   ========================================================= */
 
 .conversation-question {
     min-height: 67px;
 
     display: grid;
-
     grid-template-columns:
         42px minmax(0, 1fr) 28px;
 
     align-items: center;
-
     gap: 12px;
-
     padding: 0 5px;
 
     border-bottom: 1px solid rgba(16, 42, 67, 0.13);
-
     cursor: pointer;
 
     transition:
@@ -156,34 +129,26 @@
 
 /* =========================================================
    QUESTION NUMBER
-========================================================= */
+   ========================================================= */
 
 .conversation-question-number {
     font-family: "Manrope", sans-serif;
-
-    font-size: 11px;
-
+    font-size: 12px;
     font-weight: 800;
-
     letter-spacing: 0.06em;
-
     color: #d4af37;
 }
 
 
 /* =========================================================
    QUESTION TEXT
-========================================================= */
+   ========================================================= */
 
 .conversation-question-text {
     font-family: "Manrope", sans-serif;
-
-    font-size: 22px;
-
+    font-size: 20px;
     font-weight: 600;
-
     line-height: 1.15;
-
     color: #102a43;
 
     transition: color 0.25s ease;
@@ -192,11 +157,10 @@
 
 /* =========================================================
    QUESTION ARROW
-========================================================= */
+   ========================================================= */
 
 .conversation-question-arrow {
     justify-self: end;
-
     color: #9aaab3;
 
     transition:
@@ -207,11 +171,10 @@
 
 /* =========================================================
    QUESTION HOVER
-========================================================= */
+   ========================================================= */
 
 .conversation-question:hover {
     padding-left: 12px;
-
     background: rgba(255, 255, 255, 0.4);
 }
 
@@ -221,52 +184,26 @@
 
 .conversation-question:hover .conversation-question-arrow {
     color: #d4af37;
-
     transform: translate(2px, -2px);
 }
 
 
 /* =========================================================
    DIRECT QUESTION
-========================================================= */
+   ========================================================= */
 
 .conversation-direct {
-    display: flex;
-
-    align-items: center;
-
-    gap: 18px;
-
-    margin-top: 26px;
-
-    font-family: "Manrope", sans-serif;
-
-    font-size: 13px;
-
-    color: #657987;
-}
-
-.conversation-direct button {
     display: inline-flex;
-
     align-items: center;
-
     gap: 7px;
-
     padding: 0;
-
     border: none;
-
     background: transparent;
 
     font-family: "Manrope", sans-serif;
-
     font-size: 13px;
-
     font-weight: 800;
-
     color: #16587b;
-
     cursor: pointer;
 
     transition:
@@ -274,16 +211,21 @@
         gap 0.25s ease;
 }
 
-.conversation-direct button:hover {
-    color: #102a43;
+.conversation-direct span {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 26px;
 
-    gap: 10px;
+    font-family: "Manrope", sans-serif;
+    font-size: 15px;
+    color: #16587b;
 }
 
 
 /* =========================================================
    ENQUIRY CARD
-========================================================= */
+   ========================================================= */
 
 .conversation-card {
     position: relative;
@@ -291,9 +233,7 @@
     padding: 34px 34px 32px;
 
     background: #102a43;
-
     border-radius: 22px;
-
     overflow: hidden;
 
     box-shadow:
@@ -303,7 +243,7 @@
 
 /* =========================================================
    CARD DECORATION
-========================================================= */
+   ========================================================= */
 
 .conversation-card::before {
     content: "";
@@ -317,7 +257,6 @@
     right: -100px;
 
     border-radius: 50%;
-
     background: rgba(212, 175, 55, 0.07);
 
     pointer-events: none;
@@ -340,27 +279,21 @@
 
 /* =========================================================
    CARD TOP
-========================================================= */
+   ========================================================= */
 
 .conversation-card-top {
     position: relative;
-
     z-index: 1;
 }
 
 .conversation-card-eyebrow {
     display: block;
-
     margin-bottom: 12px;
 
     font-family: "Manrope", sans-serif;
-
     font-size: 10px;
-
     font-weight: 800;
-
     letter-spacing: 0.15em;
-
     color: #d4af37;
 }
 
@@ -368,97 +301,73 @@
     margin: 0;
 
     font-family: "Manrope", sans-serif;
-
     font-size: clamp(32px, 3vw, 40px);
-
     font-weight: 700;
-
     line-height: 1;
-
     letter-spacing: -0.02em;
-
     color: #f8f4ea;
 }
 
 .conversation-card p {
     max-width: 400px;
-
     margin: 15px 0 0;
 
     font-family: "Manrope", sans-serif;
-
     font-size: 13px;
-
     line-height: 1.65;
-
     color: rgba(248, 244, 234, 0.68);
 }
 
 
 /* =========================================================
    FORM
-========================================================= */
+   ========================================================= */
 
 .conversation-form {
     position: relative;
-
     z-index: 1;
 
     margin-top: 27px;
 
     display: flex;
-
     flex-direction: column;
-
     gap: 17px;
 }
 
 
 /* =========================================================
    FIELD
-========================================================= */
+   ========================================================= */
 
 .conversation-field {
     display: flex;
-
     flex-direction: column;
-
     gap: 7px;
 }
 
 .conversation-field label {
     font-family: "Manrope", sans-serif;
-
     font-size: 9px;
-
     font-weight: 800;
-
     letter-spacing: 0.14em;
-
     color: rgba(248, 244, 234, 0.68);
 }
 
 .conversation-field input {
     width: 100%;
-
     height: 44px;
-
     box-sizing: border-box;
 
     padding: 0 14px;
 
     border: 1px solid rgba(248, 244, 234, 0.18);
-
     border-radius: 7px;
-
     outline: none;
 
     background: rgba(255, 255, 255, 0.055);
 
     font-family: "Manrope", sans-serif;
-
     font-size: 13px;
-
     color: #ffffff;
 
     transition:
@@ -472,42 +381,31 @@
 
 .conversation-field input:focus {
     border-color: rgba(212, 175, 55, 0.75);
-
     background: rgba(255, 255, 255, 0.08);
 }
 
 
 /* =========================================================
    SUBMIT BUTTON
-========================================================= */
+   ========================================================= */
 
 .conversation-submit {
     width: 100%;
-
     height: 48px;
-
     margin-top: 5px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 9px;
 
     border: none;
-
     border-radius: 7px;
-
     background: #d4af37;
-
     color: #102a43;
 
     font-family: "Manrope", sans-serif;
-
     font-size: 13px;
-
     font-weight: 800;
 
     cursor: pointer;
@@ -519,22 +417,35 @@
 
 .conversation-submit:hover {
     background: #e0b83d;
-
     transform: translateY(-2px);
 }
 
 
 /* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1500px) {
+
+    .conversation-container {
+        gap: 85px;
+    }
+
+    .conversation-card {
+        padding-left: 38px;
+        padding-right: 38px;
+    }
+}
+
+
+/* =========================================================
    TABLET
-========================================================= */
+   ========================================================= */
 
 @media (max-width: 1050px) {
 
     .conversation-container {
-        width: min(1000px, calc(100% - 48px));
-
         gap: 45px;
-
         grid-template-columns:
             minmax(0, 1fr) minmax(330px, 0.8fr);
     }
@@ -550,8 +461,8 @@
 
 
 /* =========================================================
-   TABLET
-========================================================= */
+   TABLET / SMALL LAPTOP
+   ========================================================= */
 
 @media (max-width: 850px) {
 
@@ -560,10 +471,7 @@
     }
 
     .conversation-container {
-        width: calc(100% - 40px);
-
         grid-template-columns: 1fr;
-
         gap: 45px;
     }
 
@@ -575,7 +483,7 @@
 
 /* =========================================================
    MOBILE
-========================================================= */
+   ========================================================= */
 
 @media (max-width: 600px) {
 
@@ -584,20 +492,16 @@
     }
 
     .conversation-container {
-        width: calc(100% - 30px);
-
         gap: 35px;
     }
 
     .conversation-heading {
         font-size: clamp(38px, 10vw, 46px);
-
         line-height: 1.04;
     }
 
     .conversation-intro {
         font-size: 14px;
-
         margin-top: 16px;
     }
 
@@ -607,10 +511,8 @@
 
     .conversation-question {
         min-height: 62px;
-
         grid-template-columns:
             32px minmax(0, 1fr) 24px;
-
         gap: 8px;
     }
 
@@ -620,17 +522,13 @@
 
     .conversation-direct {
         flex-direction: column;
-
         align-items: flex-start;
-
         gap: 7px;
-
         margin-top: 21px;
     }
 
     .conversation-card {
         padding: 29px 22px 25px;
-
         border-radius: 18px;
     }
 
@@ -640,7 +538,6 @@
 
     .conversation-form {
         margin-top: 24px;
-
         gap: 15px;
     }
 }

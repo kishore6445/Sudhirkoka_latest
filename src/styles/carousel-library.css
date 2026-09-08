@@ -1,0 +1,703 @@
+/* ============================================================
+   CAROUSEL LIBRARY
+============================================================ */
+
+.carousel-library {
+    width: 100%;
+    min-height: 100vh;
+
+    background: #ffffff;
+
+    padding: 135px 0 100px;
+
+    overflow: hidden;
+}
+
+.carousel-library__container {
+    width: var(--site-container-width);
+    max-width: var(--site-max-width);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* ============================================================
+   BACK TO MINI COACHING GUIDES
+============================================================ */
+
+.carousel-library__back {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 75px;
+
+    color: #56728d;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    text-decoration: none;
+
+    transition:
+        color 180ms ease,
+        gap 180ms ease;
+}
+
+.carousel-library__back:hover {
+    gap: 13px;
+
+    color: #102a43;
+}
+
+.carousel-library__back svg {
+    width: 17px;
+    height: 17px;
+
+    stroke-width: 1.8;
+}
+
+
+/* ============================================================
+   INTRO
+============================================================ */
+
+.carousel-library__intro {
+    max-width: 1000px;
+
+    margin-bottom: 68px;
+}
+
+
+/* ============================================================
+   EYEBROW
+============================================================ */
+
+.carousel-library__eyebrow {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+}
+
+.carousel-library__eyebrow::before {
+    content: "";
+
+    width: 34px;
+    height: 2px;
+
+    flex-shrink: 0;
+
+    background: #d4af37;
+}
+
+
+/* ============================================================
+   HEADING
+============================================================ */
+
+.carousel-library__heading {
+    max-width: 1050px;
+
+    margin: 0;
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: clamp(46px, 5vw, 64px);
+
+    font-weight: 700;
+
+    line-height: 1.04;
+
+    letter-spacing: -0.04em;
+}
+
+.carousel-library__heading span {
+    color: #d4af37;
+
+    font-family: "Manrope", sans-serif;
+
+    font-style: normal;
+}
+
+
+/* ============================================================
+   DESCRIPTION
+============================================================ */
+
+.carousel-library__description {
+    max-width: 760px;
+
+    margin: 27px 0 0;
+
+    color: #56728d;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 16px;
+    font-weight: 400;
+
+    line-height: 1.7;
+}
+
+
+/* ============================================================
+   SECTION HEADER
+============================================================ */
+
+.carousel-library__section-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 15px;
+
+    margin-bottom: 28px;
+
+    border-bottom: 1px solid rgba(16, 42, 67, 0.14);
+}
+
+.carousel-library__section-label {
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+}
+
+.carousel-library__section-count {
+    color: #56728d;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+}
+
+
+/* ============================================================
+   GRID
+============================================================ */
+
+.carousel-library__grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 30px;
+
+    align-items: stretch;
+}
+
+
+/* ============================================================
+   CARD
+============================================================ */
+
+.carousel-library-card {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(16, 42, 67, 0.075);
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 22px rgba(16, 42, 67, 0.055);
+
+    transition:
+        transform 250ms ease,
+        box-shadow 250ms ease,
+        border-color 250ms ease;
+}
+
+.carousel-library-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(16, 42, 67, 0.12);
+
+    box-shadow:
+        0 17px 38px rgba(16, 42, 67, 0.10);
+}
+
+.carousel-library-card:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 5px;
+}
+
+
+/* ============================================================
+   COVER
+============================================================ */
+
+.carousel-library-card__cover {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 11.5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #eeeae2;
+}
+
+.carousel-library-card__cover img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    transition: transform 400ms ease;
+}
+
+.carousel-library-card:hover .carousel-library-card__cover img {
+    transform: scale(1.015);
+}
+
+
+/* ============================================================
+   HOVER OVERLAY
+============================================================ */
+
+.carousel-library-card__overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    padding: 18px;
+
+    background:
+        linear-gradient(to top,
+            rgba(16, 42, 67, 0.50),
+            rgba(16, 42, 67, 0) 55%);
+
+    color: #ffffff;
+
+    opacity: 0;
+
+    transition: opacity 220ms ease;
+}
+
+.carousel-library-card:hover .carousel-library-card__overlay {
+    opacity: 1;
+}
+
+.carousel-library-card__overlay span {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+}
+
+.carousel-library-card__overlay svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* ============================================================
+   CARD CONTENT
+============================================================ */
+
+.carousel-library-card__content {
+    width: 100%;
+
+    padding: 18px 20px 19px;
+
+    background: #ffffff;
+}
+
+
+/* ============================================================
+   META
+============================================================ */
+
+.carousel-library-card__meta {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 18px;
+}
+
+.carousel-library-card__meta-left {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+/* ============================================================
+   NUMBER
+============================================================ */
+
+.carousel-library-card__number {
+    color: #d4af37;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.06em;
+
+    line-height: 1;
+}
+
+.carousel-library-card__number::after {
+    content: "";
+
+    display: inline-block;
+
+    width: 1px;
+    height: 11px;
+
+    margin-left: 9px;
+
+    background: rgba(16, 42, 67, 0.14);
+
+    vertical-align: -2px;
+}
+
+
+/* ============================================================
+   CATEGORY
+============================================================ */
+
+.carousel-library-card__category {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 21px;
+
+    padding: 5px 9px;
+
+    border-radius: 3px;
+
+    background: #f0f1ef;
+
+    color: #000000;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.11em;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   EXPLORE GUIDE
+============================================================ */
+
+.carousel-library-card__link {
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        gap 180ms ease;
+}
+
+.carousel-library-card__link:hover {
+    gap: 11px;
+
+    color: #d4af37;
+}
+
+.carousel-library-card__link svg {
+    width: 17px;
+    height: 17px;
+
+    stroke-width: 1.8;
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1050px) {
+
+    .carousel-library {
+        padding: 110px 0 85px;
+    }
+
+    .carousel-library__container {
+        width: var(--site-container-width);
+        max-width: var(--site-max-width);
+    }
+
+    .carousel-library__back {
+        margin-bottom: 60px;
+    }
+
+    .carousel-library__heading {
+        font-size: 52px;
+    }
+
+    .carousel-library__description {
+        font-size: 14px;
+    }
+
+    .carousel-library__grid {
+        gap: 22px;
+    }
+
+    .carousel-library-card__content {
+        padding: 16px;
+    }
+
+    .carousel-library-card__category {
+        font-size: 8px;
+    }
+
+    .carousel-library-card__link {
+        font-size: 9px;
+    }
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 760px) {
+
+    .carousel-library {
+        min-height: auto;
+
+        padding: 75px 0 75px;
+
+        overflow: visible;
+    }
+
+    .carousel-library__container {
+        width: var(--site-container-width);
+        max-width: var(--site-max-width);
+    }
+
+    .carousel-library__back {
+        margin-bottom: 50px;
+
+        font-size: 11px;
+    }
+
+    .carousel-library__eyebrow {
+        margin-bottom: 18px;
+
+        font-size: 10px;
+    }
+
+    .carousel-library__heading {
+        font-size: 44px;
+
+        line-height: 1.06;
+    }
+
+    .carousel-library__description {
+        max-width: 100%;
+
+        margin-top: 20px;
+
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
+
+    .carousel-library__intro {
+        margin-bottom: 48px;
+    }
+
+    .carousel-library__section-header {
+        margin-bottom: 22px;
+    }
+
+    .carousel-library__section-label {
+        font-size: 10px;
+    }
+
+    .carousel-library__section-count {
+        font-size: 8px;
+    }
+
+    .carousel-library__grid {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+    }
+
+    .carousel-library-card__cover {
+        aspect-ratio: 16 / 11;
+    }
+
+    .carousel-library-card__content {
+        padding: 18px 19px;
+    }
+
+    .carousel-library-card__meta {
+        gap: 15px;
+    }
+
+    .carousel-library-card__category {
+        font-size: 8px;
+    }
+
+    .carousel-library-card__link {
+        font-size: 10px;
+    }
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 420px) {
+
+    .carousel-library {
+        padding: 60px 0 65px;
+    }
+
+    .carousel-library__container {
+        width: var(--site-container-width);
+        max-width: var(--site-max-width);
+    }
+
+    .carousel-library__heading {
+        font-size: 38px;
+    }
+
+    .carousel-library-card__category {
+        max-width: 150px;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+}
+
+
+/* ============================================================
+   LARGE DESKTOP
+   Keep the shared site grid while giving the wider layout
+   slightly more breathing room.
+============================================================ */
+
+@media (min-width: 1500px) {
+
+    .carousel-library__intro {
+        max-width: 1080px;
+    }
+
+    .carousel-library__grid {
+        gap: 34px;
+    }
+
+    .carousel-library-card__content {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+}

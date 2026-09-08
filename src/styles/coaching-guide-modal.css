@@ -1,0 +1,871 @@
+/* ============================================================
+   COACHING GUIDE MODAL
+============================================================ */
+
+.coaching-guide-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    font-family:
+        "Manrope",
+        sans-serif;
+}
+
+
+/* ============================================================
+   BACKDROP
+============================================================ */
+
+.coaching-guide-modal__backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(5,
+            18,
+            32,
+            0.84);
+
+    backdrop-filter:
+        blur(4px);
+
+    -webkit-backdrop-filter:
+        blur(4px);
+}
+
+
+/* ============================================================
+   PANEL
+============================================================ */
+
+.coaching-guide-modal__panel {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(1500px,
+            96vw);
+
+    height:
+        min(94vh,
+            1100px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border:
+        1px solid #d8e0e3;
+
+    box-shadow:
+        0 30px 80px rgba(0,
+            0,
+            0,
+            0.28);
+
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.coaching-guide-modal__header {
+    flex:
+        0 0 auto;
+
+    min-height:
+        92px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 32px;
+
+    padding:
+        18px 24px 18px 30px;
+
+    background: #ffffff;
+
+    border-bottom:
+        1px solid #d8e0e3;
+}
+
+
+/* ============================================================
+   HEADER HEADING
+============================================================ */
+
+.coaching-guide-modal__heading {
+    min-width: 0;
+}
+
+
+.coaching-guide-modal__category {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #c69b18;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing:
+        2.2px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.coaching-guide-modal__heading h2 {
+    margin: 0;
+
+    color: #102d4a;
+
+    font-size:
+        clamp(22px,
+            2vw,
+            32px);
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    letter-spacing:
+        -0.7px;
+}
+
+
+/* ============================================================
+   ACTIONS
+============================================================ */
+
+.coaching-guide-modal__actions {
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* ============================================================
+   HEADER BUTTONS
+============================================================ */
+
+.coaching-guide-modal__external,
+.coaching-guide-modal__close {
+    width: 48px;
+
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    background: #ffffff;
+
+    border:
+        1px solid #d8e0e3;
+
+    color: #102d4a;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        background-color 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease;
+}
+
+
+.coaching-guide-modal__external:hover,
+.coaching-guide-modal__close:hover {
+    background: #102d4a;
+
+    border-color: #102d4a;
+
+    color: #ffffff;
+}
+
+
+/* ============================================================
+   TOOLBAR
+============================================================ */
+
+.coaching-guide-modal__toolbar {
+    flex:
+        0 0 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 18px;
+
+    background:
+        #102d4a;
+
+    color: #ffffff;
+
+    border-bottom:
+        1px solid rgba(255,
+            255,
+            255,
+            0.08);
+}
+
+
+/* ============================================================
+   TOOLBAR LEFT
+============================================================ */
+
+.coaching-guide-modal__toolbar-left {
+    display: flex;
+
+    align-items: center;
+}
+
+
+.coaching-guide-modal__page-count {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-width: 58px;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.coaching-guide-modal__page-count span {
+    color:
+        rgba(255,
+            255,
+            255,
+            0.45);
+}
+
+
+/* ============================================================
+   ZOOM CONTROLS
+============================================================ */
+
+.coaching-guide-modal__zoom-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+
+.coaching-guide-modal__zoom-controls button {
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border:
+        1px solid rgba(255,
+            255,
+            255,
+            0.16);
+
+    background:
+        rgba(255,
+            255,
+            255,
+            0.04);
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        border-color 180ms ease;
+}
+
+
+.coaching-guide-modal__zoom-controls button:hover:not(:disabled) {
+    background:
+        rgba(255,
+            255,
+            255,
+            0.12);
+
+    border-color:
+        rgba(255,
+            255,
+            255,
+            0.3);
+}
+
+
+.coaching-guide-modal__zoom-controls button:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+}
+
+
+/* ============================================================
+   ZOOM VALUE
+============================================================ */
+
+.coaching-guide-modal__zoom-value {
+    min-width: 54px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   FIT BUTTON
+============================================================ */
+
+.coaching-guide-modal__zoom-controls .coaching-guide-modal__fit {
+    width: auto;
+
+    padding:
+        0 11px;
+
+    gap: 6px;
+
+    margin-left: 5px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing:
+        0.04em;
+}
+
+
+/* ============================================================
+   PDF VIEWER
+============================================================ */
+
+.coaching-guide-modal__viewer {
+    position: relative;
+
+    flex:
+        1 1 auto;
+
+    min-height: 0;
+
+    width: 100%;
+
+    display: block;
+
+    background:
+        #252525;
+
+    overflow: auto;
+
+    overscroll-behavior:
+        contain;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        #68727b #252525;
+}
+
+
+/* ============================================================
+   WEBKIT SCROLLBAR
+============================================================ */
+
+.coaching-guide-modal__viewer::-webkit-scrollbar {
+    width: 10px;
+
+    height: 10px;
+}
+
+
+.coaching-guide-modal__viewer::-webkit-scrollbar-track {
+    background:
+        #252525;
+}
+
+
+.coaching-guide-modal__viewer::-webkit-scrollbar-thumb {
+    background:
+        #68727b;
+
+    border-radius:
+        10px;
+}
+
+
+.coaching-guide-modal__viewer::-webkit-scrollbar-thumb:hover {
+    background:
+        #84909a;
+}
+
+
+/* ============================================================
+   PDF PAGES CONTAINER
+============================================================ */
+
+.coaching-guide-modal__pages {
+    width: 100%;
+
+    min-height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 24px;
+
+    padding:
+        16px 24px 32px;
+}
+
+
+/* ============================================================
+   INDIVIDUAL PAGE
+============================================================ */
+
+.coaching-guide-modal__page-wrapper {
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 35px rgba(0,
+            0,
+            0,
+            0.25);
+}
+
+
+/* ============================================================
+   REACT PDF CANVAS
+============================================================ */
+
+.coaching-guide-modal__page-wrapper canvas {
+    display: block;
+}
+
+
+/* ============================================================
+   TEXT LAYER
+============================================================ */
+
+.coaching-guide-modal__page-wrapper .react-pdf__Page__textContent {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   ANNOTATION LAYER
+============================================================ */
+
+.coaching-guide-modal__page-wrapper .react-pdf__Page__annotations {
+    position: absolute;
+
+    inset: 0;
+}
+
+
+/* ============================================================
+   LOADING
+============================================================ */
+
+.coaching-guide-modal__loading {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 5;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    color: #c7d0d7;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing:
+        0.03em;
+}
+
+
+.coaching-guide-modal__spinner {
+    width: 32px;
+
+    height: 32px;
+
+    border:
+        2px solid rgba(255,
+            255,
+            255,
+            0.16);
+
+    border-top-color:
+        #d4af37;
+
+    border-radius: 50%;
+
+    animation:
+        coachingGuideSpin 0.8s linear infinite;
+}
+
+
+@keyframes coachingGuideSpin {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+
+/* ============================================================
+   ERROR
+============================================================ */
+
+.coaching-guide-modal__error {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 5;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    color: #ffffff;
+}
+
+
+.coaching-guide-modal__error strong {
+    color: #ffffff;
+
+    font-size: 18px;
+}
+
+
+.coaching-guide-modal__error span {
+    color:
+        #aeb9c2;
+
+    font-size: 13px;
+}
+
+
+.coaching-guide-modal__error a {
+    margin-top: 10px;
+
+    color: #d4af37;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+
+.coaching-guide-modal__error a:hover {
+    text-decoration: underline;
+}
+
+
+/* ============================================================
+   LARGE DESKTOP
+============================================================ */
+
+@media (min-width: 1600px) {
+
+    .coaching-guide-modal {
+        padding: 28px;
+    }
+
+
+    .coaching-guide-modal__panel {
+        width:
+            min(1580px,
+                96vw);
+
+        height: 94vh;
+    }
+
+
+    .coaching-guide-modal__header {
+        min-height: 96px;
+
+        padding-left: 34px;
+
+        padding-right: 28px;
+    }
+
+
+    .coaching-guide-modal__heading h2 {
+        font-size: 34px;
+    }
+
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 900px) {
+
+    .coaching-guide-modal {
+        padding: 12px;
+    }
+
+
+    .coaching-guide-modal__panel {
+        width: 100%;
+
+        height: 96vh;
+    }
+
+
+    .coaching-guide-modal__header {
+        min-height: 78px;
+
+        padding:
+            14px 16px;
+    }
+
+
+    .coaching-guide-modal__heading h2 {
+        font-size: 21px;
+    }
+
+
+    .coaching-guide-modal__category {
+        font-size: 10px;
+
+        letter-spacing:
+            1.8px;
+    }
+
+
+    .coaching-guide-modal__external,
+    .coaching-guide-modal__close {
+        width: 42px;
+
+        height: 42px;
+    }
+
+
+    .coaching-guide-modal__pages {
+        padding:
+            14px 16px 26px;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 640px) {
+
+    .coaching-guide-modal {
+        padding: 0;
+    }
+
+
+    .coaching-guide-modal__panel {
+        width: 100%;
+
+        height: 100dvh;
+
+        border: 0;
+    }
+
+
+    .coaching-guide-modal__header {
+        min-height: 76px;
+
+        gap: 12px;
+
+        padding: 12px;
+    }
+
+
+    .coaching-guide-modal__heading {
+        padding-right: 4px;
+    }
+
+
+    .coaching-guide-modal__heading h2 {
+        font-size: 17px;
+
+        line-height: 1.2;
+
+        letter-spacing:
+            -0.3px;
+    }
+
+
+    .coaching-guide-modal__category {
+        margin-bottom: 3px;
+
+        font-size: 9px;
+
+        letter-spacing:
+            1.5px;
+    }
+
+
+    .coaching-guide-modal__actions {
+        gap: 6px;
+    }
+
+
+    .coaching-guide-modal__external,
+    .coaching-guide-modal__close {
+        width: 38px;
+
+        height: 38px;
+    }
+
+
+    .coaching-guide-modal__toolbar {
+        padding:
+            0 10px;
+    }
+
+
+    .coaching-guide-modal__zoom-controls {
+        gap: 4px;
+    }
+
+
+    .coaching-guide-modal__zoom-controls button {
+        width: 31px;
+
+        height: 31px;
+    }
+
+
+    .coaching-guide-modal__zoom-value {
+        min-width: 45px;
+
+        font-size: 10px;
+    }
+
+
+    .coaching-guide-modal__zoom-controls .coaching-guide-modal__fit {
+        padding:
+            0 8px;
+    }
+
+
+    .coaching-guide-modal__fit span {
+        display: none;
+    }
+
+
+    .coaching-guide-modal__pages {
+        padding:
+            10px 8px 20px;
+
+        gap: 16px;
+    }
+
+}

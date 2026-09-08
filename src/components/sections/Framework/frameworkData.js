@@ -56,35 +56,35 @@ export const frameworkData = [
 
 export const approachData = [
   {
-    number: "01",
+    // number: "01",
     title: "Discover",
     description:
       "We understand your business, people and challenges deeply.",
     icon: Search,
   },
   {
-    number: "02",
+    // number: "02",
     title: "Diagnose",
     description:
       "We identify root causes using proven tools and stakeholder insights.",
     icon: ClipboardCheck,
   },
   {
-    number: "03",
+    // number: "03",
     title: "Design",
     description:
       "We create customised strategies aligned with your business goals.",
     icon: FileText,
   },
   {
-    number: "04",
+    // number: "04",
     title: "Deliver",
     description:
       "We partner with your leaders to implement solutions effectively.",
     icon: UsersRound,
   },
   {
-    number: "05",
+    // number: "05",
     title: "Drive",
     description:
       "Sustain the impact to help create lasting results.",

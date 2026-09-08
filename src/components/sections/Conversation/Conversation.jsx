@@ -1,6 +1,9 @@
-import React from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import React, { useState } from "react";
+import { ArrowRight } from "lucide-react";
+
 import "./conversation.css";
+
+import EnquiryModal from "../Contact/EnquiryModal";
 
 const questions = [
   {
@@ -18,10 +21,10 @@ const questions = [
 ];
 
 const Conversation = () => {
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Connect your form submission logic here later.
   };
 
   return (
@@ -40,7 +43,7 @@ const Conversation = () => {
 
           <h2 className="conversation-heading">
             Sometimes the right question
-            <br />
+            <br/>
             is where <span>transformation begins.</span>
           </h2>
 
@@ -50,13 +53,11 @@ const Conversation = () => {
           </p>
 
           <div className="conversation-questions">
-
             {questions.map((question) => (
               <div
                 className="conversation-question"
                 key={question.number}
               >
-
                 <span className="conversation-question-number">
                   {question.number}
                 </span>
@@ -64,33 +65,26 @@ const Conversation = () => {
                 <span className="conversation-question-text">
                   {question.text}
                 </span>
-
-                <ArrowUpRight
-                  className="conversation-question-arrow"
-                  size={20}
-                  strokeWidth={1.8}
-                />
-
               </div>
             ))}
-
           </div>
 
           <div className="conversation-direct">
-
             <span>
               Have another question?
             </span>
 
-            <button type="button">
+            <span>
               Ask us directly
-              <ArrowRight size={17} strokeWidth={1.8} />
-            </button>
 
+              <ArrowRight
+                size={17}
+                strokeWidth={2.8}
+              />
+            </span>
           </div>
 
         </div>
-
 
         {/* =================================================
             RIGHT — ENQUIRY CARD
@@ -116,11 +110,6 @@ const Conversation = () => {
 
           </div>
 
-
-          {/* =================================================
-              FORM
-          ================================================= */}
-
           <form
             className="conversation-form"
             onSubmit={handleSubmit}
@@ -142,7 +131,6 @@ const Conversation = () => {
 
             </div>
 
-
             <div className="conversation-field">
 
               <label htmlFor="conversation-email">
@@ -159,7 +147,6 @@ const Conversation = () => {
 
             </div>
 
-
             <div className="conversation-field">
 
               <label htmlFor="conversation-phone">
@@ -175,12 +162,14 @@ const Conversation = () => {
 
             </div>
 
-
             <button
-              type="submit"
+              type="button"
+              onClick={() => setIsEnquiryOpen(true)}
               className="conversation-submit"
             >
-              <span>Send Enquiry</span>
+              <span>
+                Send Enquiry
+              </span>
 
               <ArrowRight
                 size={18}
@@ -193,6 +182,16 @@ const Conversation = () => {
         </div>
 
       </div>
+
+      {/* =================================================
+          ENQUIRY MODAL
+      ================================================= */}
+
+      <EnquiryModal
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+      />
+
     </section>
   );
 };

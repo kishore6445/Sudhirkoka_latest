@@ -1,19 +1,142 @@
-import { ArrowLeft, ArrowRight, Play } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
-import { useEffect } from "react";
+// src/pages/insights/VideoDetail.jsx
 
 import {
-    videos,
+    ArrowLeft,
+    ArrowRight,
+    Play,
+    Clock3,
+    CalendarDays,
+} from "lucide-react";
+
+import {
+    Link,
+    useParams,
+} from "react-router-dom";
+
+import {
+    useEffect,
+    useState,
+} from "react";
+
+import {
     videoCategories,
+    videos,
 } from "../../data/insightsData";
 
 import "../../styles/video-detail.css";
 
 
+/* =========================================================
+   YOUTUBE URL → EMBED URL
+========================================================= */
+
+function getYouTubeEmbedUrl(url) {
+
+    if (!url) {
+        return "";
+    }
+
+    try {
+
+        const parsedUrl = new URL(url);
+
+        let videoId = "";
+
+
+        /* =============================================
+           STANDARD YOUTUBE URL
+
+           https://www.youtube.com/watch?v=VIDEO_ID
+        ============================================= */
+
+        if (
+            parsedUrl.hostname.includes("youtube.com") &&
+            parsedUrl.searchParams.get("v")
+        ) {
+
+            videoId =
+                parsedUrl.searchParams.get("v");
+
+        }
+
+
+        /* =============================================
+           SHORT YOUTUBE URL
+
+           https://youtu.be/VIDEO_ID
+        ============================================= */
+
+        else if (
+            parsedUrl.hostname === "youtu.be"
+        ) {
+
+            videoId =
+                parsedUrl.pathname.slice(1);
+
+        }
+
+
+        /* =============================================
+           EMBED URL
+
+           https://www.youtube.com/embed/VIDEO_ID
+        ============================================= */
+
+        else if (
+            parsedUrl.pathname.startsWith("/embed/")
+        ) {
+
+            videoId =
+                parsedUrl.pathname
+                    .split("/embed/")[1]
+                    ?.split("/")[0];
+
+        }
+
+
+        if (!videoId) {
+            return "";
+        }
+
+
+        return (
+            `https://www.youtube.com/embed/${videoId}` +
+            `?autoplay=1&rel=0`
+        );
+
+    } catch {
+
+        return "";
+
+    }
+}
+
+
+/* =========================================================
+   VIDEO DETAIL
+========================================================= */
+
 function VideoDetail() {
 
-    const { category, videoId } = useParams();
+    const {
+        category,
+        videoId,
+    } = useParams();
 
+
+    /* =====================================================
+       VIDEO PLAY STATE
+    ===================================================== */
+
+    const [
+        isPlaying,
+        setIsPlaying
+    ] = useState(false);
+
+
+    /* =====================================================
+       SCROLL TO TOP
+    ===================================================== */
 
     useEffect(() => {
 
@@ -26,9 +149,20 @@ function VideoDetail() {
     }, [category, videoId]);
 
 
-    /* =================================================
-       FIND VIDEO
-    ================================================= */
+    /* =====================================================
+       RESET VIDEO WHEN ROUTE CHANGES
+    ===================================================== */
+
+    useEffect(() => {
+
+        setIsPlaying(false);
+
+    }, [category, videoId]);
+
+
+    /* =====================================================
+       FIND CURRENT VIDEO
+    ===================================================== */
 
     const video = videos.find(
         (item) =>
@@ -37,53 +171,94 @@ function VideoDetail() {
     );
 
 
-    /* =================================================
-       FIND CATEGORY
-    ================================================= */
+    /* =====================================================
+       FIND CURRENT CATEGORY
+    ===================================================== */
 
-    const currentCategory = videoCategories.find(
-        (item) => item.id === category
-    );
+    const currentCategory =
+        videoCategories.find(
+            (item) => item.id === category
+        );
 
 
-    /* =================================================
+    /* =====================================================
        INVALID VIDEO
-    ================================================= */
+    ===================================================== */
 
-    if (!video) {
+    if (!video || !currentCategory) {
 
         return (
+
             <main className="video-detail-page">
 
-                <section className="video-detail-empty">
+                <section className="video-detail-not-found">
 
-                    <span>
-                        VIDEO
+                    <span className="video-detail-not-found-label">
+                        VIDEO LIBRARY
                     </span>
+
 
                     <h1>
                         Video not found.
                     </h1>
 
+
+                    <p>
+                        The video you're looking for
+                        could not be found.
+                    </p>
+
+
                     <Link
                         to="/insights/videos"
-                        className="video-detail-back"
+                        className="video-detail-back-button"
                     >
-                        <ArrowLeft size={18} />
+
+                        <ArrowLeft size={17} />
 
                         <span>
-                            Back to Videos
+                            Back to Video Library
                         </span>
+
                     </Link>
 
                 </section>
 
             </main>
+
         );
     }
 
 
+    /* =====================================================
+       RELATED VIDEOS
+    ===================================================== */
+
+    const relatedVideos = videos
+        .filter(
+            (item) =>
+                item.category === category &&
+                item.id !== video.id
+        )
+        .slice(0, 3);
+
+
+    /* =====================================================
+       YOUTUBE EMBED URL
+    ===================================================== */
+
+    const youtubeEmbedUrl =
+        getYouTubeEmbedUrl(
+            video.youtubeUrl
+        );
+
+
+    /* =====================================================
+       RENDER
+    ===================================================== */
+
     return (
+
         <main className="video-detail-page">
 
 
@@ -93,60 +268,191 @@ function VideoDetail() {
 
             <section className="video-detail-hero">
 
-                <Link
-                    to={`/insights/videos/${category}`}
-                    className="video-detail-back"
-                >
-                    <ArrowLeft size={18} />
-
-                    <span>
-                        Back to {currentCategory?.title || "Videos"}
-                    </span>
-                </Link>
+                <div className="video-detail-container">
 
 
-                <div className="video-detail-hero-content">
+                    {/* =================================================
+                        BACK TO CATEGORY
+                    ================================================= */}
 
+                    <Link
+                        to={`/insights/videos/${category}`}
+                        className="video-detail-back"
+                    >
 
-                    {/* EYEBROW */}
-
-                    <div className="video-detail-eyebrow">
+                        <ArrowLeft size={17} />
 
                         <span>
-                            VIDEO
+                            Back to {currentCategory.title}
                         </span>
 
-                        <i />
+                    </Link>
+
+
+                    {/* =================================================
+                        BREADCRUMB
+                    ================================================= */}
+
+                    <div className="video-detail-breadcrumb">
+
+                        <Link to="/insights/videos">
+                            Videos
+                        </Link>
 
                         <span>
-                            {video.categoryLabel || video.category}
+                            /
+                        </span>
+
+                        <Link
+                            to={`/insights/videos/${category}`}
+                        >
+                            {currentCategory.title}
+                        </Link>
+
+                        <span>
+                            /
+                        </span>
+
+                        <span>
+                            {video.categoryLabel}
                         </span>
 
                     </div>
 
 
-                    {/* TITLE */}
+                    {/* =================================================
+                        TITLE
+                    ================================================= */}
 
-                    <h1>
-                        {video.title}
-                    </h1>
+                    <div className="video-detail-heading">
 
-
-                    {/* META */}
-
-                    <div className="video-detail-meta">
-
-                        <span>
-                            {video.duration}
+                        <span className="video-detail-category">
+                            {video.categoryLabel}
                         </span>
 
-                        <span>
-                            •
-                        </span>
+                        <h1>
+                            {video.title}
+                        </h1>
 
-                        <span>
-                            {currentCategory?.title}
-                        </span>
+                    </div>
+
+
+                    {/* =================================================
+                        VIDEO PLAYER
+                    ================================================= */}
+
+                    <div className="video-detail-player">
+
+                        {!isPlaying ? (
+
+                            <>
+                                {/* =====================================
+                                    THUMBNAIL
+                                ===================================== */}
+
+                                <img
+                                    src={video.image}
+                                    alt={video.title}
+                                />
+
+
+                                {/* =====================================
+                                    OVERLAY
+                                ===================================== */}
+
+                                <div className="video-detail-player-overlay" />
+
+
+                                {/* =====================================
+                                    PLAY BUTTON
+                                ===================================== */}
+
+                                <button
+                                    type="button"
+                                    className="video-detail-play"
+                                    aria-label={`Play ${video.title}`}
+                                    onClick={() => {
+
+                                        if (
+                                            youtubeEmbedUrl
+                                        ) {
+                                            setIsPlaying(true);
+                                        }
+
+                                    }}
+                                >
+
+                                    <Play
+                                        size={30}
+                                        fill="currentColor"
+                                        strokeWidth={0}
+                                    />
+
+                                </button>
+
+
+                                {/* =====================================
+                                    DURATION
+                                ===================================== */}
+
+                                <span className="video-detail-player-duration">
+                                    {video.duration}
+                                </span>
+
+                            </>
+
+                        ) : (
+
+                            /* =========================================
+                               YOUTUBE PLAYER
+
+                               Replaces thumbnail inside same card.
+                            ========================================= */
+
+                            youtubeEmbedUrl ? (
+
+                                <iframe
+                                    className="video-detail-youtube"
+                                    src={youtubeEmbedUrl}
+                                    title={video.title}
+                                    allow="
+                                        accelerometer;
+                                        autoplay;
+                                        clipboard-write;
+                                        encrypted-media;
+                                        gyroscope;
+                                        picture-in-picture;
+                                        web-share
+                                    "
+                                    allowFullScreen
+                                />
+
+                            ) : (
+
+                                /* =====================================
+                                   INVALID / MISSING YOUTUBE URL
+                                ===================================== */
+
+                                <div className="video-detail-player-error">
+
+                                    <div className="video-detail-player-error-icon">
+                                        !
+                                    </div>
+
+                                    <h3>
+                                        Video unavailable
+                                    </h3>
+
+                                    <p>
+                                        The YouTube video link
+                                        has not been added yet.
+                                    </p>
+
+                                </div>
+
+                            )
+
+                        )}
 
                     </div>
 
@@ -156,105 +462,296 @@ function VideoDetail() {
 
 
             {/* =================================================
-                VIDEO
+                VIDEO INFORMATION
             ================================================= */}
 
-            <section className="video-detail-content">
+            <section className="video-detail-information">
 
-                <div className="video-detail-player">
+                <div className="video-detail-container">
 
-                    <img
-                        src={video.image}
-                        alt={video.title}
-                    />
+                    <div className="video-detail-info-grid">
 
-                    <div className="video-detail-player-overlay" />
 
-                    <div className="video-detail-play">
+                        {/* =================================================
+                            MAIN INFORMATION
+                        ================================================= */}
 
-                        <Play
-                            size={32}
-                            fill="currentColor"
-                            strokeWidth={0}
-                        />
+                        <article className="video-detail-main">
+
+                            <span className="video-detail-eyebrow">
+                                ABOUT THIS VIDEO
+                            </span>
+
+                            <h2>
+                                {video.title}
+                            </h2>
+
+                            <p className="video-detail-description">
+                                {video.description}
+                            </p>
+
+
+                            {/* =================================================
+                                META
+                            ================================================= */}
+
+                            <div className="video-detail-meta">
+
+
+                                {/* DURATION */}
+
+                                <div className="video-detail-meta-item">
+
+                                    <Clock3 size={17} />
+
+                                    <div>
+
+                                        <span>
+                                            DURATION
+                                        </span>
+
+                                        <strong>
+                                            {video.duration}
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+
+                                {/* PUBLISHED */}
+
+                                {video.publishedDate && (
+
+                                    <div className="video-detail-meta-item">
+
+                                        <CalendarDays size={17} />
+
+                                        <div>
+
+                                            <span>
+                                                PUBLISHED
+                                            </span>
+
+                                            <strong>
+                                                {video.publishedDate}
+                                            </strong>
+
+                                        </div>
+
+                                    </div>
+
+                                )}
+
+                            </div>
+
+                        </article>
+
+
+                        {/* =================================================
+                            CATEGORY SIDEBAR
+                        ================================================= */}
+
+                        <aside className="video-detail-sidebar">
+
+                            <span>
+                                EXPLORE THIS CATEGORY
+                            </span>
+
+                            <h3>
+                                {currentCategory.title}
+                            </h3>
+
+                            <p>
+                                {currentCategory.description}
+                            </p>
+
+                            <Link
+                                to={`/insights/videos/${category}`}
+                                className="video-detail-category-link"
+                            >
+
+                                <span>
+                                    View all videos
+                                </span>
+
+                                <ArrowRight size={17} />
+
+                            </Link>
+
+                        </aside>
 
                     </div>
 
-                    <span className="video-detail-duration">
-                        {video.duration}
-                    </span>
-
                 </div>
 
+            </section>
 
-                {/* =================================================
-                    DESCRIPTION
-                ================================================= */}
 
-                <div className="video-detail-description">
+            {/* =================================================
+                RELATED VIDEOS
+            ================================================= */}
 
-                    <div className="video-detail-description-label">
-                        ABOUT THIS VIDEO
+            {relatedVideos.length > 0 && (
+
+                <section className="video-detail-related">
+
+                    <div className="video-detail-container">
+
+
+                        {/* =================================================
+                            RELATED HEADER
+                        ================================================= */}
+
+                        <div className="video-detail-related-heading">
+
+                            <div>
+
+                                <span>
+                                    MORE FROM {video.categoryLabel}
+                                </span>
+
+                                <h2>
+                                    Keep watching.
+                                </h2>
+
+                            </div>
+
+
+                            <Link
+                                to={`/insights/videos/${category}`}
+                                className="video-detail-view-category"
+                            >
+
+                                <span>
+                                    View category
+                                </span>
+
+                                <ArrowRight size={17} />
+
+                            </Link>
+
+                        </div>
+
+
+                        {/* =================================================
+                            RELATED GRID
+                        ================================================= */}
+
+                        <div className="video-detail-related-grid">
+
+                            {relatedVideos.map(
+                                (relatedVideo) => (
+
+                                    <Link
+                                        key={relatedVideo.id}
+                                        to={
+                                            `/insights/videos/` +
+                                            `${category}/` +
+                                            `${relatedVideo.id}`
+                                        }
+                                        className="video-detail-related-card"
+                                    >
+
+                                        <div className="video-detail-related-image">
+
+                                            <img
+                                                src={relatedVideo.image}
+                                                alt={relatedVideo.title}
+                                            />
+
+                                            <div className="video-detail-related-overlay" />
+
+                                            <span className="video-detail-related-play">
+
+                                                <Play
+                                                    size={15}
+                                                    fill="currentColor"
+                                                    strokeWidth={0}
+                                                />
+
+                                            </span>
+
+                                            <small>
+                                                {relatedVideo.duration}
+                                            </small>
+
+                                        </div>
+
+
+                                        <div className="video-detail-related-content">
+
+                                            <span>
+                                                {relatedVideo.categoryLabel}
+                                            </span>
+
+                                            <h3>
+                                                {relatedVideo.title}
+                                            </h3>
+
+                                        </div>
+
+                                    </Link>
+
+                                )
+                            )}
+
+                        </div>
+
                     </div>
 
-                    <p>
-                        {video.description}
-                    </p>
+                </section>
 
-                </div>
+            )}
 
 
-                {/* =================================================
-                    YOUTUBE CTA
-                ================================================= */}
+            {/* =================================================
+                BOTTOM NAVIGATION
+            ================================================= */}
 
-                <div className="video-detail-watch">
+            <section className="video-detail-bottom">
 
-                    <div>
-
-                        <span>
-                            WATCH THE FULL VIDEO
-                        </span>
-
-                        <p>
-                            Continue watching this conversation
-                            on our YouTube channel.
-                        </p>
-
-                    </div>
-
-
-                    <a
-                        href="#"
-                        className="video-detail-youtube"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span>
-                            Watch on YouTube
-                        </span>
-
-                        <ArrowRight size={19} />
-
-                    </a>
-
-                </div>
-
-
-                {/* =================================================
-                    BACK
-                ================================================= */}
-
-                <div className="video-detail-footer">
+                <div className="video-detail-container">
 
                     <Link
                         to={`/insights/videos/${category}`}
                     >
+
                         <ArrowLeft size={18} />
 
-                        <span>
-                            More {currentCategory?.title || "Videos"}
-                        </span>
+                        <div>
+
+                            <span>
+                                BACK TO
+                            </span>
+
+                            <strong>
+                                {currentCategory.title}
+                            </strong>
+
+                        </div>
+
+                    </Link>
+
+
+                    <Link
+                        to="/insights/videos"
+                    >
+
+                        <div>
+
+                            <span>
+                                EXPLORE
+                            </span>
+
+                            <strong>
+                                Video Library
+                            </strong>
+
+                        </div>
+
+                        <ArrowRight size={18} />
+
                     </Link>
 
                 </div>

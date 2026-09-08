@@ -1,0 +1,338 @@
+/* =========================================================
+   YOUTUBE MODAL
+========================================================= */
+
+.youtube-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 32px;
+
+    background:
+        rgba(5, 20, 38, 0.82);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    animation:
+        youtubeModalFadeIn 0.25s ease forwards;
+}
+
+
+/* =========================================================
+   DIALOG
+========================================================= */
+
+.youtube-modal__dialog {
+
+    position: relative;
+
+    width: min(1100px,
+            92vw);
+
+    background: #071f35;
+
+    border:
+        1px solid rgba(212, 175, 55, 0.35);
+
+    border-radius: 20px;
+
+    padding: 10px;
+
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.45);
+
+    animation:
+        youtubeModalScaleIn 0.3s cubic-bezier(0.22,
+            1,
+            0.36,
+            1) forwards;
+}
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+.youtube-modal__player {
+
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    background: #000;
+
+    border-radius: 13px;
+}
+
+
+.youtube-modal__player iframe {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.youtube-modal__close {
+
+    position: absolute;
+
+    top: -18px;
+    right: -18px;
+
+    z-index: 5;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(212, 175, 55, 0.35);
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #102d4a;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.youtube-modal__close:hover {
+
+    transform:
+        rotate(90deg) scale(1.05);
+
+    background: #d4af37;
+
+    border-color: #d4af37;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   ERROR STATE
+========================================================= */
+
+.youtube-modal__dialog--error {
+
+    min-height: 300px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px;
+}
+
+
+.youtube-modal__error {
+
+    text-align: center;
+
+    color: #ffffff;
+}
+
+
+.youtube-modal__error-icon {
+
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: #d4af37;
+
+    color: #102d4a;
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+
+.youtube-modal__error h2 {
+
+    margin: 0 0 10px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 28px;
+}
+
+
+.youtube-modal__error p {
+
+    margin: 0;
+
+    color:
+        rgba(255, 255, 255, 0.7);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes youtubeModalFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes youtubeModalScaleIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px) scale(0.96);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .youtube-modal {
+
+        padding: 24px;
+    }
+
+    .youtube-modal__dialog {
+
+        width: 94vw;
+
+        border-radius: 16px;
+
+        padding: 7px;
+    }
+
+    .youtube-modal__player {
+
+        border-radius: 10px;
+    }
+
+    .youtube-modal__close {
+
+        top: -16px;
+        right: -12px;
+
+        width: 44px;
+        height: 44px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .youtube-modal {
+
+        padding: 18px;
+    }
+
+    .youtube-modal__dialog {
+
+        width: 100%;
+
+        padding: 5px;
+
+        border-radius: 13px;
+    }
+
+    .youtube-modal__player {
+
+        border-radius: 8px;
+    }
+
+    .youtube-modal__close {
+
+        top: -14px;
+        right: -8px;
+
+        width: 40px;
+        height: 40px;
+    }
+
+    .youtube-modal__close svg {
+
+        width: 20px;
+        height: 20px;
+    }
+}

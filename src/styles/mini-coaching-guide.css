@@ -1,0 +1,1668 @@
+/* ============================================================
+   MINI COACHING GUIDES
+============================================================ */
+
+.mini-coaching-guide {
+    width: 100%;
+    min-height: 100vh;
+
+    /* background: #f8f7f4; */
+
+    padding: 105px 0 95px;
+
+    overflow: hidden;
+}
+
+
+.mini-coaching-guide__container {
+    width: var(--site-container-width);
+    max-width: var(--site-max-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* ============================================================
+   LARGE DESKTOP
+   Uses the shared 1420px site container from index.css.
+============================================================ */
+
+@media (min-width: 1500px) {
+
+    .mini-coaching-guide__intro {
+        gap: 85px;
+    }
+
+    .mini-coaching-guide__manager-coach {
+        width: 410px;
+    }
+
+}
+
+
+/* ============================================================
+   INTRO
+============================================================ */
+
+.mini-coaching-guide__intro {
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 70px;
+
+    margin-bottom: 55px;
+}
+
+
+.mini-coaching-guide__intro-copy {
+    min-width: 0;
+    flex: 1;
+}
+
+
+
+/* ============================================================
+   EYEBROW
+============================================================ */
+
+.mini-coaching-guide__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    width: fit-content;
+
+    margin-bottom: 22px;
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+
+.mini-coaching-guide__eyebrow::before {
+    content: "";
+
+    width: 34px;
+    height: 2px;
+
+    flex-shrink: 0;
+
+    background: #d4af37;
+}
+
+
+
+/* ============================================================
+   MAIN HEADING
+============================================================ */
+
+.mini-coaching-guide__heading {
+    max-width: 1150px;
+
+    margin: 0;
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: clamp(40px, 4vw, 56px);
+
+    line-height: 1.05;
+
+    letter-spacing: -0.035em;
+
+    font-weight: 700;
+}
+
+
+.mini-coaching-guide__heading span {
+    color: #d4af37;
+
+    font-family: "Manrope", sans-serif;
+    font-style: normal;
+}
+
+
+
+/* ============================================================
+   DESCRIPTION + BROWSE
+============================================================ */
+
+.mini-coaching-guide__description-row {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+
+    margin-top: 24px;
+}
+
+
+.mini-coaching-guide__description-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+
+/* ============================================================
+   DESCRIPTION
+============================================================ */
+
+.mini-coaching-guide__description {
+    max-width: 820px;
+
+    margin: 0;
+
+    color: #56728d;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+
+
+/* ============================================================
+   BROWSE ALL RESOURCES
+============================================================ */
+
+.mini-coaching-guide__browse {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    width: fit-content;
+
+    margin-top: 20px;
+
+    padding-bottom: 4px;
+
+    border-bottom: 1px solid rgba(16, 42, 67, 0.18);
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        gap 180ms ease;
+}
+
+
+.mini-coaching-guide__browse:hover {
+    gap: 14px;
+
+    border-color: #d4af37;
+
+    color: #d4af37;
+}
+
+
+.mini-coaching-guide__browse svg {
+    width: 18px;
+    height: 18px;
+
+    stroke-width: 1.8;
+}
+
+
+
+/* ============================================================
+   MANAGER AS A COACH RESOURCE
+============================================================ */
+
+.mini-coaching-guide__manager-coach {
+    position: relative;
+
+    flex-shrink: 0;
+
+    width: 390px;
+    min-height: 148px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 22px 25px;
+
+    margin-bottom: 65px;
+
+    border: 2px solid #d4af37;
+    border-radius: 6px;
+
+    background: #fffdf8;
+
+    color: #102a43;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    box-shadow: none;
+
+    transition:
+        background 220ms ease,
+        border-color 220ms ease,
+        transform 220ms ease;
+}
+
+
+.mini-coaching-guide__manager-coach:hover {
+    transform: translateY(-2px);
+
+    background: #fffdf8;
+
+    border-color: #c79f20;
+}
+
+
+.mini-coaching-guide__manager-coach:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 4px;
+}
+
+
+
+/* ============================================================
+   MANAGER RESOURCE ICON
+============================================================ */
+
+.mini-coaching-guide__manager-coach-icon {
+    width: 56px;
+    height: 56px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #d4af37;
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #d4af37;
+
+    transition:
+        background 220ms ease,
+        color 220ms ease,
+        transform 220ms ease;
+}
+
+
+.mini-coaching-guide__manager-coach:hover .mini-coaching-guide__manager-coach-icon {
+    background: #d4af37;
+
+    color: #ffffff;
+
+    transform: scale(1.03);
+}
+
+
+
+/* ============================================================
+   MANAGER RESOURCE CONTENT
+============================================================ */
+
+.mini-coaching-guide__manager-coach-content {
+    min-width: 0;
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.mini-coaching-guide__manager-coach-label {
+    color: #b28d1c;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+
+    text-transform: uppercase;
+}
+
+
+.mini-coaching-guide__manager-coach-title {
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.25;
+
+    letter-spacing: -0.02em;
+}
+
+
+.mini-coaching-guide__manager-coach-description {
+    max-width: 225px;
+
+    color: #56728d;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+
+
+/* ============================================================
+   MANAGER RESOURCE ARROW
+============================================================ */
+
+.mini-coaching-guide__manager-coach-arrow {
+    flex-shrink: 0;
+
+    color: #102a43;
+
+    stroke-width: 1.6;
+
+    transition:
+        transform 180ms ease,
+        color 180ms ease;
+}
+
+
+.mini-coaching-guide__manager-coach:hover .mini-coaching-guide__manager-coach-arrow {
+    transform: translateX(4px);
+
+    color: #d4af37;
+}
+
+
+
+/* ============================================================
+   CARDS GRID
+============================================================ */
+
+.mini-coaching-guide__cards {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 28px;
+
+    align-items: stretch;
+}
+
+
+
+/* ============================================================
+   CARD
+============================================================ */
+
+.mini-coaching-card {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(16, 42, 67, 0.075);
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 22px rgba(16, 42, 67, 0.055);
+
+    transition:
+        transform 250ms ease,
+        box-shadow 250ms ease,
+        border-color 250ms ease;
+}
+
+
+.mini-coaching-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(16, 42, 67, 0.12);
+
+    box-shadow:
+        0 17px 38px rgba(16, 42, 67, 0.10);
+}
+
+
+.mini-coaching-card:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 5px;
+}
+
+
+
+/* ============================================================
+   CAROUSEL COVER
+============================================================ */
+
+.mini-coaching-card__cover {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 11.5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #eeeae2;
+}
+
+
+.mini-coaching-card__cover img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+
+    transition: transform 400ms ease;
+}
+
+
+.mini-coaching-card:hover .mini-coaching-card__cover img {
+    transform: scale(1.015);
+}
+
+
+
+/* ============================================================
+   IMAGE HOVER OVERLAY
+============================================================ */
+
+.mini-coaching-card__overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    padding: 18px;
+
+    background:
+        linear-gradient(to top,
+            rgba(16, 42, 67, 0.50),
+            rgba(16, 42, 67, 0) 55%);
+
+    color: #ffffff;
+
+    opacity: 0;
+
+    transition: opacity 220ms ease;
+}
+
+
+.mini-coaching-card:hover .mini-coaching-card__overlay {
+    opacity: 1;
+}
+
+
+.mini-coaching-card__overlay span {
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+
+.mini-coaching-card__overlay svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+
+/* ============================================================
+   CARD CONTENT
+============================================================ */
+
+.mini-coaching-card__content {
+    width: 100%;
+
+    padding: 18px 20px 19px;
+
+    background: #ffffff;
+}
+
+
+
+/* ============================================================
+   META ROW
+============================================================ */
+
+.mini-coaching-card__meta {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 18px;
+}
+
+
+
+/* ============================================================
+   LEFT SIDE OF META
+============================================================ */
+
+.mini-coaching-card__meta-left {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+
+/* ============================================================
+   NUMBER
+============================================================ */
+
+.mini-coaching-card__number {
+    color: #d4af37;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    line-height: 1;
+}
+
+
+.mini-coaching-card__number::after {
+    content: "";
+
+    display: inline-block;
+
+    width: 1px;
+    height: 11px;
+
+    margin-left: 9px;
+
+    background: rgba(16, 42, 67, 0.14);
+
+    vertical-align: -2px;
+}
+
+
+
+/* ============================================================
+   CATEGORY
+============================================================ */
+
+.mini-coaching-card__category {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 21px;
+
+    padding: 5px 9px;
+
+    border-radius: 3px;
+
+    background: #f0f1ef;
+
+    color: black;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+
+/* ============================================================
+   EXPLORE GUIDE
+============================================================ */
+
+.mini-coaching-card__link {
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        gap 180ms ease;
+}
+
+
+.mini-coaching-card__link:hover {
+    gap: 11px;
+
+    color: #d4af37;
+}
+
+
+.mini-coaching-card__link svg {
+    width: 17px;
+    height: 17px;
+
+    stroke-width: 1.8;
+}
+
+
+
+/* ============================================================
+   MANAGER AS A COACH MODAL
+============================================================ */
+
+.manager-coach-modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(10, 25, 39, 0.68);
+
+    backdrop-filter: blur(6px);
+
+    animation: managerCoachModalFadeIn 220ms ease;
+}
+
+
+@keyframes managerCoachModalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+/* ============================================================
+   MODAL PANEL
+============================================================ */
+
+.manager-coach-modal__panel {
+    position: relative;
+
+    width: min(920px, 100%);
+
+    max-height: calc(100vh - 60px);
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: #fffdf8;
+
+    box-shadow:
+        0 25px 70px rgba(5, 22, 38, 0.28);
+
+    animation: managerCoachModalSlideIn 260ms ease;
+}
+
+
+@keyframes managerCoachModalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+
+/* ============================================================
+   MODAL HEADER
+============================================================ */
+
+.manager-coach-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 28px 38px 0;
+}
+
+
+.manager-coach-modal__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    line-height: 1;
+
+    text-transform: uppercase;
+}
+
+
+.manager-coach-modal__eyebrow-line {
+    width: 25px;
+    height: 2px;
+
+    background: #d4af37;
+}
+
+
+
+/* ============================================================
+   CLOSE BUTTON
+============================================================ */
+
+.manager-coach-modal__close {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(16, 42, 67, 0.13);
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #102a43;
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+
+.manager-coach-modal__close:hover {
+    background: #102a43;
+
+    border-color: #102a43;
+
+    color: #ffffff;
+
+    transform: rotate(3deg);
+}
+
+
+
+/* ============================================================
+   MODAL TITLE
+============================================================ */
+
+.manager-coach-modal__title-block {
+    padding: 20px 38px 25px;
+
+    border-bottom: 1px solid rgba(16, 42, 67, 0.09);
+}
+
+
+.manager-coach-modal__title-block h2 {
+    margin: 0 0 7px;
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(30px, 3vw, 43px);
+    font-weight: 800;
+    line-height: 1.05;
+
+    letter-spacing: -0.035em;
+}
+
+
+.manager-coach-modal__title-block h3 {
+    max-width: 700px;
+
+    margin: 0;
+
+    color: #d4af37;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    font-weight: 750;
+    line-height: 1.35;
+
+    letter-spacing: -0.015em;
+}
+
+
+
+/* ============================================================
+   MODAL SCROLL CONTENT
+============================================================ */
+
+.manager-coach-modal__content {
+    max-height: calc(100vh - 215px);
+
+    overflow-y: auto;
+
+    padding: 30px 38px 38px;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(16, 42, 67, 0.25) transparent;
+}
+
+
+.manager-coach-modal__content::-webkit-scrollbar {
+    width: 6px;
+}
+
+
+.manager-coach-modal__content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.manager-coach-modal__content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+
+    background: rgba(16, 42, 67, 0.25);
+}
+
+
+
+/* ============================================================
+   MODAL BODY TEXT
+============================================================ */
+
+.manager-coach-modal__content>p {
+    max-width: 790px;
+
+    margin: 0 0 17px;
+
+    color: #56728d;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+
+.manager-coach-modal__content strong {
+    color: #102a43;
+
+    font-weight: 750;
+}
+
+
+.manager-coach-modal__emphasis {
+    margin-top: -6px !important;
+
+    color: #102a43 !important;
+
+    font-size: 16px !important;
+    font-weight: 800 !important;
+}
+
+
+.manager-coach-modal__strong {
+    color: #102a43 !important;
+
+    font-weight: 750 !important;
+}
+
+
+
+/* ============================================================
+   RESOURCE BOX
+============================================================ */
+
+.manager-coach-modal__resource-box {
+    margin: 28px 0 30px;
+
+    padding: 22px 24px;
+
+    border-radius: 10px;
+
+    background: #f8f1dd;
+
+    border: 1px solid rgba(212, 175, 55, 0.16);
+}
+
+
+.manager-coach-modal__resource-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 17px;
+
+    color: #102a43;
+}
+
+
+.manager-coach-modal__resource-heading svg {
+    flex-shrink: 0;
+
+    color: #b28d1c;
+}
+
+
+.manager-coach-modal__resource-heading h4 {
+    margin: 0;
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+
+
+/* ============================================================
+   RESOURCE POINTS
+============================================================ */
+
+.manager-coach-modal__points {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    column-gap: 35px;
+    row-gap: 12px;
+}
+
+
+.manager-coach-modal__point {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 9px;
+
+    color: #486581;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    font-weight: 550;
+    line-height: 1.45;
+}
+
+
+.manager-coach-modal__point svg {
+    flex: 0 0 auto;
+
+    margin-top: 1px;
+
+    color: #b28d1c;
+}
+
+
+
+/* ============================================================
+   CONTENT SECTION
+============================================================ */
+
+.manager-coach-modal__section {
+    max-width: 790px;
+
+    margin-top: 28px;
+}
+
+
+.manager-coach-modal__section h4 {
+    margin: 0 0 10px;
+
+    color: #102a43;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.3;
+
+    letter-spacing: -0.015em;
+}
+
+
+.manager-coach-modal__section p {
+    margin: 0 0 12px;
+
+    color: #56728d;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.75;
+}
+
+
+.manager-coach-modal__section--divider {
+    padding-top: 27px;
+
+    border-top: 1px solid rgba(16, 42, 67, 0.10);
+}
+
+
+
+/* ============================================================
+   LEARNING MOMENTS
+============================================================ */
+
+.manager-coach-modal__learning-box {
+    display: flex;
+    align-items: stretch;
+
+    gap: 18px;
+
+    margin: 24px 0 10px;
+
+    padding: 20px 22px;
+
+    border-radius: 10px;
+
+    background: #f7f8f6;
+}
+
+
+.manager-coach-modal__learning-icon {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 2px;
+
+    border-radius: 50%;
+
+    background: #fffdf8;
+
+    color: #d4af37;
+}
+
+
+.manager-coach-modal__learning-list {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 7px;
+}
+
+
+.manager-coach-modal__learning-list p {
+    margin: 0;
+
+    color: #486581;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 11.5px;
+    font-weight: 550;
+    line-height: 1.5;
+}
+
+
+
+/* ============================================================
+   CLOSING MESSAGE
+============================================================ */
+
+.manager-coach-modal__closing {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 13px;
+
+    margin-top: 30px;
+    padding: 17px 20px;
+
+    border-radius: 8px;
+
+    background: #102a43;
+
+    color: #ffffff;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    font-weight: 750;
+    line-height: 1.5;
+}
+
+
+.manager-coach-modal__closing span {
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.manager-coach-modal__closing span:not(:last-child)::after {
+    content: "•";
+
+    margin-left: 13px;
+
+    color: #d4af37;
+}
+
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1050px) {
+
+    .mini-coaching-guide {
+        min-height: auto;
+
+        padding: 90px 0 80px;
+
+        overflow: visible;
+    }
+
+
+    .mini-coaching-guide__container {
+        width: var(--site-container-width);
+        max-width: var(--site-max-width);
+    }
+
+
+    .mini-coaching-guide__intro {
+        gap: 35px;
+    }
+
+
+    .mini-coaching-guide__heading {
+        font-size: 55px;
+    }
+
+
+    .mini-coaching-guide__description {
+        font-size: 14px;
+    }
+
+
+    .mini-coaching-guide__manager-coach {
+        width: 300px;
+
+        gap: 14px;
+
+        padding: 20px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-title {
+        font-size: 14px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-description {
+        font-size: 10px;
+    }
+
+
+    .mini-coaching-guide__cards {
+        gap: 20px;
+    }
+
+
+    .mini-coaching-card__content {
+        padding: 16px;
+    }
+
+
+    .mini-coaching-card__meta {
+        align-items: center;
+    }
+
+
+    .mini-coaching-card__category {
+        font-size: 8px;
+    }
+
+
+    .mini-coaching-card__link {
+        font-size: 9px;
+    }
+
+
+    .manager-coach-modal__panel {
+        width: min(850px, 100%);
+    }
+
+}
+
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 760px) {
+
+    .mini-coaching-guide {
+        min-height: auto;
+
+        padding: 70px 0 75px;
+    }
+
+
+    .mini-coaching-guide__container {
+        width: var(--site-container-width);
+        max-width: var(--site-max-width);
+    }
+
+
+    .mini-coaching-guide__intro {
+        align-items: stretch;
+
+        flex-direction: column;
+
+        gap: 28px;
+
+        margin-bottom: 38px;
+    }
+
+
+    .mini-coaching-guide__eyebrow {
+        margin-bottom: 18px;
+
+        font-size: 10px;
+    }
+
+
+    .mini-coaching-guide__heading {
+        font-size: 46px;
+
+        line-height: 1.06;
+    }
+
+
+    .mini-coaching-guide__description-row {
+        margin-top: 17px;
+    }
+
+
+    .mini-coaching-guide__description {
+        max-width: 100%;
+
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+
+    .mini-coaching-guide__browse {
+        font-size: 9px;
+    }
+
+
+    .mini-coaching-guide__manager-coach {
+        width: 100%;
+
+        min-height: 100px;
+
+        margin-bottom: 0;
+
+        padding: 18px 20px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-label {
+        font-size: 8px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-title {
+        font-size: 14px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-description {
+        max-width: 100%;
+
+        font-size: 10px;
+    }
+
+
+    .mini-coaching-guide__cards {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+    }
+
+
+    .mini-coaching-card__cover {
+        aspect-ratio: 16 / 11;
+    }
+
+
+    .mini-coaching-card__content {
+        padding: 18px 19px;
+    }
+
+
+    .mini-coaching-card__meta {
+        gap: 15px;
+    }
+
+
+    .mini-coaching-card__category {
+        font-size: 8px;
+    }
+
+
+    .mini-coaching-card__link {
+        font-size: 10px;
+    }
+
+
+
+    /* ========================================================
+       MANAGER MODAL — MOBILE
+    ======================================================== */
+
+    .manager-coach-modal {
+        align-items: flex-end;
+
+        padding: 12px;
+    }
+
+
+    .manager-coach-modal__panel {
+        width: 100%;
+
+        max-height: calc(100vh - 24px);
+
+        border-radius: 12px 12px 8px 8px;
+    }
+
+
+    .manager-coach-modal__header {
+        padding: 20px 20px 0;
+    }
+
+
+    .manager-coach-modal__title-block {
+        padding: 17px 20px 20px;
+    }
+
+
+    .manager-coach-modal__title-block h2 {
+        font-size: 28px;
+    }
+
+
+    .manager-coach-modal__title-block h3 {
+        font-size: 15px;
+    }
+
+
+    .manager-coach-modal__content {
+        max-height: calc(100vh - 185px);
+
+        padding: 23px 20px 28px;
+    }
+
+
+    .manager-coach-modal__content>p {
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+
+    .manager-coach-modal__resource-box {
+        padding: 18px;
+
+        margin-top: 24px;
+    }
+
+
+    .manager-coach-modal__points {
+        grid-template-columns: 1fr;
+
+        gap: 11px;
+    }
+
+
+    .manager-coach-modal__point {
+        font-size: 10.5px;
+    }
+
+
+    .manager-coach-modal__section h4 {
+        font-size: 16px;
+    }
+
+
+    .manager-coach-modal__section p {
+        font-size: 12px;
+    }
+
+
+    .manager-coach-modal__learning-box {
+        padding: 17px;
+
+        gap: 13px;
+    }
+
+
+    .manager-coach-modal__learning-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .manager-coach-modal__learning-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+
+    .manager-coach-modal__learning-list p {
+        font-size: 10.5px;
+    }
+
+
+    .manager-coach-modal__closing {
+        padding: 15px;
+
+        font-size: 10px;
+    }
+
+}
+
+
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 420px) {
+
+    .mini-coaching-guide {
+        padding: 58px 0 65px;
+    }
+
+
+    .mini-coaching-guide__container {
+        width: var(--site-container-width);
+        max-width: var(--site-max-width);
+    }
+
+
+    .mini-coaching-guide__heading {
+        font-size: 40px;
+    }
+
+
+    .mini-coaching-guide__manager-coach {
+        padding: 15px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-icon svg {
+        width: 17px;
+        height: 17px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-title {
+        font-size: 13px;
+    }
+
+
+    .mini-coaching-guide__manager-coach-description {
+        font-size: 9.5px;
+    }
+
+
+    .mini-coaching-card__meta {
+        align-items: center;
+    }
+
+
+    .mini-coaching-card__category {
+        max-width: 150px;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    .manager-coach-modal__title-block h2 {
+        font-size: 25px;
+    }
+
+
+    .manager-coach-modal__title-block h3 {
+        font-size: 14px;
+    }
+
+
+    .manager-coach-modal__content {
+        padding-left: 17px;
+        padding-right: 17px;
+    }
+
+
+    .manager-coach-modal__closing {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 3px;
+    }
+
+
+    .manager-coach-modal__closing span:not(:last-child)::after {
+        display: none;
+    }
+
+}

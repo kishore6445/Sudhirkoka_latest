@@ -10,8 +10,32 @@
 }
 
 .insights-container {
-    width: min(1200px, calc(100% - 64px));
-    margin: 0 auto;
+    width: var(--site-container-width);
+    max-width: var(--site-max-width);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+
+    .insights-content {
+        gap: 42px;
+    }
+
+    .insights-header {
+        gap: 70px;
+    }
+
+    .featured-video-card .insight-video-content {
+        padding-left: 36px !important;
+        padding-right: 36px !important;
+    }
 }
 
 
@@ -191,105 +215,80 @@
 
 /* =========================================================
    INSIGHTS TABS
-   ICON-ONLY PREMIUM NAVIGATION
+   EDITORIAL STYLE
 ========================================================= */
 
 .insight-tabs-wrapper {
     width: 100%;
 
     display: flex;
-
-    justify-content: center;
-
     align-items: center;
+    justify-content: flex-start;
 
-    padding: 42px 0 48px;
+    margin-bottom: 20px;
+
+    padding: 0;
+
+    border-bottom: 1px solid #e5eaef;
+
+    box-sizing: border-box;
 }
 
 
 /* =========================================================
    TABS CONTAINER
 ========================================================= */
- 
+
 .insight-tabs {
-    width: 100%;
-
-    max-width: 560px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 18px;
-
-    padding: 10px;
-
-    background: #ffffff;
-
-    border: 1px solid #e1e7ec;
-
-    border-radius: 22px;
-
-    box-shadow:
-        0 14px 38px rgba(9, 34, 61, 0.07);
-
-    box-sizing: border-box;
-} 
-/* .insight-tabs {
-    width: 50%;
+    width: auto;
+    max-width: none;
 
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    justify-content: flex-start;
 
-    gap: 12px;
+    gap: 2px;
 
-    padding: 12px 16px;
+    margin: 0;
+    padding: 0;
 
-    background: #040d17;
+    background: transparent;
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 0;
 
-    border-radius: 20px;
-
-    box-shadow:
-        0 14px 35px rgba(9, 34, 61, 0.18);
+    box-shadow: none;
 
     box-sizing: border-box;
-} */
+}
+
 
 /* =========================================================
-   TAB
+   INDIVIDUAL TAB
 ========================================================= */
 
 .insight-tab {
     position: relative;
 
-    display: flex;
-
+    display: inline-flex;
     align-items: center;
-
     justify-content: center;
 
-    width: 72px;
+    width: auto;
+    height: 64px;
 
-    height: 72px;
-
-    flex: 0 0 72px;
+    flex: 0 0 auto;
 
     margin: 0;
 
-    padding: 0;
+    padding: 0 23px;
 
-    border: 0;
-
-    border-radius: 18px;
+    border: none;
+    border-radius: 0;
 
     background: transparent;
 
-    color: #6f879b;
+    color: #49657d;
 
     text-decoration: none !important;
 
@@ -298,9 +297,8 @@
     box-sizing: border-box;
 
     transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        color 0.25s ease;
+        color 0.25s ease,
+        background-color 0.25s ease;
 }
 
 
@@ -317,214 +315,80 @@
 
 
 /* =========================================================
-   ICON BACKGROUND
-========================================================= */
-
-.insight-tab-icon-wrap {
-    position: relative;
-
-    width: 52px;
-
-    height: 52px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 16px;
-
-    background: #f4f7f9;
-
-    color: #6f879b;
-
-    box-sizing: border-box;
-
-    transition:
-        background 0.25s ease,
-        color 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-
-/* =========================================================
    ICON
 ========================================================= */
 
 .insight-tab-icon {
     display: block;
 
+    width: 19px;
+    height: 19px;
+
     flex-shrink: 0;
+
+    margin-right: 9px;
 
     color: currentColor;
 
+    stroke-width: 2;
+
     transition:
-        transform 0.25s ease,
-        color 0.25s ease;
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
 
 /* =========================================================
-   HIDE LABEL
-   Label remains accessible but is visually hidden.
+   LABEL
 ========================================================= */
 
 .insight-tab-label {
-    position: absolute;
+    position: static;
 
-    width: 1px;
+    display: inline-block;
 
-    height: 1px;
+    width: auto;
+    height: auto;
 
+    margin: 0;
     padding: 0;
 
-    margin: -1px;
+    overflow: visible;
 
-    overflow: hidden;
-
-    clip: rect(0, 0, 0, 0);
+    clip: auto;
 
     white-space: nowrap;
 
-    border: 0;
-}
-
-
-/* =========================================================
-   TAB HOVER
-========================================================= */
-
-.insight-tab:hover {
-    color: #09223d;
-
-    transform: translateY(-3px);
-}
-
-.insight-tab:hover .insight-tab-icon-wrap {
-    background: #d2a72c;
-
-    color: #09223d;
-
-    transform: scale(1.05);
-
-    box-shadow:
-        0 8px 22px rgba(210, 167, 44, 0.22);
-}
-
-.insight-tab:hover .insight-tab-icon {
-    transform: scale(1.06);
-}
-
-
-/* =========================================================
-   TOOLTIP
-========================================================= */
-
-.insight-tab::after {
-    content: attr(data-label);
-
-    position: absolute;
-
-    left: 50%;
-
-    bottom: -43px;
-
-    transform:
-        translateX(-50%) translateY(-5px);
-
-    padding: 8px 12px;
-
-    border-radius: 8px;
-
-    background: #09223d;
-
-    color: #ffffff;
+    border: none;
 
     font-family: "Manrope", sans-serif;
 
-    font-size: 11px;
-
-    font-weight: 800;
+    font-size: 16px;
 
     line-height: 1;
 
-    letter-spacing: 0.06em;
+    font-weight: 780;
 
-    white-space: nowrap;
+    letter-spacing: 0.005em;
 
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    z-index: 50;
-
-    box-shadow:
-        0 8px 20px rgba(9, 34, 61, 0.15);
-
-    transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease,
-        transform 0.2s ease;
+    color: currentColor;
 }
 
 
 /* =========================================================
-   TOOLTIP ARROW
+   HOVER
 ========================================================= */
 
-.insight-tab::before {
-    content: "";
+.insight-tab:hover {
+    color: #c79a25;
 
-    position: absolute;
-
-    left: 50%;
-
-    bottom: -16px;
-
-    transform:
-        translateX(-50%) translateY(-5px);
-
-    width: 0;
-
-    height: 0;
-
-    border-left: 5px solid transparent;
-
-    border-right: 5px solid transparent;
-
-    border-bottom: 5px solid #09223d;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    z-index: 51;
-
-    transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease,
-        transform 0.2s ease;
+    background: transparent;
 }
 
+.insight-tab:hover .insight-tab-icon {
+    color: #c79a25;
 
-/* =========================================================
-   SHOW TOOLTIP ON HOVER
-========================================================= */
-
-.insight-tab:hover::after,
-.insight-tab:hover::before {
-    opacity: 1;
-
-    visibility: visible;
-
-    transform:
-        translateX(-50%) translateY(0);
+    transform: translateY(-1px);
 }
 
 
@@ -536,23 +400,233 @@
     color: #09223d;
 }
 
-.insight-tab--active .insight-tab-icon-wrap {
-    background: #d2a72c;
 
-    color: #09223d;
-
-    box-shadow:
-        0 8px 22px rgba(210, 167, 44, 0.20);
-}
+/* =========================================================
+   ACTIVE ICON
+========================================================= */
 
 .insight-tab--active .insight-tab-icon {
-    transform: scale(1.04);
+    color: #d2a72c;
 }
 
-.insight-tab--active:hover .insight-tab-icon-wrap {
-    background: #e0b638;
+
+/* =========================================================
+   ACTIVE UNDERLINE
+========================================================= */
+
+.insight-tab--active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 20px;
+    right: 20px;
+
+    bottom: -1px;
+
+    height: 3px;
+
+    background: #d2a72c;
+
+    border-radius: 2px 2px 0 0;
+
+    transform-origin: center;
+
+    animation: editorialTabIn 0.25s ease-out;
 }
 
+
+/* =========================================================
+   ACTIVE TAB HOVER
+========================================================= */
+
+.insight-tab--active:hover {
+    color: #c79a25;
+}
+
+.insight-tab--active:hover .insight-tab-icon {
+    color: #c79a25;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   REMOVE OLD TOOLTIP
+========================================================= */
+
+.insight-tab::before {
+    content: none !important;
+}
+
+.insight-tab:not(.insight-tab--active)::after {
+    content: none !important;
+}
+
+
+/* =========================================================
+   ACTIVE UNDERLINE ANIMATION
+========================================================= */
+
+@keyframes editorialTabIn {
+
+    from {
+        transform: scaleX(0.55);
+        opacity: 0;
+    }
+
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   KEYBOARD FOCUS
+========================================================= */
+
+.insight-tab:focus-visible {
+    outline: 2px solid #d2a72c;
+
+    outline-offset: -4px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .insight-tab {
+        height: 60px;
+
+        padding: 0 18px;
+    }
+
+    .insight-tab-icon {
+        width: 18px;
+        height: 18px;
+
+        margin-right: 8px;
+    }
+
+    .insight-tab-label {
+        font-size: 14px;
+    }
+
+    .insight-tab--active::after {
+        left: 16px;
+        right: 16px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .insight-tabs-wrapper {
+        display: block;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+
+        -ms-overflow-style: none;
+    }
+
+    .insight-tabs-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    .insight-tabs {
+        width: max-content;
+
+        min-width: max-content;
+
+        gap: 0;
+    }
+
+    .insight-tab {
+        height: 56px;
+
+        padding: 0 16px;
+    }
+
+    .insight-tab-icon {
+        width: 18px;
+        height: 18px;
+
+        margin-right: 7px;
+    }
+
+    .insight-tab-label {
+        font-size: 14px;
+    }
+
+    .insight-tab--active::after {
+        left: 14px;
+        right: 14px;
+
+        height: 2px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .insight-tab {
+        height: 53px;
+
+        padding: 0 13px;
+    }
+
+    .insight-tab-icon {
+        width: 17px;
+        height: 17px;
+
+        margin-right: 6px;
+    }
+
+    .insight-tab-label {
+        font-size: 13px;
+    }
+
+    .insight-tab--active::after {
+        left: 11px;
+        right: 11px;
+
+        height: 2px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .insight-tab,
+    .insight-tab-icon,
+    .insight-tab--active::after {
+        transition: none !important;
+        animation: none !important;
+    }
+
+}
 
 /* =========================================================
    MAIN CONTENT
@@ -577,6 +651,15 @@
     display: block;
 }
 
+.insights-header-line {
+    width: 100%;
+
+    height: 1px;
+
+    margin-top: 0px;
+
+    background: rgba(16, 42, 67, 0.12);
+}
 
 /* =========================================================
    VIDEO CARD — BASE
@@ -1225,22 +1308,22 @@
    STORY PANEL
 ========================================================= */
 
+
+
 .insight-story-panel {
     position: relative;
 
     display: flex;
-
     flex-direction: column;
 
+    justify-content: center;
+
     width: 100%;
-
-    height: auto;
-
-    min-height: 0;
+    height: 630px;
 
     margin: 0;
 
-    padding: 38px;
+    padding: 34px 38px;
 
     overflow: hidden;
 
@@ -1258,10 +1341,21 @@
     box-sizing: border-box;
 }
 
+
+/* =========================================================
+   STORY PANEL CONTENT
+========================================================= */
+
 .story-panel-top {
     position: relative;
 
     z-index: 2;
+
+    width: 100%;
+
+    margin: 0;
+
+    transform: translateY(-8px);
 }
 
 
@@ -1272,7 +1366,7 @@
 .story-eyebrow {
     display: block;
 
-    margin: 0 0 16px;
+    margin: 0 0 15px;
 
     font-family: "Manrope", sans-serif;
 
@@ -1297,7 +1391,7 @@
 
     font-family: "Manrope", sans-serif;
 
-    font-size: clamp(31px, 2.6vw, 40px);
+    font-size: clamp(30px, 2.2vw, 38px);
 
     line-height: 1.12;
 
@@ -1310,83 +1404,63 @@
 
 
 /* =========================================================
-   STORY VIDEO
+   STORY IMAGE
 ========================================================= */
 
-.story-video {
+.story-image {
     position: relative;
 
     width: 100%;
 
-    margin: 26px 0 0;
+    height: 150px;
+
+    margin: 20px 0 0;
 
     overflow: hidden;
 
     border-radius: 14px;
 
-    aspect-ratio: 16 / 9;
-
     background: #183c58;
 }
 
-.story-video img {
+.story-image img {
     display: block;
 
     width: 100%;
 
     height: 100%;
 
-    margin: 0;
+
 
     padding: 0;
 
     object-fit: cover;
+
+    transition: transform 0.45s ease;
 }
 
-.story-video::after {
+.insight-story-panel:hover .story-image img {
+    transform: scale(1.025);
+}
+
+
+/* =========================================================
+   SUBTLE IMAGE OVERLAY
+========================================================= */
+
+.story-image::after {
     content: "";
 
     position: absolute;
 
     inset: 0;
 
-    background: rgba(5, 24, 43, 0.15);
-}
+    background:
+        linear-gradient(180deg,
+            rgba(5, 24, 43, 0.02),
+            rgba(5, 24, 43, 0.20));
 
-.story-video-play {
-    position: absolute;
-
-    left: 50%;
-
-    top: 50%;
-
-    z-index: 2;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    width: 58px;
-
-    height: 58px;
-
-    margin: 0;
-
-    padding: 0;
-
-    transform: translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background: rgba(9, 34, 61, 0.76);
-
-    color: #d9aa2b;
-
-    border: 1px solid rgba(255, 255, 255, 0.45);
-
-    backdrop-filter: blur(6px);
+    pointer-events: none;
 }
 
 
@@ -1399,40 +1473,85 @@
 
     z-index: 2;
 
-    margin: 24px 0 0;
+    margin: 15px 0 0;
 }
 
 .story-main-text {
     margin: 0;
+    /* margin-top: 40px; */
+    max-width: 480px;
 
     font-family: "Manrope", sans-serif;
 
-    font-size: 17px;
+    font-size: 15px;
 
-    line-height: 1.65;
-
-    font-weight: 600;
-
-    color: #ffffff;
-}
-
-.story-secondary-text {
-    margin: 11px 0 0;
-
-    font-family: "Manrope", sans-serif;
-
-    font-size: 14px;
-
-    line-height: 1.6;
+    line-height: 1.55;
 
     font-weight: 500;
 
-    color: #aabaca;
+    color: #dce5ec;
 }
 
 
 /* =========================================================
-   SHARE STORY BUTTON
+   READ STORY BUTTON
+========================================================= */
+
+.read-story-button {
+    position: relative;
+
+    z-index: 3;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    width: fit-content;
+
+    margin: 15px 0 0;
+
+    padding: 0 0 7px;
+
+    border: 0;
+
+    border-bottom: 2px solid #d7ab2d;
+
+    background: transparent;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.09em;
+
+    text-transform: uppercase;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease,
+        gap 0.25s ease;
+}
+
+.read-story-button:hover {
+    gap: 15px;
+
+    color: #d7ab2d;
+}
+
+.read-story-button svg {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   SHARE YOUR STORY BUTTON
 ========================================================= */
 
 .share-story-button {
@@ -1448,7 +1567,7 @@
 
     width: 100%;
 
-    margin: 30px 0 0;
+    margin: 22px 0 0;
 
     padding: 17px 20px;
 
@@ -1510,6 +1629,741 @@
     pointer-events: none;
 }
 
+
+/* =========================================================
+   FULL STORY MODAL — BACKDROP
+========================================================= */
+
+.story-modal-backdrop {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(5, 20, 34, 0.72);
+
+    backdrop-filter: blur(8px);
+
+    box-sizing: border-box;
+
+    animation: storyModalFadeIn 0.22s ease;
+}
+
+
+/* =========================================================
+   FULL STORY MODAL
+========================================================= */
+
+.story-modal {
+    position: relative;
+
+    width: min(720px, 100%);
+
+    max-height: min(820px, calc(100vh - 60px));
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.25);
+
+    box-sizing: border-box;
+
+    animation: storyModalSlideIn 0.25s ease;
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.story-modal-header {
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 32px 34px 25px;
+
+    background:
+        linear-gradient(145deg,
+            #09223d 0%,
+            #0b2947 100%);
+
+    box-sizing: border-box;
+}
+
+.story-modal-eyebrow {
+    display: block;
+
+    margin: 0 0 12px;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.2em;
+
+    color: #d6aa2c;
+}
+
+.story-modal-header h2 {
+    max-width: 590px;
+
+    margin: 0;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: clamp(27px, 4vw, 38px);
+
+    line-height: 1.12;
+
+    letter-spacing: -0.035em;
+
+    font-weight: 800;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   MODAL CLOSE
+========================================================= */
+
+.story-modal-close {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 38px;
+
+    width: 38px;
+
+    height: 38px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.story-modal-close:hover {
+    background: rgba(255, 255, 255, 0.15);
+
+    transform: rotate(4deg);
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
+
+.story-modal-content {
+    overflow-y: auto;
+
+    padding: 30px 34px 10px;
+
+    box-sizing: border-box;
+}
+
+.story-modal-content p {
+    margin: 0 0 19px;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+    font-weight: 500;
+
+    color: #486581;
+}
+
+.story-modal-content p:first-child {
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #102f4a;
+}
+
+.story-modal-final {
+    color: #102f4a !important;
+
+    font-weight: 600 !important;
+}
+
+
+/* =========================================================
+   MODAL CLOSING
+========================================================= */
+
+.story-modal-closing {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    margin: 25px 0 10px;
+
+    padding: 20px 22px;
+
+    border-left: 3px solid #d7ab2d;
+
+    background: #f8f4e8;
+}
+
+.story-modal-closing strong {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    color: #102f4a;
+}
+
+.story-modal-closing span {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+    font-weight: 500;
+
+    color: #617786;
+}
+
+
+/* =========================================================
+   MODAL FOOTER
+========================================================= */
+
+.story-modal-footer {
+    padding: 18px 34px 30px;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+}
+
+.story-modal-share {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 16px 20px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #d7ab2d;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    color: #09223d;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.story-modal-share:hover {
+    background: #e2b93d;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   MODAL ANIMATION
+========================================================= */
+
+@keyframes storyModalFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes storyModalSlideIn {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(15px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .insight-story-panel {
+        height: 630px;
+
+        padding: 30px 24px;
+    }
+
+    .story-panel-top h2 {
+        font-size: 31px;
+    }
+
+    .story-image {
+        height: 140px;
+    }
+
+    .story-main-text {
+        font-size: 14px;
+    }
+
+    .story-modal-backdrop {
+        padding: 15px;
+    }
+
+    .story-modal {
+        max-height: calc(100vh - 30px);
+
+        border-radius: 17px;
+    }
+
+    .story-modal-header {
+        padding: 26px 24px 22px;
+    }
+
+    .story-modal-content {
+        padding: 25px 24px 5px;
+    }
+
+    .story-modal-footer {
+        padding: 15px 24px 24px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .insight-story-panel {
+        height: 630px;
+
+        padding: 27px 20px;
+    }
+
+    .story-panel-top h2 {
+        font-size: 29px;
+    }
+
+    .story-image {
+        height: 125px;
+
+        margin-top: 17px;
+    }
+
+    .story-copy {
+        margin-top: 13px;
+    }
+
+    .story-main-text {
+        font-size: 13.5px;
+
+        line-height: 1.5;
+    }
+
+    .share-story-button {
+        padding: 16px 17px;
+    }
+
+    .story-modal-header {
+        padding: 23px 20px 20px;
+    }
+
+    .story-modal-header h2 {
+        font-size: 27px;
+    }
+
+    .story-modal-content {
+        padding: 23px 20px 5px;
+    }
+
+    .story-modal-content p {
+        font-size: 14px;
+
+        line-height: 1.7;
+    }
+
+    .story-modal-footer {
+        padding: 14px 20px 20px;
+    }
+
+}
+
+/* =========================================================
+   RIGHT SIDEBAR
+========================================================= */
+
+.insights-side-column {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   SOCIAL LINKS CARD
+========================================================= */
+
+
+
+.insights-social-card {
+    width: 100%;
+
+    height: 371.93px;
+
+    min-height: 0;
+    margin-top: 2px;
+    padding: 34px;
+    /* background:
+        linear-gradient(145deg,
+            #f8fafc 0%,
+            #f3f7fa 100%); */
+    /* background: #EEF4F7; */
+    /* background:#f2d27a; */
+    border: 1px solid #dfe7ed;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 12px 32px rgba(9, 34, 61, 0.055);
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   SOCIAL HEADING
+========================================================= */
+
+.insights-social-heading {
+    margin: 0 0 28px;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: 0.2em;
+
+    text-transform: uppercase;
+
+    color: #d2a72c;
+}
+
+
+/* =========================================================
+   SOCIAL LINKS
+========================================================= */
+
+.insights-social-links {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   INDIVIDUAL SOCIAL LINK
+========================================================= */
+
+.insights-social-link {
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 14px;
+
+    min-width: 0;
+
+    min-height: 68px;
+
+    padding: 15px 18px;
+
+    border: 1px solid #e3eaf0;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.78);
+
+    text-decoration: none;
+
+    color: #09223d;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.22s ease,
+        border-color 0.22s ease,
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.insights-social-link:hover {
+    background: #ffffff;
+
+    border-color: #d9e1e7;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(9, 34, 61, 0.06);
+}
+
+.insights-social-copy {
+    max-width: 470px;
+
+    margin: 0 0 26px;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    font-weight: 500;
+
+    color: #526b80;
+}
+
+/* =========================================================
+   SOCIAL ICON
+========================================================= */
+
+.insights-social-icon {
+    flex-shrink: 0;
+
+    width: 30px;
+
+    height: 30px;
+
+    margin: 0;
+
+    transition:
+        transform 0.22s ease;
+}
+
+
+/* =========================================================
+   SOCIAL LABEL
+========================================================= */
+
+.insights-social-label {
+    display: block;
+
+    max-width: 100%;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.25;
+
+    font-weight: 750;
+
+    color: #09223d;
+}
+
+/* .insights-social-link:last-child {
+    grid-column: 1 / 2;
+} */
+/* =========================================================
+   HOVER
+========================================================= */
+
+.insights-social-link:hover {
+    background: #f7f9fb;
+
+    transform: translateY(-2px);
+}
+
+.insights-social-link:hover .insights-social-icon {
+    transform: translateY(-2px);
+}
+
+.insights-social-link:hover .insights-social-label {
+    color: #09223d;
+}
+
+
+/* =========================================================
+   PLATFORM COLORS
+========================================================= */
+
+.social-link--instagram .insights-social-icon {
+    color: #c13584;
+}
+
+.social-link--youtube .insights-social-icon {
+    color: #ff0000;
+}
+
+.social-link--linkedin .insights-social-icon {
+    color: #0a66c2;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .insights-side-column {
+        gap: 16px;
+    }
+
+    .insights-social-card {
+        padding: 20px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .insights-social-card {
+        padding: 20px;
+    }
+
+    .insights-social-links {
+        gap: 4px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .insights-social-card {
+        padding: 18px;
+    }
+
+    .insights-social-heading {
+        margin-bottom: 15px;
+    }
+
+    .insights-social-link {
+        padding: 10px 4px;
+    }
+
+    .insights-social-icon {
+        width: 21px;
+        height: 21px;
+
+        margin-bottom: 7px;
+    }
+
+    .insights-social-label {
+        font-size: 10px;
+    }
+
+}
 
 /* =========================================================
    PLACEHOLDER CONTENT
@@ -1691,9 +2545,7 @@
 
 @media (max-width: 700px) {
 
-    .insights-container {
-        width: min(100% - 32px, 1200px);
-    }
+    .insights-container {}
 
 
     .insights-section {
@@ -1851,9 +2703,7 @@
 
 @media (max-width: 480px) {
 
-    .insights-container {
-        width: calc(100% - 24px);
-    }
+    .insights-container {}
 
 
     .insights-heading {
@@ -1978,4 +2828,24 @@
     .share-story-button {
         transition: none !important;
     }
+}
+
+@media (max-width: 900px) {
+
+    .insight-story-panel {
+        min-height: auto;
+    }
+
+    .insights-social-card {
+        min-height: auto;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .insights-social-card {
+        min-height: auto;
+    }
+
 }

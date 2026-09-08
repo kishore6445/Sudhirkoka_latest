@@ -1,87 +1,172 @@
-/*==================================================*
-* SECTION HEADING
-*==================================================*/
+/* =========================================================
+   SECTION HEADING
+   Shared heading structure for:
+   - Insights
+   - Challenges
+
+   This component controls ONLY:
+   1. Eyebrow
+   2. Horizontal line
+   3. Spacing before heading
+   4. Main heading typography
+========================================================= */
 
 .section-heading {
+    width: 100%;
+}
+
+
+/* =========================================================
+   EYEBROW + DIVIDER
+========================================================= */
+
+.section-heading__top {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.section-heading__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex-shrink: 0;
+
+    color: #17324d;
+
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* Small gold line before INSIGHTS / CHALLENGES */
+
+.section-heading__eyebrow-line {
+    display: block;
+
+    width: 28px;
+    height: 2px;
+
+    flex-shrink: 0;
+
+    background-color: #d5aa2a;
+}
+
+
+/* =========================================================
+   HORIZONTAL DIVIDER
+========================================================= */
+
+.section-heading__divider {
+    flex: 1;
+
+    height: 1px;
+
+    margin-left: 18px;
+
+    background-color: #e5e5e5;
+}
+
+
+/* =========================================================
+   MAIN HEADING
+========================================================= */
+
+.section-heading__title {
     margin: 0;
 
-    font-family: "Manrope", sans-serif;
+    max-width: 720px;
 
-    font-size: clamp(42px, 4.5vw, 64px);
+    color: #102d47;
 
+    font-size: clamp(38px, 4vw, 56px);
     font-weight: 700;
-
     line-height: 1.05;
 
-    letter-spacing: -.025em;
+    letter-spacing: -1.8px;
 }
 
-/*==================================================*
-* DARK
-*==================================================*/
 
-.section-heading--dark {
-    color: #102A43;
+/* =========================================================
+   GOLD HIGHLIGHT
+
+   Use <span> around the highlighted part
+   in Insights / Challenges.
+========================================================= */
+
+.section-heading__title span {
+    color: #d5aa2a;
 }
 
-/*==================================================*
-* NAVY
-*==================================================*/
 
-.section-heading--navy {
-    color: #071F52;
-}
-
-/*==================================================*
-* WHITE
-*==================================================*/
-
-.section-heading--white {
-    color: #FFFFFF;
-}
-
-/*==================================================*
-* GOLD
-*==================================================*/
-
-.section-heading--gold {
-    color: #D4AF37;
-}
-
-/*==================================================*
-* ALIGNMENT
-*==================================================*/
-
-.section-heading--left {
-    text-align: left;
-}
-
-.section-heading--center {
-    text-align: center;
-}
-
-.section-heading--right {
-    text-align: right;
-}
-
-/*==================================================*
-* RESPONSIVE
-*==================================================*/
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media (max-width: 768px) {
 
-    .section-heading {
-        font-size: clamp(36px, 8vw, 50px);
+    .section-heading__top {
+        margin-bottom: 18px;
+    }
 
+    .section-heading__eyebrow {
+        font-size: 10px;
+        letter-spacing: 1.7px;
+    }
+
+    .section-heading__eyebrow-line {
+        width: 24px;
+    }
+
+    .section-heading__divider {
+        margin-left: 14px;
+    }
+
+    .section-heading__title {
+        font-size: clamp(34px, 7vw, 46px);
         line-height: 1.08;
+        letter-spacing: -1.2px;
     }
 
 }
 
+
 @media (max-width: 480px) {
 
-    .section-heading {
-        font-size: 36px;
+    .section-heading__top {
+        margin-bottom: 16px;
+    }
+
+    .section-heading__eyebrow {
+        gap: 8px;
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    .section-heading__eyebrow-line {
+        width: 20px;
+        height: 2px;
+    }
+
+    .section-heading__divider {
+        margin-left: 12px;
+    }
+
+    .section-heading__title {
+        font-size: 32px;
+        line-height: 1.1;
+        letter-spacing: -0.8px;
     }
 
 }

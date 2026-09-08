@@ -8,6 +8,50 @@ import {
 import "./share-story-modal.css";
 
 
+const initialFormData = {
+    identification: "",
+
+    name: "",
+    designation: "",
+    industry: "",
+    yearsExperience: "",
+    email: "",
+
+    experienceTypes: [],
+
+    story: "",
+    storyOneLine: "",
+
+    permission: "",
+
+    declaration: false,
+
+    videoWillingness: "",
+
+    video: null,
+};
+
+
+const experienceOptions = [
+    "Leadership",
+    "Manager / Boss",
+    "Teamwork",
+    "Workplace Conflict",
+    "Career Growth / Promotion",
+    "Failure / Setback",
+    "Difficult Employee / Colleague",
+    "Recognition / Appreciation",
+    "Organizational Culture",
+    "Customer Experience",
+    "Workplace Politics",
+    "Change / Transformation",
+    "Communication",
+    "Feedback / Coaching",
+    "Ethics / Integrity",
+    "Learning from a Mistake",
+];
+
+
 const ShareStoryModal = ({
     isOpen,
     onClose,
@@ -15,14 +59,9 @@ const ShareStoryModal = ({
 
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        organisation: "",
-        topic: "",
-        story: "",
-        video: null,
-    });
+    const [formData, setFormData] = useState(
+        initialFormData
+    );
 
 
     /* =========================================================
@@ -77,14 +116,7 @@ const ShareStoryModal = ({
 
             setIsSubmitted(false);
 
-            setFormData({
-                name: "",
-                email: "",
-                organisation: "",
-                topic: "",
-                story: "",
-                video: null,
-            });
+            setFormData(initialFormData);
 
         }
 
@@ -109,13 +141,51 @@ const ShareStoryModal = ({
         const {
             name,
             value,
+            type,
+            checked,
         } = event.target;
 
 
         setFormData((previous) => ({
             ...previous,
-            [name]: value,
+
+            [name]:
+                type === "checkbox"
+                    ? checked
+                    : value,
         }));
+
+    };
+
+
+    /* =========================================================
+       EXPERIENCE TYPE CHANGE
+    ========================================================= */
+
+    const handleExperienceTypeChange = (experience) => {
+
+        setFormData((previous) => {
+
+            const exists =
+                previous.experienceTypes.includes(
+                    experience
+                );
+
+
+            return {
+                ...previous,
+
+                experienceTypes: exists
+                    ? previous.experienceTypes.filter(
+                        (item) => item !== experience
+                    )
+                    : [
+                        ...previous.experienceTypes,
+                        experience,
+                    ],
+            };
+
+        });
 
     };
 
@@ -148,17 +218,13 @@ const ShareStoryModal = ({
 
 
         /*
-         * For now we are only handling the UI.
+         * UI submission for now.
          *
-         * Later this is where we can send:
-         * name
-         * email
-         * organisation
-         * topic
-         * story
-         * video
-         *
-         * to your backend / storage service.
+         * Later this object can be sent to:
+         * - your backend
+         * - database
+         * - email service
+         * - storage service
          */
 
         console.log(
@@ -180,14 +246,7 @@ const ShareStoryModal = ({
 
         setIsSubmitted(false);
 
-        setFormData({
-            name: "",
-            email: "",
-            organisation: "",
-            topic: "",
-            story: "",
-            video: null,
-        });
+        setFormData(initialFormData);
 
         onClose();
 
@@ -227,9 +286,11 @@ const ShareStoryModal = ({
                     <div>
 
                         <span className="share-story-modal-eyebrow">
+
                             {isSubmitted
                                 ? "STORY SUBMITTED"
                                 : "SHARE YOUR STORY"}
+
                         </span>
 
 
@@ -238,24 +299,18 @@ const ShareStoryModal = ({
                             <>
 
                                 <h2>
-
-                                    Your experience
-
+                                    Share Your Corporate
                                     <br />
-
                                     <span>
-                                        could inspire others.
+                                        Experience — Help Others Learn
                                     </span>
-
                                 </h2>
 
 
                                 <p>
-
-                                    Have a leadership experience,
-                                    thought or lesson worth sharing?
-                                    Tell us about it.
-
+                                    Share your story. You can choose
+                                    to identify yourself or remain
+                                    anonymous.
                                 </p>
 
                             </>
@@ -303,15 +358,11 @@ const ShareStoryModal = ({
 
 
                         <h2>
-
                             Your story
-
                             <br />
-
                             <span>
                                 has been received.
                             </span>
-
                         </h2>
 
 
@@ -358,193 +409,743 @@ const ShareStoryModal = ({
 
 
                         {/* =================================================
-                            BASIC INFORMATION
+                            01 — ABOUT YOU
                         ================================================= */}
 
-                        <div className="share-story-form-grid">
+                        <section className="share-story-section">
 
+                            <div className="share-story-section-heading">
 
-                            {/* NAME */}
-
-                            <div className="share-story-field">
-
-                                <label htmlFor="story-name">
-                                    NAME *
-                                </label>
-
-                                <input
-                                    id="story-name"
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    placeholder="Your name"
-                                    required
-                                />
-
-                            </div>
-
-
-                            {/* EMAIL */}
-
-                            <div className="share-story-field">
-
-                                <label htmlFor="story-email">
-                                    EMAIL *
-                                </label>
-
-                                <input
-                                    id="story-email"
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    placeholder="you@company.com"
-                                    required
-                                />
-
-                            </div>
-
-
-                            {/* ORGANISATION */}
-
-                            {/* <div className="share-story-field">
-
-                                <label htmlFor="story-organisation">
-                                    ORGANISATION
-                                </label>
-
-                                <input
-                                    id="story-organisation"
-                                    type="text"
-                                    name="organisation"
-                                    value={formData.organisation}
-                                    onChange={handleChange}
-                                    placeholder="Your organisation"
-                                />
-
-                            </div> */}
-
-
-                            {/* TOPIC */}
-
-                            {/* <div className="share-story-field">
-
-                                <label htmlFor="story-topic">
-                                    TOPIC
-                                </label>
-
-                                <select
-                                    id="story-topic"
-                                    name="topic"
-                                    value={formData.topic}
-                                    onChange={handleChange}
-                                >
-
-                                    <option value="">
-                                        Select a topic
-                                    </option>
-
-                                    <option value="leadership">
-                                        Leadership
-                                    </option>
-
-                                    <option value="teams">
-                                        Teams &amp; Culture
-                                    </option>
-
-                                    <option value="organisation">
-                                        Organisation
-                                    </option>
-
-                                    <option value="people">
-                                        People Development
-                                    </option>
-
-                                    <option value="other">
-                                        Other
-                                    </option>
-
-                                </select>
-
-                            </div>*/}
-
-                        </div> 
-
-
-                        {/* =================================================
-                            STORY
-                        ================================================= */}
-
-                        <div className="share-story-field">
-
-                            <label htmlFor="story-message">
-                                YOUR STORY *
-                            </label>
-
-                            <textarea
-                                id="story-message"
-                                name="story"
-                                value={formData.story}
-                                onChange={handleChange}
-                                placeholder="Tell us about your experience, thought or idea..."
-                                rows="7"
-                                required
-                            />
-
-                        </div>
-
-
-                        {/* =================================================
-                            VIDEO UPLOAD
-                        ================================================= */}
-
-                        <div className="share-story-field">
-
-                            <label htmlFor="story-video">
-                                UPLOAD YOUR VIDEO
-                            </label>
-
-
-                            <div
-                                className={`share-story-video-upload ${
-                                    formData.video
-                                        ? "has-file"
-                                        : ""
-                                }`}
-                            >
-
-                                <input
-                                    id="story-video"
-                                    type="file"
-                                    name="video"
-                                    accept="video/mp4,video/webm,video/quicktime"
-                                    onChange={handleVideoChange}
-                                />
-
-
-                                <span className="share-story-video-placeholder">
-
-                                    {formData.video
-                                        ? formData.video.name
-                                        : "Choose a video to upload..."}
-
+                                <span className="share-story-section-number">
+                                    01
                                 </span>
 
+                                <div>
+                                    <h3>
+                                        About You
+                                    </h3>
+
+                                    {/* <span className="share-story-section-note">
+                                        Optional
+                                    </span> */}
+                                </div>
+
                             </div>
 
 
-                            <p className="share-story-video-help">
-                                MP4, WebM or MOV. Please upload
-                                a video that clearly tells your
-                                story or experience.
+                            <div className="share-story-question">
+
+                                <p className="share-story-question-text">
+                                    Would you like to share your details?
+                                </p>
+
+
+                                <div className="share-story-radio-group">
+
+                                    <label className="share-story-option">
+
+                                        <input
+                                            type="radio"
+                                            name="identification"
+                                            value="identified"
+                                            checked={
+                                                formData.identification ===
+                                                "identified"
+                                            }
+                                            onChange={handleChange}
+                                        />
+
+                                        <span className="share-story-radio">
+                                        </span>
+
+                                        <span>
+                                            Yes, I am happy to be identified
+                                        </span>
+
+                                    </label>
+
+
+                                    <label className="share-story-option">
+
+                                        <input
+                                            type="radio"
+                                            name="identification"
+                                            value="anonymous"
+                                            checked={
+                                                formData.identification ===
+                                                "anonymous"
+                                            }
+                                            onChange={handleChange}
+                                        />
+
+                                        <span className="share-story-radio">
+                                        </span>
+
+                                        <span>
+                                            No, I would like to remain anonymous
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            {/* IDENTIFIED DETAILS */}
+
+                            {formData.identification === "identified" && (
+
+                                <div className="share-story-details-grid">
+
+                                    <div className="share-story-field">
+
+                                        <label htmlFor="story-name">
+                                            NAME
+                                        </label>
+
+                                        <input
+                                            id="story-name"
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            placeholder="Your name"
+                                        />
+
+                                    </div>
+
+
+                                    <div className="share-story-field">
+
+                                        <label htmlFor="story-designation">
+                                            DESIGNATION / ROLE
+                                        </label>
+
+                                        <input
+                                            id="story-designation"
+                                            type="text"
+                                            name="designation"
+                                            value={formData.designation}
+                                            onChange={handleChange}
+                                            placeholder="Your role"
+                                        />
+
+                                    </div>
+
+
+                                    <div className="share-story-field">
+
+                                        <label htmlFor="story-industry">
+                                            INDUSTRY
+                                        </label>
+
+                                        <input
+                                            id="story-industry"
+                                            type="text"
+                                            name="industry"
+                                            value={formData.industry}
+                                            onChange={handleChange}
+                                            placeholder="Your industry"
+                                        />
+
+                                    </div>
+
+
+                                    <div className="share-story-field">
+
+                                        <label htmlFor="story-years">
+                                            YEARS OF CORPORATE EXPERIENCE
+                                        </label>
+
+                                        <input
+                                            id="story-years"
+                                            type="number"
+                                            name="yearsExperience"
+                                            value={formData.yearsExperience}
+                                            onChange={handleChange}
+                                            placeholder="e.g. 12"
+                                            min="0"
+                                        />
+
+                                    </div>
+
+
+                                    <div className="share-story-field share-story-field--full">
+
+                                        <label htmlFor="story-email">
+                                            EMAIL
+                                        </label>
+
+                                        <input
+                                            id="story-email"
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            placeholder="you@company.com"
+                                        />
+
+                                    </div>
+
+                                </div>
+
+                            )}
+
+                        </section>
+
+
+                        {/* =================================================
+                            02 — YOUR EXPERIENCE
+                        ================================================= */}
+
+                        <section className="share-story-section">
+
+                            <div className="share-story-section-heading">
+
+                                <span className="share-story-section-number">
+                                    02
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Your Experience
+                                    </h3>
+
+                                    {/* <span className="share-story-section-note">
+                                        Optional
+                                    </span> */}
+
+                                </div>
+
+                            </div>
+
+
+                            <p className="share-story-section-description">
+                                What type of experience would you like
+                                to share? <strong>Select one or more.</strong>
                             </p>
+
+
+                            <div className="share-story-checkbox-grid">
+
+                                {experienceOptions.map(
+                                    (experience) => (
+
+                                        <label
+                                            className="share-story-checkbox-option"
+                                            key={experience}
+                                        >
+
+                                            <input
+                                                type="checkbox"
+                                                checked={
+                                                    formData.experienceTypes.includes(
+                                                        experience
+                                                    )
+                                                }
+                                                onChange={() =>
+                                                    handleExperienceTypeChange(
+                                                        experience
+                                                    )
+                                                }
+                                            />
+
+                                            <span className="share-story-checkbox">
+                                            </span>
+
+                                            <span>
+                                                {experience}
+                                            </span>
+
+                                        </label>
+
+                                    )
+                                )}
+
+
+                                {/* SOMETHING ELSE */}
+
+                                <div className="share-story-checkbox-other">
+
+                                    <label className="share-story-checkbox-option">
+
+                                        <input
+                                            type="checkbox"
+                                            checked={
+                                                formData.experienceTypes.includes(
+                                                    "Something Else"
+                                                )
+                                            }
+                                            onChange={() =>
+                                                handleExperienceTypeChange(
+                                                    "Something Else"
+                                                )
+                                            }
+                                        />
+
+                                        <span className="share-story-checkbox">
+                                        </span>
+
+                                        <span>
+                                            Something Else
+                                        </span>
+
+                                    </label>
+
+
+                                    {formData.experienceTypes.includes(
+                                        "Something Else"
+                                    ) && (
+
+                                        <input
+                                            type="text"
+                                            name="otherExperience"
+                                            placeholder="Please specify"
+                                            value={
+                                                formData.otherExperience ||
+                                                ""
+                                            }
+                                            onChange={handleChange}
+                                        />
+
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        {/* =================================================
+                            03 — TELL US YOUR STORY
+                        ================================================= */}
+
+                        <section className="share-story-section">
+
+                            <div className="share-story-section-heading">
+
+                                <span className="share-story-section-number">
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Tell Us Your Story
+                                    </h3>
+
+                                    <span className="share-story-section-note">
+                                        We may edit it to make it reader friendly
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div className="share-story-field">
+
+                                <textarea
+                                    id="story-message"
+                                    name="story"
+                                    value={formData.story}
+                                    onChange={handleChange}
+                                    placeholder="Tell us about the experience, situation, lesson or moment you would like to share..."
+                                    rows="9"
+                                    required
+                                />
+
+                            </div>
+
+                        </section>
+
+
+                        {/* =================================================
+                            04 — STORY IN ONE LINE
+                        ================================================= */}
+
+                        <section className="share-story-section">
+
+                            <div className="share-story-section-heading">
+
+                                <span className="share-story-section-number">
+                                    04
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Your Story in One Line
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div className="share-story-field">
+
+                                <input
+                                    type="text"
+                                    id="story-one-line"
+                                    name="storyOneLine"
+                                    value={formData.storyOneLine}
+                                    onChange={handleChange}
+                                    placeholder="Summarise your story in one memorable line..."
+                                />
+
+                            </div>
+
+                        </section>
+
+
+                        {/* =================================================
+                            05 — PERMISSION & PRIVACY
+                        ================================================= */}
+
+                        <section className="share-story-section">
+
+                            <div className="share-story-section-heading">
+
+                                <span className="share-story-section-number">
+                                    05
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Permission &amp; Privacy
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div className="share-story-question">
+
+                                <p className="share-story-question-text">
+                                    Can Winspiring Minds share your
+                                    experience with others for learning
+                                    purposes?
+                                </p>
+
+
+                                <div className="share-story-radio-group">
+
+                                    <label className="share-story-option">
+
+                                        <input
+                                            type="radio"
+                                            name="permission"
+                                            value="name"
+                                            checked={
+                                                formData.permission ===
+                                                "name"
+                                            }
+                                            onChange={handleChange}
+                                            required
+                                        />
+
+                                        <span className="share-story-radio">
+                                        </span>
+
+                                        <span>
+                                            Yes, with my name
+                                        </span>
+
+                                    </label>
+
+
+                                    <label className="share-story-option">
+
+                                        <input
+                                            type="radio"
+                                            name="permission"
+                                            value="anonymous"
+                                            checked={
+                                                formData.permission ===
+                                                "anonymous"
+                                            }
+                                            onChange={handleChange}
+                                        />
+
+                                        <span className="share-story-radio">
+                                        </span>
+
+                                        <span>
+                                            Yes, but anonymously
+                                        </span>
+
+                                    </label>
+
+
+                                    <label className="share-story-option">
+
+                                        <input
+                                            type="radio"
+                                            name="permission"
+                                            value="approval"
+                                            checked={
+                                                formData.permission ===
+                                                "approval"
+                                            }
+                                            onChange={handleChange}
+                                        />
+
+                                        <span className="share-story-radio">
+                                        </span>
+
+                                        <span>
+                                            Yes, but only after I approve
+                                            the final version
+                                        </span>
+
+                                    </label>
+
+
+                                    <label className="share-story-option">
+
+                                        <input
+                                            type="radio"
+                                            name="permission"
+                                            value="internal"
+                                            checked={
+                                                formData.permission ===
+                                                "internal"
+                                            }
+                                            onChange={handleChange}
+                                        />
+
+                                        <span className="share-story-radio">
+                                        </span>
+
+                                        <span>
+                                            No, I am sharing this only for
+                                            internal learning/research
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            {/* DECLARATION */}
+
+                            <div className="share-story-declaration">
+
+                                <label className="share-story-declaration-option">
+
+                                    <input
+                                        type="checkbox"
+                                        name="declaration"
+                                        checked={
+                                            formData.declaration
+                                        }
+                                        onChange={handleChange}
+                                        required
+                                    />
+
+                                    <span className="share-story-checkbox">
+                                    </span>
+
+                                    <span>
+                                        I confirm that the experience
+                                        shared by me is based on my own
+                                        experience and that I have not
+                                        intentionally included confidential
+                                        or sensitive information belonging
+                                        to my organization, clients or
+                                        colleagues.
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </section>
+
+
+                        {/* =================================================
+                            06 — OPTIONAL VIDEO
+                        ================================================= */}
+
+                        <section className="share-story-section">
+
+                            <div className="share-story-section-heading">
+
+                                <span className="share-story-section-number">
+                                    06
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Upload a Short Video (Optional)
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div className="share-story-question">
+
+                                <p className="share-story-question-text">
+                                    Would you be willing to speak about
+                                    this experience in a short
+                                    video/interview?
+                                </p>
+
+
+                                <div className="share-story-radio-group">
+
+                                    <label className="share-story-option">
+
+                                        <input
+                                            type="radio"
+                                            name="videoWillingness"
+                                            value="yes"
+                                            checked={
+                                                formData.videoWillingness ===
+                                                "yes"
+                                            }
+                                            onChange={handleChange}
+                                        />
+
+                                        <span className="share-story-radio">
+                                        </span>
+
+                                        <span>
+                                            Yes
+                                        </span>
+
+                                    </label>
+
+
+                                    <label className="share-story-option">
+
+                                        <input
+                                            type="radio"
+                                            name="videoWillingness"
+                                            value="maybe"
+                                            checked={
+                                                formData.videoWillingness ===
+                                                "maybe"
+                                            }
+                                            onChange={handleChange}
+                                        />
+
+                                        <span className="share-story-radio">
+                                        </span>
+
+                                        <span>
+                                            Maybe, please contact me
+                                        </span>
+
+                                    </label>
+
+
+                                    <label className="share-story-option">
+
+                                        <input
+                                            type="radio"
+                                            name="videoWillingness"
+                                            value="no"
+                                            checked={
+                                                formData.videoWillingness ===
+                                                "no"
+                                            }
+                                            onChange={handleChange}
+                                        />
+
+                                        <span className="share-story-radio">
+                                        </span>
+
+                                        <span>
+                                            No
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            {/* VIDEO UPLOAD */}
+
+                            <div className="share-story-field">
+
+                                <label htmlFor="story-video">
+                                    PLEASE UPLOAD THE VIDEO
+                                </label>
+
+
+                                <div
+                                    className={`share-story-video-upload ${
+                                        formData.video
+                                            ? "has-file"
+                                            : ""
+                                    }`}
+                                >
+
+                                    <input
+                                        id="story-video"
+                                        type="file"
+                                        name="video"
+                                        accept="video/mp4,video/webm,video/quicktime"
+                                        onChange={handleVideoChange}
+                                    />
+
+
+                                    <span className="share-story-video-placeholder">
+
+                                        {formData.video
+                                            ? formData.video.name
+                                            : "Choose a video to upload..."}
+
+                                    </span>
+
+                                </div>
+
+
+                                <p className="share-story-video-help">
+                                    MP4, WebM or MOV. Please upload
+                                    a video that clearly tells your
+                                    story or experience.
+                                </p>
+
+                            </div>
+
+                        </section>
+
+
+                        {/* =================================================
+                            CLOSING MESSAGE
+                        ================================================= */}
+
+                        <div className="share-story-closing-message">
+
+                            <strong>
+                                One experience can become someone
+                                else's learning.
+                            </strong>
+
+                            <span>
+                                Thank You!
+                            </span>
 
                         </div>
 
 
                         {/* =================================================
-                            FOOTER
+                            FORM FOOTER
                         ================================================= */}
 
                         <div className="share-story-form-footer">
@@ -577,7 +1178,6 @@ const ShareStoryModal = ({
             </div>
 
         </div>
-
     );
 };
 

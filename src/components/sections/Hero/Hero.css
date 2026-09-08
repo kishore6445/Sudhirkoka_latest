@@ -7,25 +7,30 @@
 
     min-height: 100vh;
 
-    padding-top: 100px;
-    padding-bottom: 34px;
+    padding-top: 92px;
+    padding-bottom: 32px;
 
     overflow: hidden;
+
+    display: flex;
+    align-items: center;
 
     background:
         radial-gradient(circle at 80% 42%,
             rgba(32, 76, 112, 0.28),
             transparent 35%),
         linear-gradient(120deg,
-            #020c1b 0%,
-            #06172b 55%,
-            #071d34 100%);
+            #020C1B 0%,
+            #06172B 55%,
+            #071D34 100%);
 
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 
-/* subtle background glow */
+/* =========================================================
+   BACKGROUND GLOW
+========================================================= */
 
 .hero::after {
     content: "";
@@ -50,16 +55,23 @@
 
 
 /* =========================================================
-   CONTAINER
+   HERO CONTAINER
 ========================================================= */
 
 .hero__container {
     position: relative;
+
     z-index: 2;
 
-    width: min(1200px, calc(100% - 64px));
+    width: var(--site-container-width);
+    max-width: var(--site-max-width);
 
-    margin: 0 auto;
+    margin-inline: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
 }
 
 
@@ -68,18 +80,29 @@
 ========================================================= */
 
 .hero__main {
-
-    min-height: 520px;
+    width: 100%;
 
     display: grid;
 
+    /*
+     * Balanced two-column layout.
+     *
+     * The previous 58/42 split made the image feel
+     * disconnected from the text.
+     */
     grid-template-columns:
-       58% 42%;
+        minmax(0, 52%) minmax(0, 48%);
 
     align-items: center;
 
-    gap: 0px;
+    /*
+     * This is important.
+     * Both columns are now centered against the same
+     * vertical area.
+     */
+    min-height: 520px;
 
+    gap: 10px;
 }
 
 
@@ -92,7 +115,19 @@
 
     z-index: 5;
 
+    width: 100%;
+
     max-width: 720px;
+
+    min-width: 0;
+
+    /*
+     * Keeps the complete left block visually centered
+     * against the image.
+     */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
@@ -101,22 +136,22 @@
 ========================================================= */
 
 .hero__title {
-
     display: flex;
 
     flex-direction: column;
 
     gap: 3px;
 
-    margin: 20px 0 22px;
+    margin:
+        20px 0 22px;
 
     font-family:
         "Manrope",
         sans-serif;
 
     font-size:
-        clamp(44px,
-            3.5vw,
+        clamp(48px,
+            3.2vw,
             62px);
 
     font-weight: 800;
@@ -136,14 +171,15 @@
 }
 
 
+/* =========================================================
+   GOLD TEXT
+========================================================= */
+
 .hero__gold {
     color: #D4AF37;
 
     text-shadow:
-        0 0 18px rgba(212,
-            175,
-            55,
-            0.12);
+        0 0 18px rgba(212, 175, 55, 0.12);
 }
 
 
@@ -154,28 +190,41 @@
 .hero__description {
     max-width: 570px;
 
-    margin: 0 0 27px;
+    margin:
+        0 0 27px;
 
-    font-family: "Manrope", sans-serif;
+    font-family:
+        "Manrope",
+        sans-serif;
 
     font-size: 15px;
 
     line-height: 1.65;
 
-    color: rgba(255, 255, 255, 0.76);
+    color:
+        rgba(255,
+            255,
+            255,
+            0.76);
 }
+
 
 /* =========================================================
    ACTIONS
 ========================================================= */
 
 .hero__actions {
-
     display: flex;
 
     align-items: center;
 
-    gap: 20px;
+    width: 100%;
+
+    /*
+     * Reduced from 30px.
+     * Keeps the video CTA visually connected to the text.
+     */
+    margin-top: 12px;
 }
 
 
@@ -184,12 +233,18 @@
 ========================================================= */
 
 .hero__video-button {
+    display: grid;
 
-    display: inline-flex;
+    grid-template-columns:
+        150px minmax(0, 1fr);
 
     align-items: center;
 
-    gap: 11px;
+    gap: 20px;
+
+    width: 500px;
+
+    max-width: 100%;
 
     padding: 0;
 
@@ -197,34 +252,129 @@
 
     background: transparent;
 
-    color: #ffffff;
+    color: #FFFFFF;
 
     font-family:
         "Manrope",
         sans-serif;
 
-    font-size: 14px;
-
-    font-weight: 600;
+    text-align: left;
 
     cursor: pointer;
 
+    appearance: none;
+
     transition:
-        color 0.25s ease,
-        transform 0.25s ease;
+        transform 0.3s ease;
 }
 
 
 .hero__video-button:hover {
-
-    color: #D4AF37;
-
-    transform:
-        translateX(3px);
+    transform: translateY(-2px);
 }
 
 
+/* =========================================================
+   VIDEO THUMBNAIL
+========================================================= */
+
+.hero__video-thumbnail {
+    position: relative;
+
+    width: 150px;
+    height: 86px;
+
+    display: block;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(145deg,
+            #D4AF37 0%,
+            #C69C24 55%,
+            #9E7715 100%);
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.22);
+
+    isolation: isolate;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.hero__video-button:hover .hero__video-thumbnail {
+    transform: scale(1.02);
+
+    box-shadow:
+        0 15px 32px rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================================================
+   THUMBNAIL WAVE
+========================================================= */
+
+.hero__thumbnail-wave {
+    position: absolute;
+
+    width: 210px;
+    height: 105px;
+
+    left: -25px;
+    bottom: -66px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,
+            255,
+            255,
+            0.12);
+
+    transform:
+        rotate(-8deg);
+
+    z-index: 1;
+}
+
+
+.hero__thumbnail-wave::after {
+    content: "";
+
+    position: absolute;
+
+    width: 190px;
+    height: 90px;
+
+    left: 40px;
+    top: -28px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(16,
+            42,
+            67,
+            0.14);
+}
+
+
+/* =========================================================
+   PLAY ICON
+========================================================= */
+
 .hero__play-icon {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
 
     width: 42px;
     height: 42px;
@@ -234,44 +384,124 @@
     align-items: center;
     justify-content: center;
 
-    border:
-        1px solid #D4AF37;
+    transform:
+        translate(-50%,
+            -50%);
 
     border-radius: 50%;
 
-    color: #D4AF37;
+    background: #FFFFFF;
 
+    color: #102A43;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.22);
+
+    z-index: 4;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.hero__video-button:hover .hero__play-icon {
+    transform:
+        translate(-50%,
+            -50%) scale(1.05);
 }
 
 
 /* =========================================================
-   VISUAL
+   VIDEO CONTENT
 ========================================================= */
 
-.hero__visual {
-
-    position: relative;
-
-    min-height: 520px;
+.hero__video-content {
+    min-width: 0;
 
     display: flex;
 
-    align-items: flex-end;
+    flex-direction: column;
 
-    justify-content: flex-end;
+    justify-content: center;
+
+    gap: 7px;
+}
+
+
+.hero__video-label {
+    display: block;
+
+    font-family:
+        "Manrope",
+        sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: 0.02em;
+
+    color: #FFFFFF;
+}
+
+
+.hero__video-description {
+    display: block;
+
+    max-width: 230px;
+
+    font-family:
+        "Manrope",
+        sans-serif;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    font-weight: 500;
+
+    color:
+        rgba(255,
+            255,
+            255,
+            0.58);
 }
 
 
 /* =========================================================
-   IMAGE GLOW
+   RIGHT VISUAL
+========================================================= */
+
+.hero__visual {
+    position: relative;
+
+    width: 100%;
+
+    min-width: 0;
+
+    /*
+     * IMPORTANT:
+     * Same vertical alignment as the content.
+     */
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   IMAGE BACKGROUND GLOW
 ========================================================= */
 
 .hero__city-glow {
-
     position: absolute;
 
-    right: 0;
-    bottom: 20px;
+    right: -30px;
+    bottom: 0;
 
     width: 580px;
     height: 400px;
@@ -282,151 +512,92 @@
             transparent 70%);
 
     filter: blur(10px);
+
+    pointer-events: none;
 }
 
 
 /* =========================================================
-   PERSON
+   IMAGE CONTAINER
 ========================================================= */
 
 .hero__person {
-
     position: relative;
 
     z-index: 4;
 
-    width: 500px;
-    height: 500px;
+    width: 100%;
 
+    max-width: 620px;
+
+    /*
+     * No artificial 500x500 box.
+     * This lets the actual image determine its proportions.
+     */
     display: flex;
 
-    align-items: flex-end;
-
+    align-items: center;
     justify-content: center;
+
+    margin: 0;
 }
 
 
-.hero__person-glow {
+/* =========================================================
+   IMAGE GLOW
+========================================================= */
 
+.hero__person-glow {
     position: absolute;
 
-    bottom: 40px;
+    width: 92%;
+    height: 82%;
 
-    width: 430px;
-    height: 430px;
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%,
+            -45%);
 
     border-radius: 50%;
 
     background:
         radial-gradient(circle,
-            rgba(35, 91, 134, 0.40),
+            rgba(35, 91, 134, 0.38),
             transparent 70%);
 
-    filter: blur(12px);
+    filter: blur(14px);
 
     z-index: -1;
 }
 
 
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
 .hero__image {
+    display: block;
 
     width: 100%;
-    height: 100%;
+
+    height: auto;
+
+    max-height: 500px;
 
     object-fit: contain;
 
-    object-position:
-        center ;
-}
+    object-position: center;
 
-
-/* =========================================================
-   GROWTH BARS
-========================================================= */
-/* 
-.hero__growth-bars {
-
-    position: absolute;
-
-    right: 0;
-    bottom: 60px;
-
-    width: 250px;
-    height: 190px;
-
-    display: flex;
-
-    align-items: flex-end;
-
-    justify-content: flex-end;
-
-    gap: 9px;
-
-    z-index: 1;
-
-    opacity: 0.58;
-}
-
-
-.hero__growth-bars span {
-
-    width: 42px;
-
-    display: block;
-
-    border:
-        1px solid rgba(102,
-            163,
-            209,
-            0.32);
-
-    border-bottom: none;
-
-    background:
-        linear-gradient(to top,
-            rgba(50, 103, 150, 0.22),
-            rgba(73, 137, 190, 0.55));
-}
-
-
-.hero__growth-bars span:nth-child(1) {
-    height: 55px;
-}
-
-.hero__growth-bars span:nth-child(2) {
-    height: 85px;
-}
-
-.hero__growth-bars span:nth-child(3) {
-    height: 125px;
-}
-
-.hero__growth-bars span:nth-child(4) {
-    height: 170px;
-}
- */
-
-/* =========================================================
-   GOLD GROWTH ARROW
-========================================================= */
-
-.hero__growth-arrow {
-
-    position: absolute;
-
-    right: -5px;
-    top: 30px;
-
-    width: 310px;
-    height: 25px;
-
-    z-index: 2;
-
-    filter:
-        drop-shadow(0 0 9px rgba(212,
-                175,
-                55,
-                0.20));
+    /*
+     * No border.
+     *
+     * A small radius gives the image a cleaner,
+     * more premium appearance without creating
+     * a card/border effect.
+     */
+    border-radius: 20px;
 }
 
 
@@ -435,7 +606,6 @@
 ========================================================= */
 
 .hero__pillars {
-
     position: relative;
 
     z-index: 10;
@@ -445,9 +615,15 @@
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,
+            minmax(0, 1fr));
 
     min-height: 122px;
+
+    /*
+     * Slightly tighter connection to hero.
+     */
+    margin-top: 10px;
 
     border:
         1px solid rgba(212,
@@ -466,6 +642,9 @@
     backdrop-filter:
         blur(10px);
 
+    -webkit-backdrop-filter:
+        blur(10px);
+
     box-shadow:
         0 18px 50px rgba(0,
             0,
@@ -479,7 +658,6 @@
 ========================================================= */
 
 .hero__pillar {
-
     position: relative;
 
     display: flex;
@@ -489,6 +667,8 @@
     align-items: center;
 
     justify-content: center;
+
+    min-width: 0;
 
     padding:
         14px 20px;
@@ -500,19 +680,23 @@
 }
 
 
-/* vertical separator */
+/* =========================================================
+   PILLAR DIVIDER
+========================================================= */
 
 .hero__pillar:not(:last-child)::after {
-
     content: "";
 
     position: absolute;
 
     right: 0;
+
     top: 20px;
 
     width: 1px;
-    height: calc(100% - 40px);
+
+    height:
+        calc(100% - 40px);
 
     background:
         rgba(255,
@@ -523,11 +707,10 @@
 
 
 /* =========================================================
-   ICON
+   PILLAR ICON
 ========================================================= */
 
 .hero__pillar-icon {
-
     display: flex;
 
     align-items: center;
@@ -543,11 +726,10 @@
 
 
 /* =========================================================
-   TITLE
+   PILLAR TITLE
 ========================================================= */
 
 .hero__pillar h3 {
-
     margin: 0;
 
     font-family:
@@ -562,17 +744,17 @@
 
     letter-spacing: 0.015em;
 
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 
 /* =========================================================
-   DESCRIPTION
+   PILLAR DESCRIPTION
 ========================================================= */
 
 .hero__pillar p {
-
-    margin: 5px 0 0;
+    margin:
+        5px 0 0;
 
     font-family:
         "Manrope",
@@ -591,11 +773,10 @@
 
 
 /* =========================================================
-   HOVER
+   PILLAR HOVER
 ========================================================= */
 
 .hero__pillar:hover {
-
     background:
         rgba(212,
             175,
@@ -605,9 +786,87 @@
 
 
 .hero__pillar:hover .hero__pillar-icon {
-
     transform:
         translateY(-2px);
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1601px) {
+
+    .hero {
+        padding-top: 92px;
+        padding-bottom: 32px;
+    }
+
+
+    .hero__main {
+        /*
+         * Slightly more breathing room on large screens.
+         */
+        grid-template-columns:
+            minmax(0, 51%) minmax(0, 49%);
+
+        min-height: 540px;
+
+        gap: 20px;
+    }
+
+
+    .hero__title {
+        font-size: 62px;
+    }
+
+
+    .hero__person {
+        max-width: 640px;
+    }
+
+
+    .hero__image {
+        max-height: 520px;
+    }
+}
+
+
+/* =========================================================
+   LAPTOP / DESKTOP
+========================================================= */
+
+@media (min-width: 1101px) {
+
+    .hero__main {
+        /*
+         * Balanced layout.
+         *
+         * This is the most important change.
+         */
+        grid-template-columns:
+            minmax(0, 52%) minmax(0, 48%);
+
+        align-items: center;
+    }
+
+
+    .hero__content {
+        max-width: 720px;
+    }
+
+
+    .hero__visual {
+        align-self: center;
+
+        min-height: 500px;
+    }
+
+
+    .hero__person {
+        width: 100%;
+        max-width: 600px;
+    }
 }
 
 
@@ -617,168 +876,210 @@
 
 @media (max-width: 1100px) {
 
-    .hero__container {
-        width:
-            calc(100% - 50px);
-    }
-
-    .hero__title {
-        font-size:
-            clamp(46px,
-                5vw,
-                60px);
-    }
-
-    .hero__person {
-        width: 500px;
-        height: 510px;
-    }
-
-    .hero__growth-arrow {
-        width: 250px;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 850px) {
-
     .hero {
-        padding-top: 80px;
+        display: block;
+
+        min-height: 100vh;
+
+        padding-top: 100px;
+        padding-bottom: 34px;
     }
+
 
     .hero__main {
+        grid-template-columns:
+            minmax(0, 54%) minmax(0, 46%);
 
-        grid-template-columns: 1fr;
+        min-height: 500px;
 
-        min-height: auto;
-
-        padding-top: 35px;
+        gap: 10px;
     }
 
 
     .hero__content {
-        max-width: 760px;
+        max-width: 680px;
     }
 
 
     .hero__title {
-
         font-size:
             clamp(44px,
-                8vw,
+                5vw,
                 58px);
     }
 
 
-    .hero__visual {
+    .hero__description {
+        max-width: 540px;
+    }
 
-        min-height: 450px;
+
+    .hero__visual {
+        min-height: 460px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
     }
 
 
     .hero__person {
+        width: 100%;
 
-        width: 480px;
-        height: 470px;
+        max-width: 500px;
+    }
+
+
+    .hero__image {
+        max-height: 460px;
+    }
+
+
+    .hero__person-glow {
+        width: 90%;
+        height: 85%;
+    }
+
+
+    .hero__city-glow {
+        width: 520px;
+        height: 370px;
     }
 
 
     .hero__pillars {
-
-        margin-top: 20px;
+        min-height: 118px;
     }
 
+
+    .hero__pillar {
+        padding:
+            13px 12px;
+    }
+
+
+    .hero__pillar h3 {
+        font-size: 13px;
+    }
+
+
+    .hero__pillar p {
+        font-size: 11px;
+    }
 }
 
 
 /* =========================================================
-   SMALL MOBILE
+   TABLET / STACKED
 ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
 
-    .hero__container {
-        width:
-            calc(100% - 28px);
+    .hero {
+        min-height: auto;
+
+        padding-top: 86px;
+        padding-bottom: 30px;
+    }
+
+
+    .hero__main {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+
+        padding-top: 30px;
+    }
+
+
+    .hero__content {
+        width: 100%;
+
+        max-width: 760px;
+
+        margin-inline: auto;
     }
 
 
     .hero__title {
-
-        font-size: 39px;
-
-        line-height: 1.01;
-
-        letter-spacing:
-            -0.035em;
+        font-size:
+            clamp(42px,
+                7vw,
+                58px);
     }
 
+
+    .hero__description {
+        max-width: 620px;
+    }
+
+
+    .hero__visual {
+        min-height: auto;
+
+        margin-top: 35px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .hero__person {
+        width:
+            min(620px,
+                90vw);
+
+        max-width: 620px;
+    }
+
+
+    .hero__image {
+        max-height: none;
+    }
+
+
+    .hero__person-glow {
+        width: 90%;
+        height: 90%;
+    }
+
+
+    .hero__city-glow {
+        right: 50%;
+
+        transform:
+            translateX(50%);
+
+        width:
+            min(560px,
+                100vw);
+    }
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (min-width: 601px) and (max-width: 850px) {
 
     .hero__title>span {
         white-space: normal;
     }
 
 
-    .hero__description {
-        font-size: 14px;
-    }
-
-
-    .hero__actions {
-        flex-wrap: wrap;
-    }
-
-
-    .hero__visual {
-        min-height: 400px;
-    }
-
-
-    .hero__person {
-
-        width: 400px;
-        height: 400px;
-    }
-
-
-    .hero__growth-arrow {
-
-        width: 210px;
-
-        right: -15px;
-    }
-
-
-    .hero__growth-bars {
-
-        transform:
-            scale(0.72);
-
-        transform-origin:
-            bottom right;
-    }
-
-
-    /* 2 x 2 */
-
     .hero__pillars {
-
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2,
+                minmax(0, 1fr));
     }
 
 
     .hero__pillar {
-
         min-height: 115px;
-
-        padding:
-            12px 8px;
     }
 
 
@@ -788,7 +1089,170 @@
 
 
     .hero__pillar:nth-child(-n + 2) {
+        border-bottom:
+            1px solid rgba(255,
+                255,
+                255,
+                0.15);
+    }
+}
 
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .hero {
+        padding-top: 76px;
+        padding-bottom: 24px;
+    }
+
+
+    .hero__main {
+        padding-top: 24px;
+    }
+
+
+    .hero__title {
+        font-size:
+            clamp(34px,
+                10.5vw,
+                44px);
+
+        line-height: 1.03;
+
+        letter-spacing:
+            -0.035em;
+
+        gap: 2px;
+
+        margin-top: 17px;
+        margin-bottom: 18px;
+    }
+
+
+    .hero__title>span {
+        white-space: normal;
+    }
+
+
+    .hero__description {
+        max-width: 100%;
+
+        margin-bottom: 22px;
+
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    .hero__actions {
+        margin-top: 22px;
+    }
+
+
+    .hero__video-button {
+        grid-template-columns:
+            minmax(112px, 34%) minmax(0, 1fr);
+
+        gap: 14px;
+
+        width: 100%;
+    }
+
+
+    .hero__video-thumbnail {
+        width: 100%;
+
+        height: auto;
+
+        aspect-ratio:
+            150 / 86;
+    }
+
+
+    .hero__video-content {
+        gap: 5px;
+    }
+
+
+    .hero__video-label {
+        font-size: 13px;
+    }
+
+
+    .hero__video-description {
+        max-width: 220px;
+
+        font-size: 10px;
+
+        line-height: 1.45;
+    }
+
+
+    .hero__play-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .hero__visual {
+        min-height: auto;
+
+        margin-top: 35px;
+    }
+
+
+    .hero__person {
+        width:
+            min(500px,
+                92vw);
+    }
+
+
+    .hero__person-glow {
+        width: 88%;
+        height: 88%;
+    }
+
+
+    .hero__city-glow {
+        bottom: 0;
+
+        width: 110vw;
+        height: 300px;
+    }
+
+
+    .hero__pillars {
+        grid-template-columns:
+            repeat(2,
+                minmax(0, 1fr));
+
+        margin-top: 12px;
+
+        min-height: auto;
+    }
+
+
+    .hero__pillar {
+        min-height: 108px;
+
+        padding:
+            12px 7px;
+    }
+
+
+    .hero__pillar:nth-child(2)::after,
+    .hero__pillar:nth-child(4)::after {
+        display: none;
+    }
+
+
+    .hero__pillar:nth-child(-n + 2) {
         border-bottom:
             1px solid rgba(255,
                 255,
@@ -797,13 +1261,105 @@
     }
 
 
+    .hero__pillar-icon {
+        margin-bottom: 6px;
+    }
+
+
     .hero__pillar h3 {
-        font-size: 11px;
+        font-size: 10.5px;
+
+        line-height: 1.25;
     }
 
 
     .hero__pillar p {
+        margin-top: 4px;
+
         font-size: 9px;
+
+        line-height: 1.35;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .hero__title {
+        font-size:
+            clamp(31px,
+                10.8vw,
+                38px);
+
+        letter-spacing:
+            -0.03em;
     }
 
+
+    .hero__description {
+        font-size: 13px;
+    }
+
+
+    .hero__video-button {
+        grid-template-columns:
+            105px minmax(0, 1fr);
+
+        gap: 12px;
+    }
+
+
+    .hero__video-label {
+        font-size: 12px;
+    }
+
+
+    .hero__video-description {
+        font-size: 9.5px;
+    }
+
+
+    .hero__play-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+
+    .hero__visual {
+        min-height: auto;
+    }
+
+
+    .hero__person {
+        width:
+            min(400px,
+                94vw);
+    }
+
+
+    .hero__pillars {
+        border-radius: 8px;
+    }
+
+
+    .hero__pillar {
+        min-height: 102px;
+
+        padding:
+            10px 5px;
+    }
+
+
+    .hero__pillar h3 {
+        font-size: 9.5px;
+    }
+
+
+    .hero__pillar p {
+        font-size: 8.5px;
+    }
 }

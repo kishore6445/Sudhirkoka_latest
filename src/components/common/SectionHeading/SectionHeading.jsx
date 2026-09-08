@@ -1,26 +1,43 @@
 import "./SectionHeading.css";
 
-function SectionHeading({
-    children,
-    as: Tag = "h2",
-    variant = "dark",
-    align = "left",
-    className = "",
-}) {
-    const classes = [
-        "section-heading",
-        `section-heading--${variant}`,
-        `section-heading--${align}`,
-        className,
-    ]
-        .filter(Boolean)
-        .join(" ");
+const SectionHeading = ({
+  eyebrow,
+  children,
+}) => {
+  return (
+    <div className="section-heading">
 
-    return (
-        <Tag className={classes}>
-            {children}
-        </Tag>
-    );
-}
+      {/* =========================================
+          EYEBROW + HORIZONTAL LINE
+      ========================================= */}
+      <div className="section-heading__top">
+
+        <div className="section-heading__eyebrow">
+          <i className="section-heading__eyebrow-line" />
+
+          <span>
+            {eyebrow}
+          </span>
+        </div>
+
+        <div className="section-heading__divider" />
+
+      </div>
+
+
+      {/* =========================================
+          MAIN HEADING
+
+          The actual heading content is passed
+          through children so each section can
+          have its own text/highlight.
+      ========================================= */}
+      <h2 className="section-heading__title">
+        {children}
+      </h2>
+
+    </div>
+  );
+};
 
 export default SectionHeading;

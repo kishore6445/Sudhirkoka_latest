@@ -22,7 +22,8 @@
 ========================================================= */
 
 .challenges-container {
-    width: min(1200px, calc(100% - 64px));
+    width: var(--site-container-width);
+    max-width: var(--site-max-width);
 
     margin: 0 auto;
 }
@@ -103,7 +104,7 @@
 }
 
 .challenges-heading span {
-    color: #d4af37;
+    color: #d2a72c;
 
     text-decoration: underline;
 
@@ -518,6 +519,7 @@
 .challenge-detail-block:last-child {
     margin-bottom: 0;
 }
+
 /* =========================================================
    BUSINESS IMPACT LIST
 ========================================================= */
@@ -660,13 +662,31 @@
 
 
 /* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+
+    .challenges-content {
+        gap: 42px;
+    }
+
+    .challenge-detail {
+        padding-left: 38px;
+        padding-right: 38px;
+    }
+}
+
+
+/* =========================================================
    TABLET
 ========================================================= */
 
 @media (max-width: 1050px) {
 
     .challenges-container {
-        width: calc(100% - 48px);
+        width: var(--site-container-width);
+        max-width: var(--site-max-width);
     }
 
     .challenges-content {
@@ -720,7 +740,8 @@
     }
 
     .challenges-container {
-        width: calc(100% - 32px);
+        width: var(--site-container-width);
+        max-width: var(--site-max-width);
     }
 
     .challenges-header {

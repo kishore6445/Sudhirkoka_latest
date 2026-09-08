@@ -1,13 +1,14 @@
 import React from "react";
 import {
-  ArrowUpRight,
-  Mail,
+    ArrowUpRight,
+    Mail,
 } from "lucide-react";
 
 import {
-  FaLinkedinIn,
-  FaYoutube,
+    FaLinkedinIn,
+    FaYoutube,
 } from "react-icons/fa";
+
 import "./footer.css";
 
 const Footer = () => {
@@ -28,7 +29,7 @@ const Footer = () => {
                         href="/"
                         className="footer-logo"
                     >
-                        Sudhir Koka
+                        Winspiring Minds
                     </a>
 
                     <p className="footer-role">
@@ -116,7 +117,7 @@ const Footer = () => {
                         >
                             <FaYoutube size={18} />
                             <span>YouTube</span>
-                        </a> 
+                        </a>
 
                         <a
                             href="mailto:hello@sudhirkoka.com"

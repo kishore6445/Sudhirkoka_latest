@@ -18,8 +18,7 @@ const Challenges = () => {
         <div className="challenges-header">
 
           <div className="challenges-kicker">
-            <span className="challenges-number">03</span>
-            <span>/</span>
+            
             <span>CHALLENGES</span>
           </div>
 
@@ -160,10 +159,10 @@ const Challenges = () => {
         {/* =========================
             CLOSING STATEMENT
         ========================= */}
-        <p className="challenges-closing">
+        {/* <p className="challenges-closing">
           Behind every business challenge is a{" "}
           <span>people challenge.</span>
-        </p>
+        </p> */}
 
       </div>
     </section>

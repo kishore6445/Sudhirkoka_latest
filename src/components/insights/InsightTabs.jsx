@@ -1,13 +1,12 @@
 import {
+     Play,
     FileText,
-    MessageCircle,
+     Sparkles,
     Zap,
 } from "lucide-react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
-
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "../../styles/insights.css";
 
@@ -17,7 +16,7 @@ const tabs = [
         id: "videos",
         label: "Videos",
         path: "/insights/videos",
-        type: "youtube",
+        icon: Play,
     },
     {
         id: "articles",
@@ -25,12 +24,12 @@ const tabs = [
         path: "/insights/articles",
         icon: FileText,
     },
-    {
-        id: "reflections",
-        label: "Reflections",
-        path: "/insights/reflections",
-        icon: MessageCircle,
-    },
+    // {
+    //     id: "reflections",
+    //     label: "Reflections",
+    //     path: "/insights/reflections",
+    //     icon: Sparkles,
+    // },
     {
         id: "quick-bites",
         label: "Quick Bites",
@@ -41,6 +40,8 @@ const tabs = [
 
 
 function InsightTabs() {
+
+    const location = useLocation();
 
     return (
         <div className="insight-tabs-wrapper">
@@ -54,35 +55,31 @@ function InsightTabs() {
 
                     const Icon = tab.icon;
 
+                    const isActive =
+                        location.pathname === tab.path ||
+                        location.pathname.startsWith(`${tab.path}/`);
+
                     return (
                         <Link
                             key={tab.id}
                             to={tab.path}
-                            className="insight-tab"
-                            data-label={tab.label}
+                            className={`insight-tab ${
+                                isActive
+                                    ? "insight-tab--active"
+                                    : ""
+                            }`}
                             aria-label={tab.label}
+                            aria-current={
+                                isActive ? "page" : undefined
+                            }
                         >
 
-                            <span className="insight-tab-icon-wrap">
-
-                                {tab.type === "youtube" ? (
-
-                                    <FontAwesomeIcon
-                                        icon={faYoutube}
-                                        className="insight-tab-youtube"
-                                    />
-
-                                ) : (
-
-                                    <Icon
-                                        className="insight-tab-icon"
-                                        size={25}
-                                        strokeWidth={1.8}
-                                    />
-
-                                )}
-
-                            </span>
+                            <Icon
+                                className="insight-tab-icon"
+                                size={19}
+                                strokeWidth={2}
+                                aria-hidden="true"
+                            />
 
                             <span className="insight-tab-label">
                                 {tab.label}
@@ -90,6 +87,7 @@ function InsightTabs() {
 
                         </Link>
                     );
+
                 })}
 
             </nav>

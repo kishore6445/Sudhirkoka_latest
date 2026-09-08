@@ -1,9 +1,10 @@
+
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../../../assets/images/logo/logo.png";
 import Button from "../../common/Button/Button";
-
+import { useContact } from "../../sections/Contact/ContactContext";
 import "./Navbar.css";
 
 const navLinks = [
@@ -12,8 +13,8 @@ const navLinks = [
         href: "#home",
     },
     {
-        label: "About",
-        href: "#about",
+        label: "Insights",
+        href: "#insights",
     },
     {
         label: "Challenges",
@@ -28,15 +29,20 @@ const navLinks = [
         href: "#services",
     },
     {
-        label: "Insights",
-        href: "#insights",
+        label: "About",
+        href: "#about",
     },
 ];
 
 function Navbar({ light = false }) {
+    const { openModal } = useContact();
     const location = useLocation();
+
     const isHome = location.pathname === "/";
-    const sectionHref = (href) => isHome ? href : `/${href}`;
+
+    const sectionHref = (href) =>
+        isHome ? href : `/${href}`;
+
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -73,8 +79,14 @@ function Navbar({ light = false }) {
 
     return (
         <>
+            {/* =====================================================
+                DESKTOP / MAIN NAVBAR
+            ===================================================== */}
+
             <header
-                className={`navbar ${light ? "navbar--light" : ""} ${
+                className={`navbar ${
+                    light ? "navbar--light" : ""
+                } ${
                     isScrolled
                         ? "navbar--scrolled"
                         : ""
@@ -83,27 +95,27 @@ function Navbar({ light = false }) {
                 <div className="navbar__container">
 
                     {/* Logo */}
-<a
-    href={sectionHref("#home")}
-    className="navbar__logo"
-    onClick={closeMenu}
->
-    <img
-        src={logo}
-        alt="Winspiring Minds"
-        className="navbar__brand-logo"
-    />
-</a>
 
-                        {/* <span className="navbar__logo-subtitle">
-                            People • Leadership • Growth
-                        </span> */}
-                    {/* </a> */}
+                    <a
+                        href={sectionHref("#home")}
+                        className="navbar__logo"
+                        onClick={closeMenu}
+                        aria-label="Winspiring Minds - Home"
+                    >
+                        <img
+                            src={logo}
+                            alt="Winspiring Minds"
+                            className="navbar__brand-logo"
+                        />
+                    </a>
 
 
                     {/* Desktop Navigation */}
 
-                    <nav className="navbar__nav">
+                    <nav
+                        className="navbar__nav"
+                        aria-label="Main navigation"
+                    >
                         <ul className="navbar__list">
 
                             {navLinks.map((link) => (
@@ -127,19 +139,17 @@ function Navbar({ light = false }) {
                     {/* Desktop CTA */}
 
                     <div className="navbar__actions">
-
                         <Button
                             variant={
                                 isScrolled
                                     ? "dark"
                                     : "primary"
                             }
-                            href={sectionHref("#contact")}
                             className="navbar__cta"
+                            onClick={openModal}
                         >
                             Let's Talk
                         </Button>
-
                     </div>
 
 
@@ -161,7 +171,9 @@ function Navbar({ light = false }) {
             </header>
 
 
-            {/* Mobile Menu */}
+            {/* =====================================================
+                MOBILE MENU
+            ===================================================== */}
 
             <div
                 className={`mobile-menu ${
@@ -172,12 +184,22 @@ function Navbar({ light = false }) {
                 aria-hidden={!isMenuOpen}
             >
 
+                {/* Overlay */}
+
                 <div
                     className="mobile-menu__overlay"
                     onClick={closeMenu}
                 />
 
-                <aside className="mobile-menu__drawer">
+
+                {/* Drawer */}
+
+                <aside
+                    className="mobile-menu__drawer"
+                    aria-label="Mobile navigation"
+                >
+
+                    {/* Mobile Header */}
 
                     <div className="mobile-menu__header">
 
@@ -185,8 +207,13 @@ function Navbar({ light = false }) {
                             href={sectionHref("#home")}
                             className="mobile-menu__logo"
                             onClick={closeMenu}
+                            aria-label="Winspiring Minds - Home"
                         >
-                            Sudhir Koka
+                            <img
+                                src={logo}
+                                alt="Winspiring Minds"
+                                className="mobile-menu__brand-logo"
+                            />
                         </a>
 
                         <button
@@ -201,8 +228,12 @@ function Navbar({ light = false }) {
                     </div>
 
 
-                    <nav className="mobile-menu__nav">
+                    {/* Mobile Navigation */}
 
+                    <nav
+                        className="mobile-menu__nav"
+                        aria-label="Mobile navigation links"
+                    >
                         {navLinks.map((link) => (
                             <a
                                 key={link.label}
@@ -214,22 +245,28 @@ function Navbar({ light = false }) {
                                     {link.label}
                                 </span>
 
-                                <span className="mobile-menu__arrow">
+                                <span
+                                    className="mobile-menu__arrow"
+                                    aria-hidden="true"
+                                >
                                     →
                                 </span>
                             </a>
                         ))}
-
                     </nav>
 
+
+                    {/* Mobile CTA */}
 
                     <div className="mobile-menu__footer">
 
                         <Button
                             variant="dark"
-                            href={sectionHref("#contact")}
                             className="mobile-menu__cta"
-                            onClick={closeMenu}
+                            onClick={() => {
+                                closeMenu();
+                                openModal();
+                            }}
                         >
                             Let's Talk
                         </Button>
@@ -244,3 +281,4 @@ function Navbar({ light = false }) {
 }
 
 export default Navbar;
+

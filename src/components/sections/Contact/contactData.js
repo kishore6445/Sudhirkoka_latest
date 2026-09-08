@@ -1,73 +1,156 @@
 export const contactData = {
-  modal: {
-    badge: "Let's Start the Conversation",
+    modal: {
+        badge: "LET'S START THE CONVERSATION",
 
-    title: "Schedule a Leadership Consultation",
+        title:
+            "Have Something on Your Mind? Let’s Talk. We are Listening.",
 
-    description:
-      "Whether you're looking for executive coaching, leadership development, or organisational transformation, let's discuss how we can help you achieve meaningful and lasting results.",
-  },
+        description:
+            "Sometimes you need advice.\n\nSometimes you are facing a challenge.\n\nSometimes you have an experience worth sharing.\n\nAnd sometimes, you simply want to talk to someone who can offer a different perspective.",
 
-  fields: {
-    name: {
-      label: "Full Name",
-      placeholder: "Enter your full name",
-      required: true,
+        reassurance:
+            "Whether you are an individual or an organization, we would love to hear from you. We will keep the conversation confidential.",
     },
 
-    email: {
-      label: "Email Address",
-      placeholder: "Enter your email address",
-      required: true,
+
+    sections: {
+        aboutYou: {
+            number: "01",
+            title: "About You",
+            // note: "Optional",
+            question: "I am reaching out as:",
+        },
+
+        whatWouldYouLikeToDo: {
+            number: "02",
+            title: "What Would You Like to Do?",
+            question: "I would like to:",
+        },
+
+        message: {
+            number: "03",
+            title: "Tell Us What's on Your Mind",
+            question:
+                "Please share your question, challenge, experience, idea or message.",
+            note:
+                "There is no need to structure it perfectly. Just tell us in your own words.",
+        },
+
+        assistance: {
+            number: "04",
+            title: "How do you want us to assist?",
+            question: "How can we best help you?",
+        },
+
+        response: {
+            number: "05",
+            title: "How Would You Prefer Us to Respond?",
+        },
+
+        anonymous: {
+            number: "06",
+            title: "Would You Like to Remain Anonymous?",
+        },
     },
 
-    phone: {
-      label: "Phone Number",
-      placeholder: "Enter your phone number",
-      required: true,
+
+    identityOptions: [
+        "An Individual",
+        "An Employee",
+        "A Manager / Leader",
+        "An HR / L&D Professional",
+        "An Organization",
+        "A Business Owner / Entrepreneur",
+        "Other",
+    ],
+
+
+    actionOptions: [
+        "I have a question",
+        "I need advice",
+        "I am facing a workplace challenge",
+        "I would like to share an experience",
+        "I am interested in leadership / coaching support",
+        "I would like to discuss an organizational requirement",
+        "I have an idea or suggestion",
+        "Something else",
+    ],
+
+
+    assistanceOptions: [
+        "A perspective or advice",
+        "Leadership coaching",
+        "Manager / people development",
+        "Team or organizational support",
+        "Learning & development",
+        "A conversation about my situation",
+        "Not sure — I would like to discuss it",
+    ],
+
+
+    responseOptions: [
+        "Email",
+        "Phone call",
+        "WhatsApp",
+        "Video / Virtual conversation",
+    ],
+
+
+    anonymousOptions: [
+        "Yes, I would like to remain anonymous",
+        "No, you may identify me",
+    ],
+
+
+    fields: {
+        name: {
+            label: "Name",
+            placeholder: "Enter your name",
+            required: true,
+        },
+
+        email: {
+            label: "Email",
+            placeholder: "Enter your email address",
+            required: true,
+        },
+
+        phone: {
+            label: "Phone / WhatsApp",
+            placeholder: "Enter your phone number",
+            required: false,
+        },
+
+        organization: {
+            label: "Organization / Company",
+            placeholder: "Company or organization",
+            required: false,
+        },
+
+        designation: {
+            label: "Designation",
+            placeholder: "Your role",
+            required: false,
+        },
     },
 
-    organization: {
-      label: "Organization",
-      placeholder: "Company / Organization",
-      required: false,
+
+    notice:
+        "While we will try to revert at the earliest, it may take us 7 to 10 working days to reach out to you.",
+
+
+    submitButton: {
+        text: "Start the Conversation",
+        loadingText: "Sending...",
     },
 
-    designation: {
-      label: "Designation",
-      placeholder: "Your role",
-      required: false,
+
+    success: {
+        title: "Thank You!",
+
+        description:
+            "Your message has been received. We appreciate you taking the time to reach out and will get back to you as soon as we can.",
+
+        button: "Close",
     },
-
-    message: {
-      label: "How can I help you?",
-      placeholder:
-        "Tell us about your leadership goals or the challenges you're facing...",
-      required: true,
-    },
-
-    preferredDate: {
-      label: "Preferred Meeting Date",
-      required: false,
-    },
-
-    preferredTime: {
-      label: "Preferred Meeting Time",
-      required: false,
-    },
-  },
-
-  submitButton: {
-    text: "Schedule Conversation",
-    loadingText: "Submitting...",
-  },
-
-  success: {
-    title: "Thank You!",
-
-    description:
-      "Your consultation request has been received successfully. Sudhir will personally review your request and get in touch with you within 24 hours.",
-
-    button: "Close",
-  },
 };

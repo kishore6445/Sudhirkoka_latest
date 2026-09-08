@@ -1,5 +1,14 @@
-import { ArrowLeft, ArrowRight, Play } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import {
+    ArrowLeft,
+    ArrowRight,
+    Play,
+} from "lucide-react";
+
+import {
+    Link,
+    useParams,
+} from "react-router-dom";
+
 import { useEffect } from "react";
 
 import {
@@ -10,22 +19,30 @@ import {
 import "../../styles/video-category.css";
 
 
-function VideoCard({ video }) {
+/* =========================================================
+   CATEGORY VIDEO CARD
+========================================================= */
+
+function CategoryVideoCard({ video }) {
 
     return (
-        <article className="category-video-card">
+        <article className="vc-video-card">
 
-            <div className="category-video-image">
+            {/* VIDEO IMAGE */}
+
+            <Link
+                to={`/insights/videos/${video.category}/${video.id}`}
+                className="vc-video-media"
+            >
 
                 <img
                     src={video.image}
                     alt={video.title}
                 />
 
-                <div className="category-video-overlay" />
+                <div className="vc-video-overlay" />
 
-
-                <div className="category-video-play">
+                <div className="vc-video-play">
 
                     <Play
                         size={19}
@@ -35,18 +52,112 @@ function VideoCard({ video }) {
 
                 </div>
 
-
-                <span className="category-video-duration">
+                <span className="vc-video-duration">
                     {video.duration}
                 </span>
 
+            </Link>
+
+
+            {/* CONTENT */}
+
+            <div className="vc-video-content">
+
+                <span className="vc-video-category">
+                    {video.categoryLabel}
+                </span>
+
+
+                <Link
+                    to={`/insights/videos/${video.category}/${video.id}`}
+                    className="vc-video-title-link"
+                >
+
+                    <h3>
+                        {video.title}
+                    </h3>
+
+                </Link>
+
+
+                <p>
+                    {video.description}
+                </p>
+
+
+                <Link
+                    to={`/insights/videos/${video.category}/${video.id}`}
+                    className="vc-video-watch"
+                >
+
+                    <span>
+                        Watch video
+                    </span>
+
+                    <ArrowRight size={17} />
+
+                </Link>
+
             </div>
 
+        </article>
+    );
+}
 
-            <div className="category-video-content">
 
-                <span className="category-video-label">
-                    {video.categoryLabel}
+/* =========================================================
+   FEATURED CATEGORY VIDEO
+========================================================= */
+
+function CategoryFeaturedVideo({ video }) {
+
+    if (!video) {
+        return null;
+    }
+
+
+    return (
+
+        <article className="vc-featured">
+
+            {/* FEATURED VIDEO */}
+
+            <Link
+                to={`/insights/videos/${video.category}/${video.id}`}
+                className="vc-featured-media"
+            >
+
+                <img
+                    src={video.image}
+                    alt={video.title}
+                />
+
+                <div className="vc-featured-overlay" />
+
+                <div className="vc-featured-play">
+
+                    <Play
+                        size={30}
+                        fill="currentColor"
+                        strokeWidth={0}
+                    />
+
+                </div>
+
+
+                <span className="vc-featured-duration">
+                    {video.duration}
+                </span>
+
+            </Link>
+
+
+            {/* FEATURED INFORMATION */}
+
+            <div className="vc-featured-content">
+
+                <span className="vc-featured-label">
+                    FEATURED FROM THIS CATEGORY
                 </span>
 
 
@@ -60,15 +171,18 @@ function VideoCard({ video }) {
                 </p>
 
 
-                <button
-                    className="category-video-watch"
-                    type="button"
+                <Link
+                    to={`/insights/videos/${video.category}/${video.id}`}
+                    className="vc-featured-link"
                 >
-                    Watch
+
+                    <span>
+                        Watch featured video
+                    </span>
 
                     <ArrowRight size={18} />
 
-                </button>
+                </Link>
 
             </div>
 
@@ -77,10 +191,20 @@ function VideoCard({ video }) {
 }
 
 
+/* =========================================================
+   VIDEO CATEGORY PAGE
+========================================================= */
+
 function VideoCategory() {
 
-    const { category } = useParams();
+    const {
+        category,
+    } = useParams();
 
+
+    /* =====================================================
+       SCROLL TO TOP
+    ===================================================== */
 
     useEffect(() => {
 
@@ -93,45 +217,84 @@ function VideoCategory() {
     }, [category]);
 
 
-    const currentCategory = videoCategories.find(
-        (item) => item.id === category
-    );
+    /* =====================================================
+       FIND CATEGORY
+    ===================================================== */
+
+    const currentCategory =
+        videoCategories.find(
+            (item) => item.id === category
+        );
 
 
-    const categoryVideos = videos.filter(
-        (video) => video.category === category
-    );
+    /* =====================================================
+       CATEGORY VIDEOS
+    ===================================================== */
+
+    const categoryVideos =
+        videos.filter(
+            (video) =>
+                video.category === category
+        );
 
 
-    /* =========================================
+    /* =====================================================
+       FEATURED VIDEO
+    ===================================================== */
+
+    const featuredVideo =
+        categoryVideos.find(
+            (video) => video.featured
+        ) || categoryVideos[0];
+
+
+    /* =====================================================
+       REMAINING VIDEOS
+    ===================================================== */
+
+    const remainingVideos =
+        categoryVideos.filter(
+            (video) =>
+                video.id !== featuredVideo?.id
+        );
+
+
+    /* =====================================================
        INVALID CATEGORY
-    ========================================= */
+    ===================================================== */
 
     if (!currentCategory) {
 
         return (
+
             <main className="video-category-page">
 
-                <section className="video-category-empty">
+                <section className="vc-not-found">
 
                     <span>
-                        VIDEOS
+                        VIDEO LIBRARY
                     </span>
 
                     <h1>
                         Category not found.
                     </h1>
 
+                    <p>
+                        The video category you're looking for
+                        doesn't exist.
+                    </p>
 
                     <Link
                         to="/insights/videos"
-                        className="video-category-back"
+                        className="vc-back-button"
                     >
-                        <ArrowLeft size={18} />
+
+                        <ArrowLeft size={17} />
 
                         <span>
-                            Back to Videos
+                            Back to Video Library
                         </span>
+
                     </Link>
 
                 </section>
@@ -142,134 +305,257 @@ function VideoCategory() {
 
 
     return (
+
         <main className="video-category-page">
 
 
-            {/* =========================================
+            {/* =================================================
                 HERO
-            ========================================= */}
+            ================================================= */}
 
-            <section className="video-category-header">
+            <section className="vc-hero">
 
-                <Link
-                    to="/insights/videos"
-                    className="video-category-back"
-                >
-                    <ArrowLeft size={18} />
-
-                    <span>
-                        Back to Videos
-                    </span>
-                </Link>
+                <div className="vc-hero-inner">
 
 
-                <div className="video-category-header-grid">
+                    {/* =================================================
+                        BACK TO LIBRARY
+                    ================================================= */}
 
-                    <div>
+                    <Link
+                        to="/insights/videos"
+                        className="vc-back-link"
+                    >
 
-                        <div className="video-category-eyebrow">
+                        <ArrowLeft size={17} />
+
+                        <span>
+                            Back to Video Library
+                        </span>
+
+                    </Link>
+
+
+                    {/* =================================================
+                        CATEGORY NAVIGATION
+                    ================================================= */}
+
+                    <nav className="vc-category-nav">
+
+                        {videoCategories.map(
+                            (item) => (
+
+                                <Link
+                                    key={item.id}
+                                    to={`/insights/videos/${item.id}`}
+                                    className={`vc-category-nav-item ${
+                                        item.id === category
+                                            ? "active"
+                                            : ""
+                                    }`}
+                                >
+
+                                    {item.title}
+
+                                </Link>
+
+                            )
+                        )}
+
+                    </nav>
+
+
+                    {/* =================================================
+                        NEW HERO INTRO
+                    ================================================= */}
+
+                    <div className="vc-hero-intro">
+
+                        <div className="vc-hero-eyebrow">
 
                             <span>
-                                03
+                                START HERE
                             </span>
 
-                            <i />
-
-                            <span>
-                                VIDEOS
-                            </span>
+                            <span className="vc-hero-eyebrow-line" />
 
                         </div>
 
 
                         <h1>
-
-                            {currentCategory.title}
-
+                            A conversation worth
                             <br />
 
                             <span>
-                                {currentCategory.highlightedTitle}
+                                watching.
                             </span>
-
                         </h1>
 
-                    </div>
-
-
-                    <div className="video-category-intro">
 
                         <p>
-                            {currentCategory.description}
+                            Thoughtful conversations, practical ideas
+                            and leadership perspectives to help you
+                            think differently about people and performance.
                         </p>
 
                     </div>
+
+
+                    {/* =================================================
+                        FEATURED VIDEO
+                    ================================================= */}
+
+                    {featuredVideo && (
+
+                        <CategoryFeaturedVideo
+                            video={featuredVideo}
+                        />
+
+                    )}
 
                 </div>
 
             </section>
 
 
-            {/* =========================================
-                VIDEO CONTENT
-            ========================================= */}
+            {/* =================================================
+                MORE VIDEOS
+            ================================================= */}
 
-            <section className="video-category-content">
+            <section className="vc-videos-section">
 
-                <div className="video-category-toolbar">
+                <div className="vc-container">
 
-                    <span className="video-count">
 
-                        {categoryVideos.length}{" "}
+                    <div className="vc-videos-heading">
 
-                        {categoryVideos.length === 1
-                            ? "VIDEO"
-                            : "VIDEOS"}
+                        <div>
 
-                    </span>
+                            <span>
+                                MORE FROM THIS CATEGORY
+                            </span>
+
+                            <h2>
+                                Keep exploring.
+                            </h2>
+
+                        </div>
+
+
+                        <span className="vc-count">
+
+                            {categoryVideos.length}{" "}
+
+                            {categoryVideos.length === 1
+                                ? "VIDEO"
+                                : "VIDEOS"}
+
+                        </span>
+
+                    </div>
+
+
+                    {remainingVideos.length > 0 ? (
+
+                        <div className="vc-video-grid">
+
+                            {remainingVideos.map(
+                                (video) => (
+
+                                    <CategoryVideoCard
+                                        key={video.id}
+                                        video={video}
+                                    />
+
+                                )
+                            )}
+
+                        </div>
+
+                    ) : (
+
+                        <div className="vc-empty">
+
+                            <span>
+                                MORE COMING SOON
+                            </span>
+
+                            <h3>
+                                More videos are on the way.
+                            </h3>
+
+                            <p>
+                                We're preparing more conversations
+                                for this category.
+                            </p>
+
+                        </div>
+
+                    )}
 
                 </div>
 
+            </section>
 
-                {categoryVideos.length > 0 ? (
 
-                    <div className="category-video-grid">
+            {/* =================================================
+                BOTTOM NAVIGATION
+            ================================================= */}
 
-                        {categoryVideos.map((video) => (
+            <section className="vc-bottom-navigation">
 
-                            <VideoCard
-                                key={video.id}
-                                video={video}
-                            />
+                <div className="vc-container">
 
-                        ))}
+                    <Link
+                        to="/insights/videos"
+                        className="vc-bottom-link"
+                    >
 
-                    </div>
+                        <ArrowLeft size={18} />
 
-                ) : (
+                        <div>
 
-                    <div className="video-category-no-content">
+                            <span>
+                                BACK TO
+                            </span>
 
-                        <span>
-                            COMING SOON
-                        </span>
+                            <strong>
+                                Video Library
+                            </strong>
 
-                        <h2>
-                            More videos are on the way.
-                        </h2>
+                        </div>
 
-                        <p>
-                            We're preparing more videos for this category.
-                        </p>
+                    </Link>
 
-                    </div>
 
-                )}
+                    <Link
+                        to="/#insights"
+                        className="vc-bottom-link right"
+                    >
+
+                        <div>
+
+                            <span>
+                                EXPLORE MORE
+                            </span>
+
+                            <strong>
+                                Insights
+                            </strong>
+
+                        </div>
+
+                        <ArrowRight size={18} />
+
+                    </Link>
+
+                </div>
 
             </section>
 
         </main>
     );
 }
+
 
 export default VideoCategory;

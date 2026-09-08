@@ -106,7 +106,7 @@ const ApproachStep = ({ item, isLast }) => {
 
 const Framework = () => {
   return (
-    <section className="framework-section">
+    <section className="framework-section" id="framework">
 
       <div className="framework-container">
 
@@ -117,15 +117,11 @@ const Framework = () => {
         <div className="framework-header">
 
           <div className="framework-kicker">
-            <span className="framework-number">
-              04
-            </span>
-
-            <span>/</span>
 
             <span>
               THE PEOPLE GROWTH FRAMEWORK
             </span>
+
           </div>
 
           <div className="framework-header-line" />
@@ -135,7 +131,7 @@ const Framework = () => {
             <br />
 
             <span className="framework-title__accent">
-              Are Intentionally Developed
+              are Intentionally Developed
             </span>
           </h2>
 
@@ -183,11 +179,15 @@ const Framework = () => {
           <div className="approach-header">
 
             <div className="approach-kicker">
+
+              <span className="approach-kicker-line" />
+
               <span>
                 A SIMPLE, PROVEN APPROACH
               </span>
 
               <span className="approach-kicker-line" />
+
             </div>
 
             <h2 className="approach-title">

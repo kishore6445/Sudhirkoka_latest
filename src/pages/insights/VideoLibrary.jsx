@@ -1,33 +1,88 @@
 import {
     ArrowLeft,
     ArrowRight,
-    Users,
-    Target,
-    UsersRound,
-    Building2,
-    TrendingUp,
+    Play,
+    PlayCircle,
+    Lightbulb,
+    Zap,
 } from "lucide-react";
 
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 
-import { videoCategories } from "../../data/insightsData";
-import "../../styles/insight-library.css";
+import YouTubeModal from "../../components/insights/YouTubeModal";
+
+import {
+    videoCategories,
+    videos,
+} from "../../data/insightsData";
+
+import "../../styles/video-library.css";
 
 
 /* =========================================================
-   CATEGORY ICONS
+   CATEGORY CARD
 ========================================================= */
 
-const categoryIcons = {
-    "leadership-voices": Users,
-    "skills-to-improve": Target,
-    "strong-teams": UsersRound,
-    "teams-culture": UsersRound,
-    "business-growth": TrendingUp,
-    organisation: Building2,
-    "growth-performance": TrendingUp,
-};
+function CategoryCard({ category }) {
+
+    const categoryVideos = videos.filter(
+        (video) => video.category === category.id
+    );
+
+    return (
+        <Link
+            to={`/insights/videos/${category.id}`}
+            className="video-library-category-card"
+        >
+
+            {/* NUMBER RAIL */}
+
+            <div className="video-library-category-top">
+
+                <span className="video-library-category-number">
+                    {category.number}
+                </span>
+
+            </div>
+
+
+            {/* CONTENT */}
+
+            <div className="video-library-category-body">
+
+                <h3>
+                    {category.title}
+                </h3>
+
+                <p>
+                    {category.description}
+                </p>
+
+            </div>
+
+
+            {/* FOOTER */}
+
+            <div className="video-library-category-footer">
+
+                <span>
+                    {categoryVideos.length}{" "}
+                    {categoryVideos.length === 1
+                        ? "Video"
+                        : "Videos"}
+                </span>
+
+                <span className="video-library-explore">
+                    Explore
+                    <ArrowRight size={17} />
+                </span>
+
+            </div>
+
+        </Link>
+    );
+}
 
 
 /* =========================================================
@@ -35,6 +90,13 @@ const categoryIcons = {
 ========================================================= */
 
 function VideoLibrary() {
+
+    const [selectedVideo, setSelectedVideo] = useState(null);
+
+
+    /* =====================================================
+       SCROLL TO TOP
+    ===================================================== */
 
     useEffect(() => {
 
@@ -49,31 +111,35 @@ function VideoLibrary() {
 
     return (
 
-        <main className="insight-library-page">
+        <main className="video-library-page">
 
 
             {/* =================================================
                 HERO
             ================================================= */}
 
-            <section className="insight-library-header">
+            <section className="video-library-hero">
 
-                <div className="insight-library-eyebrow">
-                    <span>VIDEOS</span>
-                </div>
+                {/* Decorative circles */}
+
+                <div className="video-library-hero-decoration video-library-hero-decoration-one" />
+
+                <div className="video-library-hero-decoration video-library-hero-decoration-two" />
 
 
-                <div className="insight-library-hero-card">
+                <div className="video-library-hero-container">
 
 
-                    {/* BACK */}
+                    {/* =================================================
+                        BACK
+                    ================================================= */}
 
                     <Link
-                        to="/insights"
-                        className="insight-library-back-link"
+                        to="/#insights"
+                        className="video-library-back"
                     >
 
-                        <ArrowLeft size={19} />
+                        <ArrowLeft size={18} />
 
                         <span>
                             Back to Insights
@@ -82,144 +148,313 @@ function VideoLibrary() {
                     </Link>
 
 
-                    {/* HERO TITLE */}
+                    {/* =================================================
+                        HERO MAIN
+                    ================================================= */}
 
-                    <div className="insight-library-heading-wrap">
+                    <div className="video-library-hero-main">
 
-                        <h1>
-                            Ideas worth
-                            <br />
 
-                            <span>
-                                watching.
+                        {/* =================================================
+                            LEFT CONTENT
+                        ================================================= */}
+
+                        <div className="video-library-hero-heading">
+
+
+                            {/* EYEBROW */}
+
+                            <div className="video-library-eyebrow">
+
+                                <i />
+
+                                <span>
+                                    VIDEO LIBRARY
+                                </span>
+
+                            </div>
+
+
+                            {/* HEADING */}
+
+                            <h1>
+
+                                Watch Think
+
+                                <br />
+
+                                <span>
+                                    Grow.
+                                </span>
+
+                            </h1>
+
+
+                            {/* DESCRIPTION */}
+
+                            <p className="video-library-hero-description">
+
+                                Conversations, practical frameworks and
+                                leadership ideas to help you think differently,
+                                see things clearly and move forward.
+
+                            </p>
+
+
+                            {/* =================================================
+                                VALUE POINTS
+                            ================================================= */}
+
+                            <div className="video-library-values">
+
+
+                                {/* VALUE 01 */}
+
+                                <div className="video-library-value">
+
+                                    <div className="video-library-value-icon">
+
+                                        <Play
+                                            size={17}
+                                            fill="currentColor"
+                                            strokeWidth={0}
+                                        />
+
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            CONVERSATIONS
+                                        </strong>
+
+                                        <span>
+                                            Hear ideas from experience
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                {/* DIVIDER */}
+
+                                <div className="video-library-value-divider" />
+
+
+                                {/* VALUE 02 */}
+
+                                <div className="video-library-value">
+
+                                    <div className="video-library-value-icon">
+
+                                        <Zap
+                                            size={18}
+                                            fill="currentColor"
+                                            strokeWidth={0}
+                                        />
+
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            PRACTICAL IDEAS
+                                        </strong>
+
+                                        <span>
+                                            Built for real situations
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                {/* DIVIDER */}
+
+                                <div className="video-library-value-divider" />
+
+
+                                {/* VALUE 03 */}
+
+                                <div className="video-library-value">
+
+                                    <div className="video-library-value-icon">
+
+                                        <Lightbulb
+                                            size={18}
+                                            strokeWidth={1.8}
+                                        />
+
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            DEEPER PERSPECTIVE
+                                        </strong>
+
+                                        <span>
+                                            Think beyond the obvious
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        {/* =================================================
+                            RIGHT ARCHITECTURAL GRAPHIC
+                        ================================================= */}
+
+                        <div className="video-library-graphic">
+
+                            <span className="video-library-circle video-library-circle--one" />
+
+                            <span className="video-library-circle video-library-circle--two" />
+
+                            <span className="video-library-circle video-library-circle--three" />
+
+
+                            {/* Vertical line */}
+
+                            <span className="video-library-graphic-line video-library-graphic-line--vertical" />
+
+
+                            {/* Horizontal line */}
+
+                            <span className="video-library-graphic-line video-library-graphic-line--horizontal" />
+
+
+                            {/* Center */}
+
+                            <div className="video-library-graphic-center">
+
+                                <Play
+                                    size={21}
+                                    fill="currentColor"
+                                    strokeWidth={0}
+                                />
+
+                            </div>
+
+
+                            {/* Labels */}
+
+                            <span className="video-library-graphic-label video-library-graphic-label--perspective">
+                                PERSPECTIVE
                             </span>
 
-                        </h1>
+                            <span className="video-library-graphic-label video-library-graphic-label--people">
+                                PEOPLE
+                            </span>
+
+                            <span className="video-library-graphic-label video-library-graphic-label--action">
+                                ACTION
+                            </span>
+
+                            <span className="video-library-graphic-label video-library-graphic-label--leadership">
+                                LEADERSHIP
+                            </span>
+
+                        </div>
 
                     </div>
 
 
-                    {/* HERO DESCRIPTION */}
+                    {/* =================================================
+                        HERO BOTTOM LINE
+                    ================================================= */}
 
-                    <div className="insight-library-intro">
+                    <div className="video-library-hero-line" />
 
-                        <p>
-                            Conversations, practical frameworks and
-                            leadership ideas designed to help people
-                            and organisations grow.
-                        </p>
+                    <div className="video-library-hero-dot" />
+
+
+                    {/* =================================================
+                        SCROLL INDICATOR
+                    ================================================= */}
+
+                    <div className="video-library-scroll">
+
+                        <span>
+                            SCROLL TO EXPLORE
+                        </span>
+
+                        <i />
 
                     </div>
 
                 </div>
 
             </section>
-
 
 
             {/* =================================================
-                VIDEO CATEGORIES
+                EXPLORE BY CATEGORY
             ================================================= */}
 
-            <section className="insight-library-category-section">
+            <section className="video-library-categories">
+
+                <div className="video-library-container">
 
 
-                {/* SECTION HEADING */}
+                    {/* SECTION HEADING */}
 
-                <div className="insight-library-category-heading">
+                    <div className="video-library-section-heading">
 
-                    <span>
-                        EXPLORE BY CATEGORY
-                    </span>
+                        <div>
 
-                </div>
+                            <span className="video-library-section-eyebrow">
+                                EXPLORE BY CATEGORY
+                            </span>
+
+                            <h2>
+                                Browse videos by what
+                                <br />
+                                interests you.
+                            </h2>
+
+                        </div>
+
+                    </div>
 
 
+                    {/* CATEGORY GRID */}
 
-                {/* CATEGORY CARDS */}
+                    <div className="video-library-category-grid">
 
-                <div className="insight-library-category-list">
+                        {videoCategories.map((category) => (
 
-                    {videoCategories.map((category, index) => {
-
-                        const Icon =
-                            categoryIcons[category.id] || Users;
-
-
-                        return (
-
-                            <Link
+                            <CategoryCard
                                 key={category.id}
-                                to={`/insights/videos/${category.id}`}
-                                className="insight-library-category-row"
-                            >
+                                category={category}
+                            />
 
+                        ))}
 
-                                {/* NUMBER */}
-
-                                <div className="insight-library-category-number">
-
-                                    {category.number ||
-                                        String(index + 1).padStart(2, "0")}
-
-                                </div>
-
-
-
-                                {/* ICON */}
-
-                                <div className="insight-library-category-icon">
-
-                                    <Icon
-                                        size={27}
-                                        strokeWidth={1.8}
-                                    />
-
-                                </div>
-
-
-
-                                {/* CONTENT */}
-
-                                <div className="insight-library-category-content">
-
-                                    <div className="insight-library-category-label">
-                                        VIDEO SERIES
-                                    </div>
-
-                                    <h2>
-                                        {category.title}
-                                    </h2>
-
-                                    <p>
-                                        {category.description}
-                                    </p>
-
-                                </div>
-
-
-
-                                {/* ARROW */}
-
-                                <div className="insight-library-category-arrow">
-
-                                    <ArrowRight
-                                        size={25}
-                                    />
-
-                                </div>
-
-
-                            </Link>
-
-                        );
-
-                    })}
+                    </div>
 
                 </div>
 
             </section>
 
+
+            {/* =================================================
+                YOUTUBE MODAL
+            ================================================= */}
+
+            <YouTubeModal
+                isOpen={Boolean(selectedVideo)}
+                videoUrl={selectedVideo?.youtubeUrl}
+                title={selectedVideo?.title}
+                onClose={() => setSelectedVideo(null)}
+            />
 
         </main>
     );

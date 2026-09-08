@@ -43,16 +43,18 @@
 ========================================================= */
 
 .footer-container {
-    width: min(1200px, calc(100% - 64px));
+    width: var(--site-container-width);
+    max-width: var(--site-max-width);
 
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
 
     padding: 65px 0 58px;
 
     display: grid;
 
     grid-template-columns:
-        1.5fr 0.7fr 0.7fr;
+        minmax(0, 1.5fr) minmax(0, 0.7fr) minmax(0, 0.7fr);
 
     gap: 70px;
 }
@@ -68,11 +70,15 @@
     flex-direction: column;
 
     align-items: flex-start;
+
+    min-width: 0;
 }
 
 
 .footer-logo {
     display: inline-block;
+
+    max-width: 100%;
 
     font-family:
         "Manrope",
@@ -107,6 +113,8 @@
 .footer-role {
     margin: 10px 0 0;
 
+    max-width: 300px;
+
     font-family:
         "Manrope",
         sans-serif;
@@ -128,6 +136,8 @@
 
 .footer-tagline {
     margin: 32px 0 0;
+
+    max-width: 360px;
 
     font-family:
         "Manrope",
@@ -156,6 +166,8 @@
 
 .footer-column {
     padding-top: 5px;
+
+    min-width: 0;
 }
 
 
@@ -189,6 +201,8 @@
 
     flex-direction: column;
 
+    align-items: flex-start;
+
     gap: 12px;
 }
 
@@ -197,10 +211,13 @@
     display: inline-flex;
 
     width: fit-content;
+    max-width: 100%;
 
     align-items: center;
 
     gap: 5px;
+
+    padding: 2px 0;
 
     font-family:
         "Manrope",
@@ -209,6 +226,8 @@
     font-size: 13px;
 
     font-weight: 500;
+
+    line-height: 1.4;
 
     color:
         rgba(248, 244, 234, 0.7);
@@ -222,6 +241,8 @@
 
 
 .footer-links a svg {
+    flex-shrink: 0;
+
     opacity: 0;
 
     transform: translate(-3px, 3px);
@@ -255,6 +276,8 @@
 
     flex-direction: column;
 
+    align-items: flex-start;
+
     gap: 13px;
 }
 
@@ -263,10 +286,13 @@
     display: inline-flex;
 
     width: fit-content;
+    max-width: 100%;
 
     align-items: center;
 
     gap: 10px;
+
+    padding: 3px 0;
 
     font-family:
         "Manrope",
@@ -275,6 +301,8 @@
     font-size: 13px;
 
     font-weight: 500;
+
+    line-height: 1.4;
 
     color:
         rgba(248, 244, 234, 0.7);
@@ -288,6 +316,8 @@
 
 
 .footer-social svg {
+    flex-shrink: 0;
+
     color: #d4af37;
 }
 
@@ -310,9 +340,11 @@
 
 
 .footer-bottom-container {
-    width: min(1200px, calc(100% - 64px));
+    width: var(--site-container-width);
+    max-width: var(--site-max-width);
 
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
 
     min-height: 65px;
 
@@ -335,6 +367,8 @@
 
     font-size: 10px;
 
+    line-height: 1.5;
+
     color:
         rgba(248, 244, 234, 0.42);
 }
@@ -349,16 +383,24 @@
 
     align-items: center;
 
+    justify-content: flex-end;
+
+    flex-wrap: wrap;
+
     gap: 10px;
 }
 
 
 .footer-legal a {
+    padding: 3px 0;
+
     font-family:
         "Manrope",
         sans-serif;
 
     font-size: 10px;
+
+    line-height: 1.4;
 
     color:
         rgba(248, 244, 234, 0.42);
@@ -384,26 +426,93 @@
 
 
 /* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+
+    .footer-container {
+        gap: 85px;
+    }
+
+    .footer-bottom-container {
+        gap: 28px;
+    }
+}
+
+
+/* =========================================================
+   LARGE TABLET / COMPACT DESKTOP
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .footer-container {
+
+        padding:
+            58px 0 52px;
+
+        grid-template-columns:
+            minmax(0, 1.35fr) minmax(0, 0.8fr) minmax(0, 0.8fr);
+
+        gap: 45px;
+    }
+
+    .footer-logo {
+        font-size: 35px;
+    }
+
+    .footer-tagline {
+        font-size: 23px;
+    }
+
+    .footer-bottom-container {}
+}
+
+
+/* =========================================================
    TABLET
 ========================================================= */
 
 @media (max-width: 850px) {
 
     .footer-container {
-        width: calc(100% - 40px);
+
+        padding:
+            52px 0 48px;
 
         grid-template-columns:
-            1.3fr 1fr 1fr;
+            minmax(0, 1.2fr) minmax(0, 0.9fr) minmax(0, 0.9fr);
 
-        gap: 40px;
+        gap: 32px;
+    }
 
-        padding: 55px 0 48px;
+    .footer-logo {
+        font-size: 33px;
+    }
+
+    .footer-tagline {
+        margin-top: 27px;
+
+        font-size: 22px;
+    }
+
+    .footer-column-title {
+        margin-bottom: 17px;
+    }
+
+    .footer-links {
+        gap: 10px;
+    }
+
+    .footer-social-links {
+        gap: 10px;
     }
 
     .footer-bottom-container {
-        width: calc(100% - 40px);
-    }
 
+        min-height: 60px;
+    }
 }
 
 
@@ -414,25 +523,40 @@
 @media (max-width: 600px) {
 
     .footer-container {
-        width: calc(100% - 32px);
 
-        padding: 50px 0 45px;
+        padding:
+            48px 0 42px;
 
         grid-template-columns: 1fr;
 
-        gap: 38px;
+        gap: 34px;
     }
 
 
     .footer-logo {
-        font-size: 35px;
+        font-size: 34px;
+
+        line-height: 1.05;
+    }
+
+
+    .footer-role {
+        margin-top: 9px;
+
+        max-width: 280px;
+
+        font-size: 11px;
     }
 
 
     .footer-tagline {
-        margin-top: 25px;
+        margin-top: 24px;
 
-        font-size: 23px;
+        max-width: 300px;
+
+        font-size: 22px;
+
+        line-height: 1.15;
     }
 
 
@@ -442,34 +566,65 @@
 
 
     .footer-column-title {
-        margin-bottom: 16px;
+        margin-bottom: 15px;
+
+        font-size: 10px;
     }
 
 
     .footer-links {
-        gap: 11px;
+        gap: 9px;
+    }
+
+
+    .footer-links a {
+        padding: 4px 0;
+
+        font-size: 13px;
     }
 
 
     .footer-social-links {
-        gap: 12px;
+        gap: 9px;
+    }
+
+
+    .footer-social {
+        padding: 4px 0;
+
+        font-size: 13px;
     }
 
 
     .footer-bottom-container {
-        width: calc(100% - 32px);
 
         min-height: auto;
 
-        padding: 18px 0;
+        padding:
+            17px 0 19px;
 
         flex-direction: column;
 
         align-items: flex-start;
 
+        justify-content: center;
+
         gap: 9px;
     }
 
+
+    .footer-bottom p {
+        font-size: 10px;
+
+        line-height: 1.5;
+    }
+
+
+    .footer-legal {
+        justify-content: flex-start;
+
+        gap: 9px;
+    }
 }
 
 
@@ -479,12 +634,33 @@
 
 @media (max-width: 400px) {
 
-    .footer-logo {
-        font-size: 32px;
+    .footer-container {
+
+        padding:
+            44px 0 38px;
+
+        gap: 31px;
     }
+
+
+    .footer-logo {
+        font-size: 31px;
+    }
+
+
+    .footer-role {
+        max-width: 250px;
+
+        font-size: 10.5px;
+    }
+
 
     .footer-tagline {
-        font-size: 21px;
+        font-size: 20px;
+
+        max-width: 270px;
     }
 
+
+    .footer-bottom-container {}
 }

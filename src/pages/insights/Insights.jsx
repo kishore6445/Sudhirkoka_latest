@@ -1,43 +1,88 @@
+import { useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import InsightTabs from "../../components/insights/InsightTabs";
+import StoryPanel from "../../components/insights/StoryPanel";
+import ShareStoryModal from "../../components/insights/ShareStoryModal";
+import YouTubeModal from "../../components/insights/YouTubeModal";
+import SocialLinksCard from "../../components/insights/SocialLinksCard";
 import "../../styles/insights.css";
-import featuredVideo from "../../assets/images/insights/featured-video.jpg"
-import ourstory from "../../assets/images/insights/our-story.jpg"
-import smallvideo1 from "../../assets/images/insights/video-2.jpg"
-import smallvideo2 from "../../assets/images/insights/video-3.jpg"
+
+import featuredVideo from "../../assets/images/insights/featured-video.jpg";
+import smallvideo1 from "../../assets/images/insights/video-2.jpg";
+import smallvideo2 from "../../assets/images/insights/video-3.jpg";
+
+
+/* =========================================================
+   INSIGHTS VIDEOS
+========================================================= */
+
 const videos = [
     {
         id: 1,
+
         image: featuredVideo,
+
         category: "LEADERSHIP",
-        title: "Why Great Performers Don't Always Become Great Leaders",
+
+        title:
+            "Why Great Performers Don't Always Become Great Leaders",
+
         description:
             "The instincts that make someone excellent individually can actively work against them the moment they lead others.",
+
         duration: "06:24",
+
         featured: true,
+
+        youtubeUrl:
+            "https://www.youtube.com/watch?v=vsx-UJ4TzWQ",
     },
+
     {
         id: 2,
+
         image: smallvideo1,
+
         category: "ORGANISATION",
-        title: "Every Business Problem Has a People Story",
+
+        title:
+            "Every Business Problem Has a People Story",
+
         description:
             "Understanding the people behind a business challenge can reveal what systems and processes often miss.",
+
         duration: "05:31",
+
+        youtubeUrl:
+            "https://www.youtube.com/watch?v=7toK3gr0cLE&list=PLdWpKTCL4Fma47hiNFED20YSKMri_U696&index=3",
     },
+
     {
         id: 3,
+
         image: smallvideo2,
+
         category: "TEAMS",
-        title: "The Leadership Mistakes That Destroy Team Performance",
+
+        title:
+            "The Leadership Mistakes That Destroy Team Performance",
+
         description:
-            "Small leadership mistakes can create large consequences for trust, accountability and team performance.",
+            "Small leadership mistakes can create large consequences and make large impact.",
+
         duration: "07:15",
+
+        youtubeUrl:
+            "https://www.youtube.com/watch?v=7toK3gr0cLE",
     },
 ];
 
+
+/* =========================================================
+   PLAY BUTTON
+========================================================= */
 
 function PlayButton({ large = false }) {
 
@@ -47,21 +92,24 @@ function PlayButton({ large = false }) {
                 large ? "large" : ""
             }`}
         >
-
             <Play
                 size={large ? 27 : 18}
                 fill="currentColor"
                 strokeWidth={0}
             />
-
         </div>
     );
 }
 
 
+/* =========================================================
+   VIDEO CARD
+========================================================= */
+
 function VideoCard({
     video,
     featured = false,
+    onVideoClick,
 }) {
 
     return (
@@ -72,7 +120,30 @@ function VideoCard({
                     ? "featured-video-card"
                     : "small-video-card"
             }`}
+
+            onClick={() => onVideoClick(video)}
+
+            role="button"
+
+            tabIndex={0}
+
+            onKeyDown={(event) => {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+                    event.preventDefault();
+
+                    onVideoClick(video);
+                }
+
+            }}
         >
+
+            {/* =================================================
+                IMAGE
+            ================================================= */}
 
             <div className="insight-video-image-wrapper">
 
@@ -82,9 +153,15 @@ function VideoCard({
                     className="insight-video-image"
                 />
 
+
+                {/* Play */}
+
                 <PlayButton
                     large={featured}
                 />
+
+
+                {/* Duration */}
 
                 <span className="video-duration">
                     {video.duration}
@@ -92,6 +169,10 @@ function VideoCard({
 
             </div>
 
+
+            {/* =================================================
+                CONTENT
+            ================================================= */}
 
             <div className="insight-video-content">
 
@@ -110,9 +191,20 @@ function VideoCard({
                 </p>
 
 
+                {/* =================================================
+                    WATCH LINK
+
+                    This still takes the user to the Videos
+                    library instead of opening the modal.
+                ================================================= */}
+
                 <Link
-                    to={`/insights/videos`}
+                    to="/insights/videos"
                     className="watch-link"
+
+                    onClick={(event) => {
+                        event.stopPropagation();
+                    }}
                 >
 
                     <span>
@@ -130,86 +222,71 @@ function VideoCard({
 }
 
 
-function StoryPanel() {
-
-    return (
-
-        <aside className="insight-story-panel">
-
-            <div className="story-panel-top">
-
-                <span className="story-eyebrow">
-                    OUR STORY
-                </span>
-
-
-                <h2>
-                    Before you share yours,
-                    <br />
-                    hear ours.
-                </h2>
-
-
-                <div className="story-video">
-
-                    <img
-                        src= {ourstory}
-                        alt="Our story"
-                    />
-
-
-                    <div className="story-video-play">
-
-                        <Play
-                            size={22}
-                            fill="currentColor"
-                            strokeWidth={0}
-                        />
-
-                    </div>
-
-                </div>
-
-
-                <div className="story-copy">
-
-                    <p className="story-main-text">
-                        Have a story, thought or experience worth
-                        sharing with our community?
-                    </p>
-
-
-                    <p className="story-secondary-text">
-                        Selected stories may be featured on our website.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <button
-                className="share-story-button"
-                type="button"
-            >
-
-                <span>
-                    Share Your Story
-                </span>
-
-                <ArrowRight size={21} />
-
-            </button>
-
-
-            <div className="story-decoration" />
-
-        </aside>
-    );
-}
-
+/* =========================================================
+   INSIGHTS
+========================================================= */
 
 function Insights() {
+
+    /* =====================================================
+       SHARE STORY MODAL
+    ===================================================== */
+
+    const [
+        isShareStoryOpen,
+        setIsShareStoryOpen
+    ] = useState(false);
+
+
+    /* =====================================================
+       YOUTUBE VIDEO MODAL
+    ===================================================== */
+
+    const [
+        selectedVideo,
+        setSelectedVideo
+    ] = useState(null);
+
+
+    /* =====================================================
+       SHARE STORY HANDLERS
+    ===================================================== */
+
+    const handleOpenShareStory = () => {
+
+        setIsShareStoryOpen(true);
+
+    };
+
+
+    const handleCloseShareStory = () => {
+
+        setIsShareStoryOpen(false);
+
+    };
+
+
+    /* =====================================================
+       VIDEO HANDLER
+    ===================================================== */
+
+    const handleVideoClick = (video) => {
+
+        setSelectedVideo(video);
+
+    };
+
+
+    const handleCloseVideo = () => {
+
+        setSelectedVideo(null);
+
+    };
+
+
+    /* =====================================================
+       RENDER
+    ===================================================== */
 
     return (
 
@@ -234,18 +311,18 @@ function Insights() {
 
                         <div className="section-eyebrow">
 
-                            <span>
+                            {/* <span>
                                 02
-                            </span>
+                            </span> */}
 
                             <i />
 
                             <span>
                                 INSIGHTS
                             </span>
-
+                            
                         </div>
-
+{/* <div className="insights-header-line" /> */}
 
                         {/* Heading */}
 
@@ -268,18 +345,24 @@ function Insights() {
 
                         <p className="insights-description">
 
-                            Practical WorkPlace & leadership ideas, articles,
-                            videos and reflections drawn from decades
-                            of working with organisations.
+                            Practical WorkPlace & leadership ideas,
+                            articles, videos and reflections drawn
+                            from decades of working with organisations.
 
                         </p>
 
                     </div>
 
 
-                    {/* Browse All */}
+                    {/* =================================================
+                        BROWSE ALL
 
-                    {/* <div className="insights-header-action">
+                        Currently disabled.
+                    ================================================= */}
+
+                    {/*
+
+                    <div className="insights-header-action">
 
                         <Link to="/insights/videos">
 
@@ -291,7 +374,9 @@ function Insights() {
 
                         </Link>
 
-                    </div> */}
+                    </div>
+
+                    */}
 
                 </div>
 
@@ -305,30 +390,49 @@ function Insights() {
 
                 {/* =================================================
                     FEATURED CONTENT
-                    ALWAYS SHOWN ON INSIGHTS LANDING PAGE
                 ================================================= */}
 
                 <div className="insights-content">
 
 
-                    {/* LEFT — VIDEOS */}
+                    {/* =================================================
+                        LEFT — VIDEOS
+                    ================================================= */}
 
                     <div className="insights-video-area">
 
+
+                        {/* =============================================
+                            FEATURED VIDEO
+                        ============================================= */}
+
                         <VideoCard
                             video={videos[0]}
-                            featured
+                            featured={true}
+                            onVideoClick={handleVideoClick}
                         />
 
 
+                        {/* =============================================
+                            SMALL VIDEOS
+                        ============================================= */}
+
                         <div className="small-videos-grid">
+
+
+                            {/* Small Video 01 */}
 
                             <VideoCard
                                 video={videos[1]}
+                                onVideoClick={handleVideoClick}
                             />
+
+
+                            {/* Small Video 02 */}
 
                             <VideoCard
                                 video={videos[2]}
+                                onVideoClick={handleVideoClick}
                             />
 
                         </div>
@@ -336,13 +440,60 @@ function Insights() {
                     </div>
 
 
-                    {/* RIGHT — OUR STORY */}
+                    {/* =================================================
+                        RIGHT — OUR STORY
+                    ================================================= */}
 
-                    <StoryPanel />
+                   {/* =================================================
+    RIGHT — OUR STORY + SOCIAL
+================================================= */}
+
+<div className="insights-side-column">
+
+    <StoryPanel
+        onShareStory={
+            handleOpenShareStory
+        }
+    />
+
+    <SocialLinksCard />
+
+</div>
 
                 </div>
 
             </div>
+
+
+            {/* =========================================================
+                SHARE STORY MODAL
+            ========================================================= */}
+
+            <ShareStoryModal
+                isOpen={isShareStoryOpen}
+                onClose={handleCloseShareStory}
+            />
+
+
+            {/* =========================================================
+                YOUTUBE VIDEO MODAL
+            ========================================================= */}
+
+            <YouTubeModal
+                isOpen={Boolean(selectedVideo)}
+
+                videoUrl={
+                    selectedVideo?.youtubeUrl
+                }
+
+                title={
+                    selectedVideo?.title
+                }
+
+                onClose={
+                    handleCloseVideo
+                }
+            />
 
         </section>
     );

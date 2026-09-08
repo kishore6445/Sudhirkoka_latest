@@ -5,7 +5,7 @@ import "./services.css";
 
 const Services = () => {
   return (
-    <section className="services-section">
+    <section className="services-section" id="services">
       <div className="services-container">
 
         {/* ================= HEADER ================= */}
@@ -13,11 +13,13 @@ const Services = () => {
         <div className="services-header">
 
           <div className="services-kicker">
-            <span className = "services-number">05</span>
-            <span>/</span>
+            {/* <span className="services-number">05</span>
+            <span>/</span> */}
             <span>LEADERSHIP SOLUTIONS</span>
           </div>
-          <div className = "services-header-line"/>
+
+          <div className="services-header-line" />
+
           <div className="services-heading-row">
 
             <div className="services-heading-wrap">
@@ -44,7 +46,6 @@ const Services = () => {
 
         </div>
 
-
         {/* ================= SERVICES GRID ================= */}
 
         <div className="services-grid">
@@ -67,13 +68,11 @@ const Services = () => {
                   />
                 </div>
 
-
                 {/* Number */}
 
                 {/* <span className="service-number">
                   0{service.id}
                 </span> */}
-
 
                 {/* Content */}
 
@@ -89,9 +88,9 @@ const Services = () => {
 
                 </div>
 
-
                 {/* Link */}
-{/* 
+
+                {/* 
                 <button className="service-link">
                   <span>Learn More</span>
 
@@ -99,7 +98,8 @@ const Services = () => {
                     size={19}
                     strokeWidth={1.8}
                   />
-                </button> */}
+                </button> 
+                */}
 
               </article>
             );

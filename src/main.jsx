@@ -1,13 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import App from "./App.jsx";
+import App from "./App";
 
-document.body.style.margin = "0";
-document.body.style.padding = "0";
+import { ContactProvider } from "./components/sections/Contact/ContactContext";
+import ContactModal from "./components/sections/Contact/ContactModal";
+
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <App />
+
+        <ContactProvider>
+
+            <App />
+
+            <ContactModal />
+
+        </ContactProvider>
+
     </React.StrictMode>
 );

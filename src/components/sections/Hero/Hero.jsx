@@ -4,23 +4,33 @@ import {
     BarChart3,
     Target,
     Play,
-    ArrowRight,
 } from "lucide-react";
+
+import { useState } from "react";
 
 import { heroData } from "../../../data/heroData";
 
-import Button from "../../common/Button/Button";
 import SectionLabel from "../../common/SectionLabel/SectionLabel";
+
+import YouTubeModal from "../../insights/YouTubeModal";
 
 import "./Hero.css";
 
+
 function Hero() {
+
+    const [
+        isIntroVideoOpen,
+        setIsIntroVideoOpen
+    ] = useState(false);
+
+
     const {
         eyebrow,
         description,
-        buttons,
         image,
     } = heroData;
+
 
     const pillars = [
         {
@@ -28,16 +38,19 @@ function Hero() {
             title: "STRONG PEOPLE",
             description: "Build the Right Teams",
         },
+
         {
             icon: Flag,
             title: "STRONG LEADERS",
             description: "Create Ownership",
         },
+
         {
             icon: BarChart3,
             title: "STRONG SYSTEMS",
             description: "Drive Performance",
         },
+
         {
             icon: Target,
             title: "STRONG BUSINESSES",
@@ -45,76 +58,166 @@ function Hero() {
         },
     ];
 
+
+    /* =========================================================
+       INTRO VIDEO
+    ========================================================= */
+
+    const introVideoUrl =
+        "https://www.youtube.com/watch?v=vsx-UJ4TzWQ";
+
+
+    /* =========================================================
+       OPEN INTRO VIDEO
+    ========================================================= */
+
+    const handleOpenIntroVideo = () => {
+
+        setIsIntroVideoOpen(true);
+
+    };
+
+
+    /* =========================================================
+       CLOSE INTRO VIDEO
+    ========================================================= */
+
+    const handleCloseIntroVideo = () => {
+
+        setIsIntroVideoOpen(false);
+
+    };
+
+
     return (
-        <section className="hero" id="home">
+
+        <section
+            className="hero"
+            id="home"
+        >
 
             <div className="hero__container">
 
-                {/* ================================
-                    HERO CONTENT
-                ================================= */}
+
+                {/* =================================================
+                    MAIN HERO
+                ================================================= */}
 
                 <div className="hero__main">
 
-                    {/* LEFT */}
+
+                    {/* =================================================
+                        LEFT CONTENT
+                    ================================================= */}
+
                     <div className="hero__content">
 
+                        {/* Eyebrow */}
+
                         <SectionLabel variant="gold">
+
                             {eyebrow}
+
                         </SectionLabel>
+
+
+                        {/* Heading */}
 
                         <h1 className="hero__title">
 
                             <span>
+
                                 STRONG{" "}
+
                                 <span className="hero__gold">
                                     PEOPLE,
                                 </span>
+
                             </span>
 
+
                             <span>
+
                                 STRONG{" "}
+
                                 <span className="hero__gold">
                                     LEADERS
                                 </span>{" "}
+
                                 &
+
                             </span>
 
+
                             <span>
+
                                 STRONG{" "}
+
                                 <span className="hero__gold">
                                     BUSINESSES.
                                 </span>
+
                             </span>
 
                         </h1>
 
+
+                        {/* Description */}
+
                         <p className="hero__description">
+
                             {description}
+
                         </p>
 
-                        <div className="hero__actions">
 
-                            <Button
-                                variant="primary"
-                                href={buttons.primary.href}
-                                icon={ArrowRight}
-                            >
-                                Let's Talk
-                            </Button>
+                        {/* =================================================
+                            INTRO VIDEO
+                        ================================================= */}
+
+                        <div className="hero__actions">
 
                             <button
                                 className="hero__video-button"
                                 type="button"
+                                onClick={handleOpenIntroVideo}
+                                aria-label="Watch introduction video"
                             >
-                                <span className="hero__play-icon">
-                                    <Play
-                                        size={16}
-                                        fill="currentColor"
-                                    />
+
+                                {/* Thumbnail */}
+
+                                <span className="hero__video-thumbnail">
+
+                                    <span className="hero__thumbnail-wave" />
+
+                                    <span className="hero__play-icon">
+
+                                        <Play
+                                            size={17}
+                                            fill="currentColor"
+                                            strokeWidth={0}
+                                        />
+
+                                    </span>
+
                                 </span>
 
-                                Watch Intro Video
+
+                                {/* Video Information */}
+
+                                <span className="hero__video-content">
+
+                                    <span className="hero__video-label">
+                                        WATCH INTRO VIDEO
+                                    </span>
+
+                                    <span className="hero__video-description">
+                                        See how we approach people,
+                                        leadership & growth
+                                    </span>
+
+                                </span>
+
                             </button>
 
                         </div>
@@ -122,43 +225,26 @@ function Hero() {
                     </div>
 
 
-                    {/* RIGHT IMAGE */}
+                    {/* =================================================
+                        RIGHT VISUAL
+                    ================================================= */}
+
                     <div className="hero__visual">
 
                         <div className="hero__city-glow" />
 
-                        {/* Growth bars */}
                         <div className="hero__growth-bars">
+
                             <span />
                             <span />
                             <span />
                             <span />
+
                         </div>
 
-                        {/* Growth arrow */}
-                        {/* <svg
-                            className="hero__growth-arrow"
-                            viewBox="0 0 320 220"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M15 205C70 185 110 170 145 145C190 112 220 75 300 18"
-                                stroke="#D4AF37"
-                                strokeWidth="7"
-                                strokeLinecap="round"
-                            />
-
-                            <path
-                                d="M268 20L300 18L290 49"
-                                stroke="#D4AF37"
-                                strokeWidth="7"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg> */}
 
                         <div className="hero__person">
+
                             <div className="hero__person-glow" />
 
                             <img
@@ -166,6 +252,7 @@ function Hero() {
                                 alt="Sudhir"
                                 className="hero__image"
                             />
+
                         </div>
 
                     </div>
@@ -173,9 +260,9 @@ function Hero() {
                 </div>
 
 
-                {/* ================================
-                    STRONG PEOPLE / LEADERS / SYSTEMS
-                ================================= */}
+                {/* =================================================
+                    FOUR PILLARS
+                ================================================= */}
 
                 <div className="hero__pillars">
 
@@ -184,36 +271,57 @@ function Hero() {
                         const Icon = pillar.icon;
 
                         return (
+
                             <div
                                 className="hero__pillar"
                                 key={pillar.title}
                             >
 
                                 <div className="hero__pillar-icon">
+
                                     <Icon
                                         size={32}
                                         strokeWidth={1.8}
                                     />
+
                                 </div>
+
 
                                 <h3>
                                     {pillar.title}
                                 </h3>
+
 
                                 <p>
                                     {pillar.description}
                                 </p>
 
                             </div>
+
                         );
+
                     })}
 
                 </div>
 
             </div>
 
+
+            {/* =========================================================
+                INTRO VIDEO MODAL
+            ========================================================= */}
+
+            <YouTubeModal
+                isOpen={isIntroVideoOpen}
+                videoUrl={introVideoUrl}
+                title="Introduction"
+                onClose={handleCloseIntroVideo}
+            />
+
         </section>
+
     );
 }
+
 
 export default Hero;
