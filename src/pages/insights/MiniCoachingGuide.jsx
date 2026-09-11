@@ -152,8 +152,7 @@ function ManagerAsCoachModal({ isOpen, onClose }) {
                     </h2>
 
                     <h3>
-                        Turn Everyday Management Moments into Learning
-                        Opportunities
+                        Do you want to Train/Coach your Teams click here
                     </h3>
 
                 </div>
