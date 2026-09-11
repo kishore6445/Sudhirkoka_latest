@@ -180,7 +180,7 @@ function StoryPanel({ onShareStory }) {
                                 aria-label="Close story"
                             >
 
-                                <X size={21} />
+                                <X size={24} />
 
                             </button>
 

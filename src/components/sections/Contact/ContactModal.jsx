@@ -114,7 +114,7 @@ export default function ContactModal() {
                     onClick={handleClose}
                     aria-label="Close dialog"
                 >
-                    <X size={21} />
+                    <X size={24} />
                 </button>
 
 

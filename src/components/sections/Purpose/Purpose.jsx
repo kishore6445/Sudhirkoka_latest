@@ -392,7 +392,7 @@ function Purpose() {
                                         />
 
                                         <path
-                                            d="M13 6L19 12L13 18"
+                                            d="M11 6L5 12L11 18"
                                             stroke="currentColor"
                                             strokeWidth="1.7"
                                             strokeLinecap="round"
