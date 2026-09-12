@@ -392,12 +392,12 @@ function Purpose() {
                                         />
 
                                         <path
-                                            d="M11 6L5 12L11 18"
-                                            stroke="currentColor"
-                                            strokeWidth="1.7"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
+    d="M13 6L19 12L13 18"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+/>
 
                                     </svg>
 
