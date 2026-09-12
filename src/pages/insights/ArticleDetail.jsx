@@ -1,4 +1,3 @@
-
 import {
     ArrowLeft,
     ArrowRight,
@@ -108,7 +107,9 @@ function ArticleDetail() {
                 </section>
 
             </main>
+
         );
+
     }
 
 
@@ -131,99 +132,444 @@ function ArticleDetail() {
 
     const articleContent = {
 
-        "building-trust-at-work": [
-            {
-                heading: "Trust is built through behaviour.",
-                paragraphs: [
-                    "Trust at work is rarely created through a single conversation or a statement from leadership. It develops through the small behaviours people experience consistently.",
-                    "When people know what to expect from their leaders, they become more comfortable contributing ideas, asking questions and taking responsibility."
-                ],
-            },
+        /* =================================================
+           ARTICLE 1
+           THE CCTV MANAGER
+        ================================================= */
 
-            {
-                heading: "Create the conditions for contribution.",
-                paragraphs: [
-                    "People contribute more when they believe their voice will be heard and respected. Leaders create this environment by making space for different perspectives and responding with curiosity rather than judgement.",
-                    "The goal isn't to make every conversation comfortable. It is to make honest contribution possible."
-                ],
-            },
+        "the-cctv-manager": {
 
-            {
-                heading: "Consistency matters.",
-                paragraphs: [
-                    "Trust grows when words and actions remain aligned over time. Clear expectations, reliable communication and visible accountability all reinforce that alignment.",
-                    "The strongest cultures are not built by occasional gestures. They are built through everyday leadership behaviour."
-                ],
-            },
-        ],
+            sections: [
 
+                {
+                    heading:
+                        "Some managers have a very interesting idea of management.",
 
-        "culture-of-ownership": [
-            {
-                heading: "Ownership changes how people think.",
-                paragraphs: [
-                    "A culture of ownership begins when people understand that their contribution matters. Ownership is more than assigning responsibility; it is creating the conditions for people to take responsibility willingly.",
-                    "When people feel trusted to make decisions, they begin to think beyond their individual tasks and consider the wider outcome."
-                ],
-            },
+                    paragraphs: [
 
-            {
-                heading: "Give people room to act.",
-                paragraphs: [
-                    "Leaders can encourage ownership by creating clarity around outcomes while giving people enough freedom to determine how those outcomes are achieved.",
-                    "Too much control can unintentionally teach people to wait for instructions. Appropriate freedom encourages judgement and initiative."
-                ],
-            },
+                        "They think if they don't check everything, something will go wrong.",
 
-            {
-                heading: "Accountability completes ownership.",
-                paragraphs: [
-                    "Ownership does not mean working without accountability. The two belong together.",
-                    "When expectations are clear and people understand that their decisions matter, accountability becomes part of the culture rather than something imposed from outside."
-                ],
-            },
-        ],
+                        "Did you send the email?",
+
+                        "Did you call the client?",
+
+                        "Did you finish that?",
+
+                        "Did you check this?",
+
+                        "And five minutes later…",
+
+                        "Did you check whether you checked it?",
+
+                    ],
+                },
 
 
-        "why-people-matter": [
-            {
-                heading: "People are at the centre of every organisation.",
-                paragraphs: [
-                    "Every strategy, system and business outcome ultimately depends on people. Organisations grow when people have the clarity, capability and confidence to contribute meaningfully.",
-                    "Looking only at processes can sometimes hide the human factors behind organisational performance."
-                ],
-            },
+                {
+                    heading:
+                        "At that point, you're not managing the person. You're monitoring them.",
 
-            {
-                heading: "Growth is a human process.",
-                paragraphs: [
-                    "Sustainable growth requires more than improving numbers. It requires developing the people who create those numbers.",
-                    "Leaders who invest in capability, relationships and trust create stronger foundations for long-term performance."
-                ],
-            },
+                    paragraphs: [
 
-            {
-                heading: "Keep people at the centre.",
-                paragraphs: [
-                    "When organisations treat people as an important part of the system rather than simply a resource within it, different conversations become possible.",
-                    "That shift can influence how leaders make decisions, develop teams and think about sustainable growth."
-                ],
-            },
-        ],
+                        "And here's the funny part—eventually, employees stop thinking for themselves.",
+
+                        "Because why take ownership when you know your manager is going to check everything anyway?",
+
+                        "Good management isn't about knowing what everyone is doing every five minutes.",
+
+                        "It's about making sure people know **what they're responsible for, what success looks like, and when they need to come to you.**",
+
+                    ],
+                },
+
+
+                {
+                    heading:
+                        "Give people ownership.",
+
+                    paragraphs: [
+
+                        "Let them make decisions.",
+
+                        "And yes, sometimes they'll make mistakes.",
+
+                        "That's part of building capable people.",
+
+                        "Because if your team needs your approval for every tiny decision, you haven't built independence.",
+
+                        "**You've built a very expensive CCTV system.**",
+
+                    ],
+                },
+
+
+                {
+                    heading:
+                        "The challenge",
+
+                    paragraphs: [
+
+                        "So here's the challenge: this week, find one decision you normally make for your team—and let them make it instead.",
+
+                    ],
+                },
+
+            ],
+
+            closing:
+                "**Good managers don't create dependence. They create confidence.**",
+
+        },
+
+
+        /* =================================================
+           ARTICLE 2
+           A STITCH IN TIME SAVES NINE
+        ================================================= */
+
+        "a-stitch-in-time-saves-nine": {
+
+            sections: [
+
+                {
+                    heading:
+                        "A small problem becomes a management problem.",
+
+                    paragraphs: [
+
+                        "A customer complained about a delayed delivery.",
+
+                        "“It’s just one customer,” someone said.",
+
+                        "The team apologised. The issue was closed.",
+
+                        "A few weeks later, another customer complained about the same thing.",
+
+                        "This time, the explanation was different.",
+
+                        "“Production was unusually busy.”",
+
+                        "Again, the issue was closed.",
+
+                        "Three months later, five customers were waiting for delayed orders. Sales was blaming production. Production was blaming procurement. Procurement said they were receiving information too late.",
+
+                        "What started as one small complaint had become a management problem.",
+
+                    ],
+                },
+
+
+                {
+                    heading:
+                        "The problems we learn to live with.",
+
+                    paragraphs: [
+
+                        "And this happens more often than we realise.",
+
+                        "There is an old saying:",
+
+                        "**“A stitch in time saves nine.”**",
+
+                        "In business, that stitch could be a customer complaint.",
+
+                        "A missed deadline.",
+
+                        "One employee repeatedly coming late.",
+
+                        "A salesperson forgetting to update the CRM.",
+
+                        "An invoice that keeps getting delayed.",
+
+                        "A quality issue that appears occasionally.",
+
+                        "Individually, none of these looks serious enough to demand management attention.",
+
+                        "So we work around them.",
+
+                        "And that's where the problem begins.",
+
+                        "Because organisations slowly become very good at **living with problems they should have solved.**",
+
+                    ],
+                },
+
+
+                {
+                    heading:
+                        "Look for the pattern.",
+
+                    paragraphs: [
+
+                        "One manual workaround becomes a process.",
+
+                        "One exception becomes normal.",
+
+                        "One ignored behaviour becomes culture.",
+
+                        "And one unhappy customer becomes ten.",
+
+                        "Good management isn't only about solving big problems.",
+
+                        "It is about recognising **small signals early.**",
+
+                        "When the same issue appears twice, don't just fix it twice.",
+
+                        "Ask:",
+
+                        "**Why is this happening?**",
+
+                        "**Is there a pattern?**",
+
+                        "**What would prevent it from happening again?**",
+
+                    ],
+                },
+
+
+                {
+                    heading:
+                        "Solve the problem while it is still small.",
+
+                    paragraphs: [
+
+                        "The cheapest time to solve most business problems is usually when they still look too small to worry about.",
+
+                        "By the time something becomes a crisis, you're no longer paying only to solve the original problem.",
+
+                        "You're paying for the consequences too.",
+
+                        "So here's a question worth asking your team this week:",
+
+                        "**What small problem are we currently tolerating that could become a big problem six months from now?**",
+
+                    ],
+                },
+
+            ],
+
+            closing:
+                "Sometimes, one stitch really does save nine.",
+
+        },
+
+
+        /* =================================================
+           ARTICLE 3
+           TOO MANY COOKS SPOIL THE BROTH
+        ================================================= */
+
+        "too-many-cooks-spoil-the-broth": {
+
+            sections: [
+
+                {
+                    heading:
+                        "Six people knew about the task. But nobody owned it.",
+
+                    paragraphs: [
+
+                        "A client sent an important email.",
+
+                        "Six managers were copied.",
+
+                        "Everyone read it.",
+
+                        "And nobody replied.",
+
+                        "Why?",
+
+                        "Each person assumed someone else would handle it.",
+
+                        "Three days later, the client followed up:",
+
+                        "**“Any update?”**",
+
+                        "Suddenly, the internal messages started.",
+
+                        "“I thought you were doing it.”",
+
+                        "“No, I thought operations was handling it.”",
+
+                        "“Wasn't this assigned to Raj?”",
+
+                        "“I wasn't aware I owned this.”",
+
+                        "Six people knew about the task.",
+
+                        "But nobody **owned** the task.",
+
+                    ],
+                },
+
+
+                {
+                    heading:
+                        "Too many owners usually means no owner.",
+
+                    paragraphs: [
+
+                        "There's an old saying:",
+
+                        "**“Too many cooks spoil the broth.”**",
+
+                        "In organisations, I would modify it slightly:",
+
+                        "**Too many owners usually means no owner.**",
+
+                        "As companies grow, we naturally add people to problems.",
+
+                        "More departments.",
+
+                        "More meetings.",
+
+                        "More people in CC.",
+
+                        "More stakeholders.",
+
+                        "It feels safer.",
+
+                        "Everyone is informed.",
+
+                        "But being informed and being accountable are very different things.",
+
+                    ],
+                },
+
+
+                {
+                    heading:
+                        "Collaboration and accountability are different.",
+
+                    paragraphs: [
+
+                        "Imagine five people standing around a leaking tap.",
+
+                        "Everyone can see the water.",
+
+                        "Everyone agrees it should be fixed.",
+
+                        "But unless one person hears,",
+
+                        "**“You own this. Get it fixed by 5 PM,”**",
+
+                        "there is a surprisingly good chance everyone will walk away.",
+
+                        "That's why good organisations make a distinction between **collaboration and accountability.**",
+
+                        "Ten people can contribute.",
+
+                        "Five people can advise.",
+
+                        "Three departments can support.",
+
+                        "But ultimately, one person should own the outcome.",
+
+                    ],
+                },
+
+
+                {
+                    heading:
+                        "Put a name against the outcome.",
+
+                    paragraphs: [
+
+                        "And ownership must include three things:",
+
+                        "**What needs to happen?**",
+
+                        "**Who owns it?**",
+
+                        "**By when?**",
+
+                        "Remove any one of these and accountability becomes fuzzy.",
+
+                        "This applies everywhere—from client delivery to recruitment, collections, marketing campaigns and strategic initiatives.",
+
+                        "So after your next management meeting, look at the action items.",
+
+                        "If you see:",
+
+                        "“Marketing team to…”",
+
+                        "“Operations to…”",
+
+                        "“HR to…”",
+
+                        "“Management to…”",
+
+                        "Ask one more question:",
+
+                        "**WHO?**",
+
+                        "Put a person's name against the outcome.",
+
+                    ],
+                },
+
+            ],
+
+            closing:
+                "Because collaboration may require a team. **Accountability requires a name.**",
+
+        },
 
     };
 
 
-    const sections =
-        articleContent[article.id] || [
-            {
-                heading: "A perspective worth exploring.",
-                paragraphs: [
-                    article.excerpt,
-                    "Leadership, people and organisational growth are shaped by the choices we make every day. The ideas in this article are intended to create space for reflection and practical action."
-                ],
-            },
-        ];
+    const content = articleContent[article.id];
+
+
+    const sections = content?.sections || [
+
+        {
+            heading:
+                "A perspective worth exploring.",
+
+            paragraphs: [
+                article.excerpt,
+            ],
+        },
+
+    ];
+
+
+    /* =====================================================
+       FORMATTED TEXT
+       Converts **text** into bold text.
+    ===================================================== */
+
+    const renderFormattedText = (text) => {
+
+        const parts = text.split(
+            /(\*\*.*?\*\*)/g
+        );
+
+
+        return parts.map(
+            (part, index) => {
+
+                if (
+                    part.startsWith("**") &&
+                    part.endsWith("**")
+                ) {
+
+                    return (
+                        <strong key={index}>
+                            {part.slice(2, -2)}
+                        </strong>
+                    );
+
+                }
+
+
+                return part;
+
+            }
+        );
+
+    };
 
 
     return (
@@ -257,19 +603,10 @@ function ArticleDetail() {
 
 
                     {/* =================================================
-                        CATEGORY
-
-                        Category page has been removed.
-                        Category information is still used internally
-                        for article identification and related articles.
-                    ================================================= */}
-
-
-                    {/* =================================================
                         TITLE
                     ================================================= */}
 
-                    {/* <div className="article-detail-heading">
+                    <div className="article-detail-heading">
 
                         <h1>
                             {article.title}
@@ -279,14 +616,14 @@ function ArticleDetail() {
                             {article.excerpt}
                         </p>
 
-                    </div> */}
+                    </div>
 
 
                     {/* =================================================
                         META
                     ================================================= */}
 
-                    {/* <div className="article-detail-meta">
+                    <div className="article-detail-meta">
 
                         <div className="article-detail-meta-item">
 
@@ -300,7 +637,9 @@ function ArticleDetail() {
 
                         </div>
 
+
                         <div className="article-detail-meta-divider" />
+
 
                         <div className="article-detail-meta-item">
 
@@ -310,7 +649,9 @@ function ArticleDetail() {
 
                         </div>
 
+
                         <div className="article-detail-meta-divider" />
+
 
                         <div className="article-detail-meta-item">
 
@@ -320,7 +661,7 @@ function ArticleDetail() {
 
                         </div>
 
-                    </div> */}
+                    </div>
 
                 </div>
 
@@ -392,10 +733,13 @@ function ArticleDetail() {
 
                         <article className="article-detail-content">
 
+
                             {/* INTRO */}
 
                             <p className="article-detail-lead">
+
                                 {article.excerpt}
+
                             </p>
 
 
@@ -415,12 +759,19 @@ function ArticleDetail() {
 
 
                                         {section.paragraphs.map(
-                                            (paragraph, paragraphIndex) => (
+                                            (
+                                                paragraph,
+                                                paragraphIndex
+                                            ) => (
 
                                                 <p
                                                     key={paragraphIndex}
                                                 >
-                                                    {paragraph}
+
+                                                    {renderFormattedText(
+                                                        paragraph
+                                                    )}
+
                                                 </p>
 
                                             )
@@ -443,9 +794,14 @@ function ArticleDetail() {
                                 </span>
 
                                 <p>
-                                    What would change if this idea
-                                    became part of the way you lead
-                                    every day?
+
+                                    {content?.closing
+                                        ? renderFormattedText(
+                                            content.closing
+                                        )
+                                        : "What would change if this idea became part of the way you lead every day?"
+                                    }
+
                                 </p>
 
                             </div>
@@ -469,8 +825,11 @@ function ArticleDetail() {
 
                     <div className="article-detail-author-card">
 
+
                         <div className="article-detail-author-mark">
+
                             S
+
                         </div>
 
 
@@ -509,39 +868,8 @@ function ArticleDetail() {
 
                     <div className="article-detail-container">
 
-
-                        {/* <div className="article-detail-related-heading">
-
-                            <div>
-
-                                <span>
-                                    KEEP EXPLORING
-                                </span>
-
-                                <h2>
-                                    More from{" "}
-                                    {currentCategory?.title}.
-                                </h2>
-
-                            </div>
-
-                        </div>
-
-
-                        <div className="article-detail-related-grid">
-
-                            {relatedArticles.map(
-                                (relatedArticle) => (
-
-                                    <ArticleCard
-                                        key={relatedArticle.id}
-                                        article={relatedArticle}
-                                    />
-
-                                )
-                            )}
-
-                        </div> */}
+                        {/* Related articles are intentionally
+                            kept hidden for now. */}
 
                     </div>
 
@@ -579,7 +907,6 @@ function ArticleDetail() {
 
                     <Link
                         to="/#insights"
-                        
                     >
 
                         <span>
@@ -594,10 +921,12 @@ function ArticleDetail() {
 
             </section>
 
+
         </main>
-    );k
+
+    );
+
 }
 
 
 export default ArticleDetail;
-
