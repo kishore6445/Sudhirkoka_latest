@@ -142,9 +142,9 @@ function Hero() {
 
                                 <span className="hero__gold">
                                     LEADERS
-                                </span>{" "}
+                                </span>
 
-                                &
+                                {"\u00A0&"}
 
                             </span>
 
