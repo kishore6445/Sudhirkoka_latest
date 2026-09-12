@@ -467,39 +467,41 @@ export const articleCategories = [
    ARTICLES
 ========================================================= */
 
+/* =========================================================
+   ARTICLES
+========================================================= */
+
 export const articles = [
-
     {
-        id: "building-trust-at-work",
-        category: "people-culture",
-        title: "Building Trust at Work",
+        id: "a-stitch-in-time-saves-nine",
+        category: "business-growth",
+        title: "A Stitch in Time Saves Nine",
         excerpt:
-            "How leaders create environments where people feel empowered to contribute.",
-        readTime: "6 min read",
-        image: "/images/insights/article-1.jpg",
-    },
-
-    {
-        id: "culture-of-ownership",
-        category: "people-culture",
-        title: "Creating a Culture of Ownership",
-        excerpt:
-            "Why ownership changes the way people think, work and contribute.",
+            "Small problems are often the signals of bigger management issues. Solve them before they become crises.",
         readTime: "8 min read",
         image: "/images/insights/article-2.jpg",
     },
 
     {
-        id: "why-people-matter",
-        category: "leadership",
-        title: "Why People Matter",
+        id: "the-cctv-manager",
+        category: "people-culture",
+        title: "If You Have to Check Everything Your Employee Does… Congratulations, You're the CCTV.",
         excerpt:
-            "The connection between people, leadership and sustainable growth.",
+            "Good management isn't about checking everything. It's about creating confidence, ownership and independence.",
+        readTime: "6 min read",
+        image: "/images/insights/article-1.jpg",
+    },
+
+    {
+        id: "too-many-cooks-spoil-the-broth",
+        category: "leadership",
+        title: "Too Many Cooks Spoil the Broth",
+        excerpt:
+            "When everyone is responsible, accountability can quickly become nobody's responsibility.",
         readTime: "5 min read",
         image: "/images/insights/article-3.jpg",
     },
 ];
-
 
 /* =========================================================
    REFLECTION CATEGORIES
