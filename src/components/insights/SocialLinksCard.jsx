@@ -19,14 +19,14 @@ const socialLinks = [
         id: "youtube",
         label: "YouTube",
         icon: FaYoutube,
-        href: "https://youtube.com/@yourchannel",
+        href: "https://youtube.com/@winspiringminds",
         className: "social-link--youtube",
     },
     {
         id: "linkedin",
         label: "LinkedIn",
         icon: FaLinkedinIn,
-        href: "https://linkedin.com/company/yourcompany",
+        href: "https://www.linkedin.com/in/sudhir-koka-53086328",
         className: "social-link--linkedin",
     },
     {

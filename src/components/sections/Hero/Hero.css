@@ -1199,31 +1199,20 @@
     }
 
 
+    /*
+     * MOBILE: the desktop hero image is hidden.
+     * The layout becomes content-driven, so the pillars
+     * move up directly beneath the video CTA.
+     */
     .hero__visual {
+        display: none;
+    }
+
+
+    .hero__main {
+        grid-template-columns: 1fr;
+
         min-height: auto;
-
-        margin-top: 35px;
-    }
-
-
-    .hero__person {
-        width:
-            min(500px,
-                92vw);
-    }
-
-
-    .hero__person-glow {
-        width: 88%;
-        height: 88%;
-    }
-
-
-    .hero__city-glow {
-        bottom: 0;
-
-        width: 110vw;
-        height: 300px;
     }
 
 
@@ -1232,7 +1221,7 @@
             repeat(2,
                 minmax(0, 1fr));
 
-        margin-top: 12px;
+        margin-top: 24px;
 
         min-height: auto;
     }

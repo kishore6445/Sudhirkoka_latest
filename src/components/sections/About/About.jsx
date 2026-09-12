@@ -332,7 +332,7 @@ const About = () => {
                         </h3>
 
                         <p>
-                            Leadership &amp; People Development Professional
+                            Leadership &amp; Organisational Development Professional
                         </p>
 
                     </div>

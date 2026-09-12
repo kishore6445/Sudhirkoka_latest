@@ -74,7 +74,7 @@ export default function EnquiryModal({
           onClick={handleClose}
           aria-label="Close enquiry form"
         >
-          <X size={22} />
+          <X size={24} />
         </button>
 
         {submitted ? (
