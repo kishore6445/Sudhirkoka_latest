@@ -152,7 +152,8 @@ function ManagerAsCoachModal({ isOpen, onClose }) {
                     </h2>
 
                     <h3>
-                        Do you want to Train/Coach your Teams click here
+                        Turn Everyday Management Moments into Learning
+                        Opportunities
                     </h3>
 
                 </div>
@@ -430,7 +431,7 @@ function MiniCoachingGuide() {
                                 <div className="mini-coaching-guide__description-content">
 
                                     <p className="mini-coaching-guide__description">
-                                        Short, practical resources to help you think
+                                        Short, practical resources to help you  and your team think
                                         differently about people, leadership,
                                         teams and business.
                                     </p>
@@ -455,47 +456,38 @@ function MiniCoachingGuide() {
                             MANAGER AS A COACH BUTTON
                         ============================================= */}
 
-                        <button
-                            type="button"
-                            className="mini-coaching-guide__manager-coach"
-                            onClick={handleOpenManagerCoach}
-                        >
+                       <button
+    type="button"
+    className="mini-coaching-guide__manager-coach"
+    onClick={handleOpenManagerCoach}
+>
+    <span className="mini-coaching-guide__manager-coach-icon">
+        <FileText
+            size={22}
+            strokeWidth={1.8}
+        />
+    </span>
 
-                            <span className="mini-coaching-guide__manager-coach-icon">
-                                <FileText
-                                    size={22}
-                                    strokeWidth={1.8}
-                                />
-                            </span>
+    <span className="mini-coaching-guide__manager-coach-content">
 
+        <span className="mini-coaching-guide__manager-coach-label">
+            MANAGER AS A COACH
+        </span>
 
-                            <span className="mini-coaching-guide__manager-coach-content">
+        <span className="mini-coaching-guide__manager-coach-title">
+            Want to Coach Your Team?
+        </span>
 
-                                <span className="mini-coaching-guide__manager-coach-label">
-                                    MANAGER AS A COACH
-                                </span>
+        <span className="mini-coaching-guide__manager-coach-cta">
+           Click Here
+            <ArrowRight
+                className="mini-coaching-guide__manager-coach-arrow"
+                size={17}
+            />
+        </span>
 
-                                <span className="mini-coaching-guide__manager-coach-title">
-                                    Turn Everyday Management Moments into
-                                    Learning Opportunities
-                                </span>
-
-                                {/* <span className="mini-coaching-guide__manager-coach-description">
-                                    A practical resource for turning everyday
-                                    management moments into learning
-                                    opportunities.
-                                </span> */}
-
-                            </span>
-
-
-                            <ArrowRight
-                                className="mini-coaching-guide__manager-coach-arrow"
-                                size={25}
-                            />
-
-                        </button>
-
+    </span>
+</button>
                     </div>
 
 
