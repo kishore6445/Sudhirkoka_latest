@@ -96,7 +96,7 @@ function CarouselLibrary() {
                         className="carousel-library__back"
                     >
                         <ArrowLeft size={18} />
-                        <span>Back to Manager as Coach</span>
+                        <span>Back to Manager  as a Coach</span>
                     </Link>
 
 
