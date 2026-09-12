@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 
 import CoachingGuideModal from "./CoachingGuideModal";
 
+import guide1Cover from "../../assets/images/coaching-guides/guide-1.jpg";
+import guide2Cover from "../../assets/images/coaching-guides/guide-2.jpg";
+import guide3Cover from "../../assets/images/coaching-guides/guide-3.jpg";
+import guide1Pdf from "../../assets/documents/coaching-guides/guide-1.pdf";
+import guide2Pdf from "../../assets/documents/coaching-guides/guide-2.pdf";
+import guide3Pdf from "../../assets/documents/coaching-guides/guide-3.pdf";
+
 import "../../styles/carousel-library.css";
 
 // ============================================================
@@ -14,26 +21,26 @@ const carouselGuides = [
     {
         id: 1,
         number: "01",
-        category: "TEAM PERFORMANCE",
-        title: "Why High-Performing Teams Stop Performing",
-        cover: "/src/assets/images/coaching-guides/guide-1.jpg",
-        pdf: "/src/assets/documents/coaching-guides/guide-1.pdf",
+        category: "TALENT",
+        title: "You Don’t Have a Talent Shortage",
+        cover: guide1Cover,
+        pdf: guide1Pdf,
     },
     {
         id: 2,
         number: "02",
-        category: "TALENT",
-        title: "You Don’t Have a Talent Shortage",
-        cover: "/src/assets/images/coaching-guides/guide-2.jpg",
-        pdf: "/src/assets/documents/coaching-guides/guide-2.pdf",
+        category: "RETENTION",
+        title: "Why Do Good Employees Quit?",
+        cover: guide2Cover,
+        pdf: guide2Pdf,
     },
     {
         id: 3,
         number: "03",
-        category: "RETENTION",
-        title: "Why Do Good Employees Quit?",
-        cover: "/src/assets/images/coaching-guides/guide-3.jpg",
-        pdf: "/src/assets/documents/coaching-guides/guide-3.pdf",
+        category: "TEAM PERFORMANCE",
+        title: "Why High-Performing Teams Stop Performing",
+        cover: guide3Cover,
+        pdf: guide3Pdf,
     },
 
     // ========================================================
@@ -45,8 +52,8 @@ const carouselGuides = [
     //     number: "04",
     //     category: "LEADERSHIP",
     //     title: "Your Carousel Title",
-    //     cover: "/src/assets/images/coaching-guides/guide-4.jpg",
-    //     pdf: "/src/assets/documents/coaching-guides/guide-4.pdf",
+    //     cover: guide4Cover,
+    //     pdf: guide4Pdf,
     // },
 ];
 
