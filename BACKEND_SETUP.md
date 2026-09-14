@@ -1,9 +1,9 @@
 # Form Submission Backend Infrastructure
 
-This document describes the **server-side backend infrastructure** added for form
-submissions. It is intentionally **not connected to any existing form yet** — the
-frontend forms (Share Your Story, Let's Talk, Enquiry, Contact) are unchanged and
-will be wired up in a later step.
+This document describes the **server-side backend infrastructure** for form
+submissions. The **Share Your Story** form is now wired up to this backend. The
+other frontend forms (Let's Talk, Enquiry, Contact) remain **unchanged and not
+connected**, and may be wired up in a later step.
 
 The project remains a **React + Vite** app deployed on **Vercel**. No framework
 migration was performed. The backend runs as **Vercel serverless functions** in
@@ -74,27 +74,31 @@ Supabase integration. Add `RESEND_API_KEY`, `FORM_NOTIFICATION_EMAIL`,
 - Set `FORM_NOTIFICATION_EMAIL` to the inbox that should receive submissions.
 - No production recipient/sender is hardcoded anywhere — all come from env vars.
 
-## 6. How the future form submission flow will work
+## 6. How the form submission flow works
 
 The design avoids sending large video/file bytes through the serverless function
-(which would hit Vercel payload limits). It uses **direct-to-storage** uploads:
+(which would hit Vercel payload limits). It uses **direct-to-storage** uploads.
+This is the exact flow the **Share Your Story** form uses today:
 
 ```
-1. User fills a form and selects a file/video.
+1. User fills the form and selects a video (max 50 MB, enforced client-side).
 2. Browser → POST /api/forms/create-upload-url
      sends only metadata: { formKey, category, contentType, sizeBytes }
    Server validates metadata and returns a short-lived signed upload URL.
-3. Browser uploads the file DIRECTLY to Supabase Storage using that signed URL.
+3. Browser uploads the video DIRECTLY to Supabase Storage using that signed URL.
      (The bytes never pass through the Vercel function. No base64.)
 4. Browser → POST /api/forms/submit
      sends { formKey, fields, replyTo?, filePath }
-   Server validates + sanitizes the fields, creates a short-lived signed
-   download URL for filePath, and sends a Resend notification email containing
-   the submitted data and the secure file link.
+   Server validates + sanitizes the fields, persists the submission to the
+   `form_submissions` table, creates a short-lived signed download URL for
+   filePath, and sends a Resend notification email containing the submitted
+   data and the secure file link.
 ```
 
-Both endpoints are **form-agnostic**, so each future form reuses the same
+Both endpoints are **form-agnostic**, so each additional form reuses the same
 validation, storage, and email utilities by passing its own `formKey` and fields.
+The submission is persisted **before** email is attempted, so a Resend outage
+never loses a submission — the row's `email_status` records the outcome.
 
 ## 7. How to test the backend
 
@@ -113,23 +117,28 @@ Expected response:
   "status": "operational",
   "timestamp": "2025-01-01T00:00:00.000Z",
   "configured": {
-    "supabase": { "url": true, "serviceRoleKey": true, "bucket": false },
-    "email": { "apiKey": false, "fromEmail": false, "notificationEmail": false }
+    "supabase": { "url": true, "serviceRoleKey": true, "bucket": true },
+    "email": { "apiKey": true, "fromEmail": false, "notificationEmail": true }
   }
 }
 ```
 
-`false` entries indicate variables that still require manual configuration.
+`false` entries indicate variables that still require manual configuration. The
+`bucket` reports the **effective** bucket name, so it is `true` even when
+`SUPABASE_STORAGE_BUCKET` is unset and the default `form-uploads` is used.
 
 Locally, `vite` alone does not run the `/api` functions. Use `vercel dev` to
 exercise the endpoints in development.
 
-## 8. What is intentionally NOT connected yet
+## 8. Connection status
 
-- No existing form posts to these endpoints. The Contact, Let's Talk, Share Your
-  Story, and Enquiry forms and their UI are **unchanged**.
-- No test emails are sent from any existing form.
-- No production credentials are committed. `RESEND_API_KEY`,
-  `FORM_NOTIFICATION_EMAIL`, and `FORM_FROM_EMAIL` still require manual setup.
+- **Share Your Story is connected** to these endpoints and follows the flow in
+  section 6 (create-upload-url → Supabase Storage → submit → `form_submissions`
+  → Resend). Its UI/design is unchanged apart from the wiring.
+- **Contact, Let's Talk, and Enquiry are NOT connected.** Their forms and UI are
+  **unchanged** and do not post to these endpoints.
+- No production sender/recipient is hard-coded. `FORM_FROM_EMAIL` must be an
+  address on a **verified Resend domain** and is configured via env vars only —
+  it is intentionally left unset in the repository until the domain is verified.
 - Room is intentionally left to add rate limiting, CAPTCHA/Turnstile, and spam
-  protection before these endpoints are exposed to real traffic.
+  protection before more endpoints are exposed to real traffic.

@@ -45,7 +45,7 @@ export function getConfigStatus() {
     supabase: {
       url: Boolean(supabase.url),
       serviceRoleKey: Boolean(supabase.serviceRoleKey),
-      bucket: Boolean(process.env.SUPABASE_STORAGE_BUCKET),
+      bucket: Boolean(supabase.bucket),
     },
     email: {
       apiKey: Boolean(email.apiKey),
