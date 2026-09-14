@@ -6,24 +6,14 @@ import {
     Play,
 } from "lucide-react";
 
-import { useState } from "react";
-
 import { heroData } from "../../../data/heroData";
 
 import SectionLabel from "../../common/SectionLabel/SectionLabel";
-
-import YouTubeModal from "../../insights/YouTubeModal";
 
 import "./Hero.css";
 
 
 function Hero() {
-
-    const [
-        isIntroVideoOpen,
-        setIsIntroVideoOpen
-    ] = useState(false);
-
 
     const {
         eyebrow,
@@ -60,31 +50,23 @@ function Hero() {
 
 
     /* =========================================================
-       INTRO VIDEO
+       INTRO PDF
     ========================================================= */
 
-    const introVideoUrl =
-        "https://www.youtube.com/watch?v=vsx-UJ4TzWQ";
+    const introPdfUrl = "/Winspiring Minds PPT (1).pdf";
 
 
     /* =========================================================
-       OPEN INTRO VIDEO
+       OPEN INTRO PDF
     ========================================================= */
 
-    const handleOpenIntroVideo = () => {
+    const handleOpenIntroPdf = () => {
 
-        setIsIntroVideoOpen(true);
-
-    };
-
-
-    /* =========================================================
-       CLOSE INTRO VIDEO
-    ========================================================= */
-
-    const handleCloseIntroVideo = () => {
-
-        setIsIntroVideoOpen(false);
+        window.open(
+            introPdfUrl,
+            "_blank",
+            "noopener,noreferrer"
+        );
 
     };
 
@@ -172,7 +154,7 @@ function Hero() {
 
 
                         {/* =================================================
-                            INTRO VIDEO
+                            INTRO PDF
                         ================================================= */}
 
                         <div className="hero__actions">
@@ -180,11 +162,11 @@ function Hero() {
                             <button
                                 className="hero__video-button"
                                 type="button"
-                                onClick={handleOpenIntroVideo}
-                                aria-label="Watch introduction video"
+                                onClick={handleOpenIntroPdf}
+                                aria-label="View Winspiring Minds introduction"
                             >
 
-                                {/* Thumbnail */}
+                                {/* PDF Thumbnail */}
 
                                 <span className="hero__video-thumbnail">
 
@@ -203,16 +185,16 @@ function Hero() {
                                 </span>
 
 
-                                {/* Video Information */}
+                                {/* PDF Information */}
 
                                 <span className="hero__video-content">
 
                                     <span className="hero__video-label">
-                                        WATCH INTRO VIDEO
+                                        VIEW OUR INTRODUCTION
                                     </span>
 
                                     <span className="hero__video-description">
-                                        See how we approach people,
+                                        Discover how we approach people,
                                         leadership & growth
                                     </span>
 
@@ -305,18 +287,6 @@ function Hero() {
                 </div>
 
             </div>
-
-
-            {/* =========================================================
-                INTRO VIDEO MODAL
-            ========================================================= */}
-
-            <YouTubeModal
-                isOpen={isIntroVideoOpen}
-                videoUrl={introVideoUrl}
-                title="Introduction"
-                onClose={handleCloseIntroVideo}
-            />
 
         </section>
 
