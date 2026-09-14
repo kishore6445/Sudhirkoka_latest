@@ -30,7 +30,7 @@ const videos = [
             "Introduction to Winspiring Minds",
 
         description:
-            <p>Welcome to Winspiring Minds — where insights inspire better leadership and stronger performance.<br></br> In this introduction, we begin a journey focused on leadership development, people development, business insights and transformative learning.
+            <p>Welcome to Winspiring Minds — where insights inspire better leadership and stronger performance. In this introduction, we begin a journey focused on leadership development, people development, business insights and transformative learning.
 Together, we will build the skills you need to lead with impact.</p>
 ,
 
