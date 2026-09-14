@@ -444,13 +444,7 @@ function MiniCoachingGuide() {
                                     </p>
 
 
-                                    <a
-                                        href="/insights/carousels"
-                                        className="mini-coaching-guide__browse"
-                                    >
-                                        <span>Browse All Resources</span>
-                                        <ArrowRight size={19} />
-                                    </a>
+                                   
 
                                 </div>
 
