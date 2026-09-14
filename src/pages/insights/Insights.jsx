@@ -39,7 +39,7 @@ Together, we will build the skills you need to lead with impact.</p>
         featured: true,
 
         youtubeUrl:
-            "https://www.youtube.com/watch?v=vsx-UJ4TzWQ",
+            "https://www.youtube.com/watch?v=hFHbEBqBICU",
     },
 
     {
@@ -58,7 +58,7 @@ Together, we will build the skills you need to lead with impact.</p>
         // duration: "05:31",
 
         youtubeUrl:
-            "https://www.youtube.com/watch?v=7toK3gr0cLE&list=PLdWpKTCL4Fma47hiNFED20YSKMri_U696&index=3",
+            "https://www.youtube.com/watch?v=ufmvKKZyLQU",
     },
 
     {
@@ -77,7 +77,7 @@ Together, we will build the skills you need to lead with impact.</p>
         // duration: "07:15",
 
         youtubeUrl:
-            "https://www.youtube.com/watch?v=7toK3gr0cLE",
+            "https://www.youtube.com/watch?v=ho1ZE5Evvew",
     },
 ];
 
