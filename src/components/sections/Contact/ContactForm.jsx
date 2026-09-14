@@ -5,6 +5,7 @@ import { contactData } from "./contactData";
 
 export default function ContactForm({ onSuccess }) {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
     const [form, setForm] = useState({
         identity: "",
@@ -80,17 +81,48 @@ export default function ContactForm({ onSuccess }) {
         event.preventDefault();
 
         setLoading(true);
+        setError("");
+
+        const fields = {
+            "I am a":
+                form.identity === "Other"
+                    ? `Other: ${form.otherIdentity}`
+                    : form.identity,
+            "Name": form.name,
+            "Email": form.email,
+            "Phone": form.phone,
+            "Organization": form.organization,
+            "Designation": form.designation,
+            "What would you like to do": form.actions.join(", "),
+            "Message": form.message,
+            "Assistance Needed": form.assistance,
+            "Preferred Response Method": form.responseMethod,
+            "Response Preference": form.anonymous,
+        };
 
         try {
-            /*
-             * API / EmailJS integration can be added here.
-             */
+            const response = await fetch("/api/forms/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    formKey: "lets-talk",
+                    fields,
+                    replyTo: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
+                        ? form.email
+                        : undefined,
+                }),
+            });
 
-            await new Promise((resolve) =>
-                setTimeout(resolve, 1200)
-            );
+            if (!response.ok) {
+                const data = await response.json().catch(() => ({}));
+                throw new Error(
+                    data.error || "Something went wrong. Please try again."
+                );
+            }
 
             onSuccess();
+        } catch (submitError) {
+            setError(submitError.message);
         } finally {
             setLoading(false);
         }
@@ -662,6 +694,12 @@ export default function ContactForm({ onSuccess }) {
                 ================================================= */}
 
                 <div className="contact-form__footer">
+
+                    {error && (
+                        <p className="contact-form__error" role="alert">
+                            {error}
+                        </p>
+                    )}
 
                     <p className="contact-form__notice">
                         {notice}

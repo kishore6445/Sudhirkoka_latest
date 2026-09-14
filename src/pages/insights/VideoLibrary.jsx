@@ -7,23 +7,33 @@ import {
     Zap,
 } from "lucide-react";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import YouTubeModal from "../../components/insights/YouTubeModal";
+// import YouTubeModal from "../../components/insights/YouTubeModal";
 
-import {
-    videoCategories,
-    videos,
-} from "../../data/insightsData";
+// =========================================================
+// VIDEO DATA
+// Keep commented for now.
+// Uncomment when video cards are brought back.
+// =========================================================
+
+// import {
+//     videoCategories,
+//     videos,
+// } from "../../data/insightsData";
 
 import "../../styles/video-library.css";
 
 
-/* =========================================================
-   CATEGORY CARD
-========================================================= */
+// =========================================================
+// CATEGORY CARD
+// =========================================================
+// Kept here for future use.
+// Uncomment this entire section when category cards
+// are required again.
 
+/*
 function CategoryCard({ category }) {
 
     const categoryVideos = videos.filter(
@@ -36,7 +46,7 @@ function CategoryCard({ category }) {
             className="video-library-category-card"
         >
 
-            {/* NUMBER RAIL */}
+            {/!* NUMBER RAIL *!/}
 
             <div className="video-library-category-top">
 
@@ -47,7 +57,7 @@ function CategoryCard({ category }) {
             </div>
 
 
-            {/* CONTENT */}
+            {/!* CONTENT *!/}
 
             <div className="video-library-category-body">
 
@@ -62,7 +72,7 @@ function CategoryCard({ category }) {
             </div>
 
 
-            {/* FOOTER */}
+            {/!* FOOTER *!/}
 
             <div className="video-library-category-footer">
 
@@ -83,20 +93,29 @@ function CategoryCard({ category }) {
         </Link>
     );
 }
+*/
 
 
-/* =========================================================
-   VIDEO LIBRARY
-========================================================= */
+// =========================================================
+// VIDEO LIBRARY
+// =========================================================
 
 function VideoLibrary() {
 
+    /*
+    // =====================================================
+    // VIDEO MODAL
+    // Keep commented for now.
+    // Uncomment when video cards are brought back.
+    // =====================================================
+
     const [selectedVideo, setSelectedVideo] = useState(null);
+    */
 
 
-    /* =====================================================
-       SCROLL TO TOP
-    ===================================================== */
+    // =====================================================
+    // SCROLL TO TOP
+    // =====================================================
 
     useEffect(() => {
 
@@ -395,16 +414,18 @@ function VideoLibrary() {
             </section>
 
 
-            {/* =================================================
+            {/* =========================================================
                 EXPLORE BY CATEGORY
-            ================================================= */}
+            ========================================================= */}
 
             <section className="video-library-categories">
 
                 <div className="video-library-container">
 
 
-                    {/* SECTION HEADING */}
+                    {/* =================================================
+                        SECTION HEADING
+                    ================================================= */}
 
                     <div className="video-library-section-heading">
 
@@ -425,8 +446,36 @@ function VideoLibrary() {
                     </div>
 
 
-                    {/* CATEGORY GRID */}
+                    {/* =================================================
+                        VIDEOS COMING SOON
+                    ================================================= */}
 
+                    <div className="video-library-coming-soon">
+
+                        <div className="video-library-coming-soon-icon">
+                            <PlayCircle size={28} />
+                        </div>
+
+                        <h3>
+                            Videos will be updated.
+                        </h3>
+
+                        <p>
+                            Stay tuned for conversations, practical ideas
+                            and leadership perspectives.
+                        </p>
+
+                    </div>
+
+
+                    {/* =================================================
+                        CATEGORY GRID — COMMENTED FOR NOW
+                        
+                        Uncomment this section later when you want
+                        the category cards back.
+                    ================================================= */}
+
+                    {/*
                     <div className="video-library-category-grid">
 
                         {videoCategories.map((category) => (
@@ -439,6 +488,7 @@ function VideoLibrary() {
                         ))}
 
                     </div>
+                    */}
 
                 </div>
 
@@ -447,14 +497,24 @@ function VideoLibrary() {
 
             {/* =================================================
                 YOUTUBE MODAL
+                Commented for now because there are no video
+                cards displayed.
+                
+                Uncomment later together with:
+                - useState import
+                - selectedVideo state
+                - YouTubeModal import
+                - video card click handlers
             ================================================= */}
 
+            {/*
             <YouTubeModal
                 isOpen={Boolean(selectedVideo)}
                 videoUrl={selectedVideo?.youtubeUrl}
                 title={selectedVideo?.title}
                 onClose={() => setSelectedVideo(null)}
             />
+            */}
 
         </main>
     );

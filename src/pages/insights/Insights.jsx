@@ -24,15 +24,17 @@ const videos = [
 
         image: featuredVideo,
 
-        category: "LEADERSHIP",
+        // category: "LEADERSHIP",
 
         title:
-            "Why Great Performers Don't Always Become Great Leaders",
+            "Introduction to Winspiring Minds",
 
         description:
-            "The instincts that make someone excellent individually can actively work against them the moment they lead others.",
+            <p>Welcome to Winspiring Minds — where insights inspire better leadership and stronger performance. In this introduction, we begin a journey focused on leadership development, people development, business insights and transformative learning.
+Together, we will build the skills you need to lead with impact.</p>
+,
 
-        duration: "06:24",
+        // duration: "06:24",
 
         featured: true,
 
@@ -45,15 +47,15 @@ const videos = [
 
         image: smallvideo1,
 
-        category: "ORGANISATION",
+        // category: "ORGANISATION",
 
         title:
-            "Every Business Problem Has a People Story",
+            "Introduction to Frameworks",
 
         description:
-            "Understanding the people behind a business challenge can reveal what systems and processes often miss.",
+            "In this series, we explore practical leadership frameworks, business frameworks.",
 
-        duration: "05:31",
+        // duration: "05:31",
 
         youtubeUrl:
             "https://www.youtube.com/watch?v=7toK3gr0cLE&list=PLdWpKTCL4Fma47hiNFED20YSKMri_U696&index=3",
@@ -64,15 +66,15 @@ const videos = [
 
         image: smallvideo2,
 
-        category: "TEAMS",
+        // category: "TEAMS",
 
         title:
-            "The Leadership Mistakes That Destroy Team Performance",
+            "Introduction to Skills",
 
         description:
-            "Small leadership mistakes can create large consequences and make large impact.",
+            "What sets great professionals apart? The skills they build and apply",
 
-        duration: "07:15",
+        // duration: "07:15",
 
         youtubeUrl:
             "https://www.youtube.com/watch?v=7toK3gr0cLE",
@@ -198,22 +200,20 @@ function VideoCard({
                     library instead of opening the modal.
                 ================================================= */}
 
-                <Link
-                    to="/insights/videos"
-                    className="watch-link"
+               <button
+    type="button"
+    className="watch-link"
+    onClick={(event) => {
+        event.stopPropagation();
+        onVideoClick(video);
+    }}
+>
+    <span>
+        Watch
+    </span>
 
-                    onClick={(event) => {
-                        event.stopPropagation();
-                    }}
-                >
-
-                    <span>
-                        Watch
-                    </span>
-
-                    <ArrowRight size={18} />
-
-                </Link>
+    <ArrowRight size={18} />
+</button>
 
             </div>
 

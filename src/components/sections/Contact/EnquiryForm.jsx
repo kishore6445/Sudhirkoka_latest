@@ -7,6 +7,7 @@ export default function EnquiryForm({
   onSuccess,
 }) {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const [form, setForm] = useState({
     organizationName: "",
@@ -52,16 +53,52 @@ export default function EnquiryForm({
     }
 
     setLoading(true);
+    setError("");
+
+    const fields = {
+      "Organization Name": form.organizationName,
+      "Industry / Sector": form.industry,
+      "Organization Size": form.organizationSize,
+      "Your Name": form.name,
+      "Designation / Role": form.designation,
+      "Business Email": form.email,
+      "Phone / WhatsApp": form.phone,
+      "Looking For": form.lookingFor,
+      "Challenge": form.challenge,
+      "Desired Outcome": form.outcome,
+      "Urgency": form.urgency,
+      "Engagement Type": form.engagement,
+      "Additional Notes": form.additional,
+      "Heard About Us":
+        form.source === "Other"
+          ? `Other: ${form.sourceOther}`
+          : form.source,
+      "Consent": form.consent ? "Yes" : "No",
+    };
 
     try {
-      // API / EmailJS / backend integration can be
-      // connected here later.
+      const response = await fetch("/api/forms/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          formKey: "enquiry",
+          fields,
+          replyTo: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
+            ? form.email
+            : undefined,
+        }),
+      });
 
-      await new Promise((resolve) =>
-        setTimeout(resolve, 1000)
-      );
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(
+          data.error || "Something went wrong. Please try again."
+        );
+      }
 
       onSuccess();
+    } catch (submitError) {
+      setError(submitError.message);
     } finally {
       setLoading(false);
     }
@@ -716,6 +753,12 @@ export default function EnquiryForm({
       ================================================= */}
 
       <div className="enquiry-form__footer">
+
+        {error && (
+          <p className="enquiry-form__error" role="alert">
+            {error}
+          </p>
+        )}
 
         <p>
           While we will try to revert at the earliest,

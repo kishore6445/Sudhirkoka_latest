@@ -1355,17 +1355,18 @@
         grid-template-columns: 165px minmax(0, 1fr) 62px;
         gap: 32px;
     }
-        .article-library-hero-line {
-            bottom: 180px;
-        }
-    
-        .article-library-hero-dot {
-            bottom: 177px;
-        }
-    
-        .article-library-scroll {
-            bottom: 30px;
-        }
+
+    .article-library-hero-line {
+        bottom: 180px;
+    }
+
+    .article-library-hero-dot {
+        bottom: 177px;
+    }
+
+    .article-library-scroll {
+        bottom: 30px;
+    }
 
 }
 

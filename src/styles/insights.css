@@ -534,26 +534,29 @@
     .insight-tabs-wrapper {
         display: block;
 
-        overflow: visible;
+        overflow-x: auto;
+
+        scrollbar-width: none;
+
+        -ms-overflow-style: none;
+    }
+
+    .insight-tabs-wrapper::-webkit-scrollbar {
+        display: none;
     }
 
     .insight-tabs {
-        width: 100%;
-        max-width: 100%;
+        width: max-content;
 
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        min-width: max-content;
+
         gap: 0;
     }
 
     .insight-tab {
-        min-width: 0;
-        width: 100%;
         height: 56px;
 
-        flex: none;
-
-        padding: 0 10px;
+        padding: 0 16px;
     }
 
     .insight-tab-icon {
@@ -586,9 +589,7 @@
     .insight-tab {
         height: 53px;
 
-        flex-basis: 33.333%;
-
-        padding: 0 7px;
+        padding: 0 13px;
     }
 
     .insight-tab-icon {
@@ -1648,10 +1649,9 @@
 
     padding: 30px;
 
-    background: rgba(7, 31, 52, 0.72);
+    background: rgba(5, 20, 34, 0.72);
 
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
 
     box-sizing: border-box;
 
@@ -1668,7 +1668,7 @@
 
     width: min(900px, 94vw);
 
-    max-height: calc(100vh - 40px);
+    max-height: min(820px, calc(100vh - 60px));
 
     display: flex;
 
@@ -1676,12 +1676,12 @@
 
     overflow: hidden;
 
-    border-radius: 24px;
+    border-radius: 20px;
 
     background: #ffffff;
 
     box-shadow:
-        0 30px 80px rgba(7, 31, 52, 0.25);
+        0 30px 80px rgba(0, 0, 0, 0.25);
 
     box-sizing: border-box;
 
@@ -1704,7 +1704,7 @@
 
     gap: 25px;
 
-    padding: 42px 46px 30px;
+    padding: 32px 34px 25px;
 
     background:
         linear-gradient(145deg,
@@ -1754,32 +1754,27 @@
 ========================================================= */
 
 .story-modal-close {
-    position: absolute;
-
-    top: 25px;
-    right: 25px;
-
     display: flex;
 
     align-items: center;
 
     justify-content: center;
 
-    flex: 0 0 42px;
+    flex: 0 0 38px;
 
-    width: 42px;
+    width: 38px;
 
-    height: 42px;
+    height: 38px;
 
     margin: 0;
 
     padding: 0;
 
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.22);
 
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.07);
 
     color: #ffffff;
 
@@ -1791,9 +1786,9 @@
 }
 
 .story-modal-close:hover {
-    background: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.15);
 
-    transform: rotate(90deg);
+    transform: rotate(4deg);
 }
 
 
@@ -2855,43 +2850,222 @@
 
 }
 
-/* Keep the category links usable on narrow screens. */
-@media (max-width: 700px) {
-    .insight-tabs-wrapper {
-        overflow: visible;
-        padding: 0;
+/* =========================================================
+   FINAL DESKTOP CARD ALIGNMENT FIX
+   Keeps the existing design but makes the card rows equal.
+   Desktop only — mobile/tablet remain stacked.
+========================================================= */
+
+@media (min-width: 901px) {
+
+    .insights-content {
+        --insights-top-card-height: 630px;
+        --insights-bottom-card-height: 371.93px;
+
+        align-items: stretch;
+        gap: 30px;
     }
 
-    .insight-tabs {
-        width: 100%;
-        max-width: 100%;
+    /* Left column: featured card + two small cards */
+    .insights-video-area {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0;
-        padding: 0;
-        border-radius: 0;
+        grid-template-rows:
+            var(--insights-top-card-height) var(--insights-bottom-card-height);
+        gap: 22px;
+        align-content: start;
     }
 
-    .insight-tab {
-        width: 100%;
-        min-width: 0;
-        height: 56px;
+    /* Featured card exactly matches Share Your Story */
+    .featured-video-card {
+        height: var(--insights-top-card-height) !important;
+        min-height: var(--insights-top-card-height) !important;
+        max-height: var(--insights-top-card-height) !important;
+    }
+
+    .featured-video-card .insight-video-image-wrapper {
+        height: 390px !important;
+        flex: 0 0 390px !important;
+    }
+
+    .featured-video-card .insight-video-content {
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+    }
+
+    /* Small video row matches Social Links card */
+    .small-videos-grid {
+        height: var(--insights-bottom-card-height);
+        min-height: var(--insights-bottom-card-height);
+        max-height: var(--insights-bottom-card-height);
+        margin: 0;
+        align-items: stretch;
+    }
+
+    .small-video-card {
+        height: 100%;
+        min-height: 0;
+        max-height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .small-video-card .insight-video-image-wrapper {
+        height: 175px;
+        flex: 0 0 175px;
+    }
+
+    .small-video-card .insight-video-content {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    /* Right column: Story + Social use exactly the same row heights */
+    .insights-side-column {
+        display: grid;
+        grid-template-rows:
+            var(--insights-top-card-height) var(--insights-bottom-card-height);
+        gap: 22px;
+        align-content: start;
+    }
+
+    .insight-story-panel {
+        height: var(--insights-top-card-height) !important;
+        min-height: var(--insights-top-card-height) !important;
+        max-height: var(--insights-top-card-height) !important;
+    }
+
+    .insights-social-card {
+        height: var(--insights-bottom-card-height) !important;
+        min-height: var(--insights-bottom-card-height) !important;
+        max-height: var(--insights-bottom-card-height) !important;
+        margin-top: 0;
+    }
+}
+
+/* =========================================================
+   DESKTOP — PREVENT THE 1100px OVERRIDE FROM BREAKING ROWS
+========================================================= */
+
+@media (min-width: 901px) and (max-width: 1100px) {
+
+    .insights-content {
+        --insights-top-card-height: 630px;
+        --insights-bottom-card-height: 371.93px;
+        gap: 24px;
+    }
+
+    .insights-video-area,
+    .insights-side-column {
+        gap: 20px;
+    }
+
+    .featured-video-card .insight-video-image-wrapper {
+        height: 390px !important;
+        flex-basis: 390px !important;
+    }
+}
+
+/* =========================================================
+   TABLET / MOBILE
+   Cards stack naturally — no forced equal-height rows.
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .insights-content {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .insights-video-area {
+        display: block;
+    }
+
+    .featured-video-card {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+    }
+
+    .small-videos-grid {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .small-video-card {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .insights-side-column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .insight-story-panel {
+        height: 630px !important;
+        min-height: 0 !important;
+        max-height: none !important;
+    }
+
+    .insights-social-card {
+        height: auto !important;
+        min-height: 371.93px;
+        max-height: none !important;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .insights-video-area {
+        display: block;
+    }
+
+    .small-videos-grid {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 18px;
+    }
+
+    .small-video-card {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .small-video-card .insight-video-image-wrapper {
         flex: none;
-        padding: 0 8px;
+    }
+
+    .insights-side-column {
+        gap: 16px;
+    }
+
+    .insight-story-panel {
+        height: 630px !important;
+    }
+
+    .insights-social-card {
+        min-height: 0;
+        height: auto !important;
     }
 }
 
 @media (max-width: 480px) {
-    .insight-tab {
-        height: 53px;
-        padding: 0 5px;
+
+    .insight-story-panel {
+        height: 630px !important;
     }
 
-    .insight-tab-icon {
-        margin-right: 5px;
-    }
-
-    .insight-tab-label {
-        font-size: 12px;
+    .insights-social-card {
+        height: auto !important;
+        min-height: 0;
     }
 }
