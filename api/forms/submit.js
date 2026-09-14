@@ -32,6 +32,13 @@ const FORM_RULES = {
     required: ["Story", "Sharing Permission"],
     consent: "Declaration Confirmed",
   },
+  "enquiry": {
+    required: ["Business Email", "Your Name", "Challenge", "Desired Outcome"],
+    consent: "Consent",
+  },
+  "lets-talk": {
+    required: ["Message"],
+  },
 };
 
 export default async function handler(req, res) {

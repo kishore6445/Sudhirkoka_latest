@@ -63,7 +63,9 @@ export async function sendFormNotification({
 }) {
   const { fromEmail, notificationEmail } = getEmailConfig();
   const recipient = to || notificationEmail;
-  const sender = from || fromEmail;
+  // Fall back to Resend's shared sending domain so notifications work without
+  // a verified custom domain. Set FORM_FROM_EMAIL to send from your own domain.
+  const sender = from || fromEmail || "onboarding@resend.dev";
 
   if (!recipient || !sender) {
     throw new Error("Email sender/recipient is not configured");
