@@ -3069,3 +3069,112 @@
         min-height: 0;
     }
 }
+
+/* =========================================================
+   FINAL MOBILE INSIGHT TABS FIX
+   Keeps icon + label together and prevents overlap.
+   Tabs scroll horizontally on narrow screens when needed.
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .insight-tabs-wrapper {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 24px 0 30px;
+    }
+
+    .insight-tabs-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    .insight-tabs {
+        width: max-content;
+        min-width: max-content;
+        max-width: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 4px;
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .insight-tab {
+        width: auto;
+        min-width: max-content;
+        height: 54px;
+        flex: 0 0 auto;
+        padding: 0 14px;
+        white-space: nowrap;
+    }
+
+    .insight-tab-icon {
+        width: 19px;
+        height: 19px;
+        flex-shrink: 0;
+        margin-right: 7px;
+    }
+
+    .insight-tab-label {
+        display: inline-block;
+        width: auto;
+        max-width: none;
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .insight-tab--active::after {
+        left: 10px;
+        right: 10px;
+        bottom: -1px;
+        height: 2px;
+    }
+}
+
+
+/* =========================================================
+   FINAL SMALL-MOBILE TAB SIZING
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .insight-tabs-wrapper {
+        padding: 20px 0 26px;
+    }
+
+    .insight-tabs {
+        gap: 2px;
+    }
+
+    .insight-tab {
+        width: auto;
+        min-width: max-content;
+        height: 52px;
+        flex: 0 0 auto;
+        padding: 0 11px;
+    }
+
+    .insight-tab-icon {
+        width: 18px;
+        height: 18px;
+        margin-right: 6px;
+    }
+
+    .insight-tab-label {
+        font-size: 13px;
+    }
+
+    .insight-tab--active::after {
+        left: 9px;
+        right: 9px;
+        height: 2px;
+    }
+}
+
