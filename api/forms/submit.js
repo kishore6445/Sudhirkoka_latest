@@ -21,6 +21,19 @@ import { insertSubmission, markEmailResult } from "../_lib/submissions.js";
 
 const MAX_FIELDS = 40;
 
+/**
+ * Per-form server-side rules (defense-in-depth beyond client validation).
+ * Only forms listed here are enforced; all other forms are unaffected.
+ * `required` = field labels that must be present + non-empty.
+ * `consent`  = field label that must equal "yes" (case-insensitive).
+ */
+const FORM_RULES = {
+  "share-your-story": {
+    required: ["Story", "Sharing Permission"],
+    consent: "Declaration Confirmed",
+  },
+};
+
 export default async function handler(req, res) {
   if (!requireMethod(req, res, ["POST"])) return;
 
@@ -57,11 +70,27 @@ export default async function handler(req, res) {
     safeFields[cleanString(label, { max: 128 })] = cleanString(String(value ?? ""), { max: 5000 });
   }
 
+  const slug = safeSlug(formKey);
+
+  // Defense-in-depth: enforce required fields + consent server-side for any
+  // form that declares rules. Never trust the client alone.
+  const rules = FORM_RULES[slug];
+  if (rules) {
+    for (const label of rules.required || []) {
+      if (!isNonEmptyString(safeFields[label])) {
+        return badRequest(res, "Please complete all required fields.");
+      }
+    }
+    if (rules.consent && String(safeFields[rules.consent] || "").toLowerCase() !== "yes") {
+      return badRequest(res, "Consent is required to submit this form.");
+    }
+  }
+
   // Persist the submission FIRST, so it is never lost even if email fails.
   let submissionId;
   try {
     submissionId = await insertSubmission({
-      formKey: safeSlug(formKey),
+      formKey: slug,
       fields: safeFields,
       replyTo,
       filePath,

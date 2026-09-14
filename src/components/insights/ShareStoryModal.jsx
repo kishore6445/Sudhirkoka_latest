@@ -52,12 +52,138 @@ const experienceOptions = [
 ];
 
 
+/* =========================================================
+   BACKEND INTEGRATION CONFIG
+   These are the only backend-facing constants for this form.
+========================================================= */
+
+// Form identifier sent to the backend. Do not change casually — it is used
+// in storage paths and stored on every submission row.
+const FORM_KEY = "share-your-story";
+
+// Client-side video limits. Kept as constants so they are easy to change.
+const MAX_VIDEO_BYTES = 50 * 1024 * 1024; // ~50 MB
+const ACCEPTED_VIDEO_TYPES = ["video/mp4", "video/webm", "video/quicktime"];
+
+// Human-readable labels for stored radio values (used in the notification email).
+const PERMISSION_LABELS = {
+    name: "Yes, with my name",
+    anonymous: "Yes, but anonymously",
+    approval: "Yes, but only after I approve the final version",
+    internal: "No — sharing only for internal learning/research",
+};
+
+const VIDEO_WILLINGNESS_LABELS = {
+    yes: "Yes",
+    maybe: "Maybe, please contact me",
+    no: "No",
+};
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Build a clean, readable label -> value map from the form state. Only
+ * meaningful values are included so the notification email stays tidy.
+ */
+function buildFields(data) {
+    const fields = {};
+
+    fields["Identification"] =
+        data.identification === "identified"
+            ? "Happy to be identified"
+            : data.identification === "anonymous"
+                ? "Prefers to remain anonymous"
+                : "Not specified";
+
+    if (data.identification === "identified") {
+        if (data.name.trim()) fields["Name"] = data.name.trim();
+        if (data.designation.trim()) fields["Designation / Role"] = data.designation.trim();
+        if (data.industry.trim()) fields["Industry"] = data.industry.trim();
+        if (String(data.yearsExperience).trim())
+            fields["Years of Corporate Experience"] = String(data.yearsExperience).trim();
+        if (data.email.trim()) fields["Email"] = data.email.trim();
+    }
+
+    if (data.experienceTypes.length) {
+        fields["Experience Types"] = data.experienceTypes.join(", ");
+    }
+    if (data.otherExperience && data.otherExperience.trim()) {
+        fields["Other Experience"] = data.otherExperience.trim();
+    }
+
+    fields["Story"] = data.story.trim();
+
+    if (data.storyOneLine.trim()) {
+        fields["Story in One Line"] = data.storyOneLine.trim();
+    }
+
+    if (data.permission) {
+        fields["Sharing Permission"] = PERMISSION_LABELS[data.permission] || data.permission;
+    }
+
+    fields["Declaration Confirmed"] = data.declaration ? "Yes" : "No";
+
+    if (data.videoWillingness) {
+        fields["Willing to Record Video"] =
+            VIDEO_WILLINGNESS_LABELS[data.videoWillingness] || data.videoWillingness;
+    }
+
+    return fields;
+}
+
+/** Request a signed upload URL for a video (metadata only — no bytes sent). */
+async function requestUploadUrl(file) {
+    const response = await fetch("/api/forms/create-upload-url", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            formKey: FORM_KEY,
+            category: "video",
+            contentType: file.type,
+            sizeBytes: file.size,
+        }),
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok || !data.success) {
+        throw new Error(data.error || "Could not prepare the video upload.");
+    }
+
+    return data; // { path, token, signedUrl }
+}
+
+/** Translate any thrown error into a friendly, non-technical message. */
+function friendlyError(error) {
+    const message = typeof error?.message === "string" ? error.message : "";
+
+    // Surface our own validation messages (they are already user-friendly).
+    if (
+        /video|file|email|required|consent|story|size|format/i.test(message) &&
+        message.length < 160
+    ) {
+        return message;
+    }
+
+    return "Something went wrong while submitting your story. Please try again in a moment.";
+}
+
+
 const ShareStoryModal = ({
     isOpen,
     onClose,
 }) => {
 
     const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // "idle" | "uploading" | "submitting"
+    const [uploadStatus, setUploadStatus] = useState("idle");
+
+    const [uploadProgress, setUploadProgress] = useState(0);
+
+    const [errorMessage, setErrorMessage] = useState("");
 
     const [formData, setFormData] = useState(
         initialFormData
@@ -115,6 +241,14 @@ const ShareStoryModal = ({
         if (!isOpen) {
 
             setIsSubmitted(false);
+
+            setIsSubmitting(false);
+
+            setUploadStatus("idle");
+
+            setUploadProgress(0);
+
+            setErrorMessage("");
 
             setFormData(initialFormData);
 
@@ -200,6 +334,9 @@ const ShareStoryModal = ({
             event.target.files?.[0] || null;
 
 
+        setErrorMessage("");
+
+
         setFormData((previous) => ({
             ...previous,
             video: file,
@@ -209,31 +346,176 @@ const ShareStoryModal = ({
 
 
     /* =========================================================
+       DIRECT-TO-STORAGE VIDEO UPLOAD (with progress)
+       The bytes go straight from the browser to Supabase Storage
+       using the signed URL — never through the serverless API.
+    ========================================================= */
+
+    const uploadVideo = (signedUrl, file) =>
+        new Promise((resolve, reject) => {
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("PUT", signedUrl);
+
+            xhr.setRequestHeader("Content-Type", file.type);
+
+            xhr.upload.onprogress = (progressEvent) => {
+                if (progressEvent.lengthComputable) {
+                    setUploadProgress(
+                        Math.round(
+                            (progressEvent.loaded / progressEvent.total) * 100
+                        )
+                    );
+                }
+            };
+
+            xhr.onload = () => {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve();
+                } else {
+                    reject(new Error("The video upload failed. Please try again."));
+                }
+            };
+
+            xhr.onerror = () =>
+                reject(new Error("Network error during upload. Please try again."));
+
+            xhr.send(file);
+
+        });
+
+
+    /* =========================================================
        SUBMIT
     ========================================================= */
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
 
         event.preventDefault();
 
 
-        /*
-         * UI submission for now.
-         *
-         * Later this object can be sent to:
-         * - your backend
-         * - database
-         * - email service
-         * - storage service
-         */
+        // Prevent accidental duplicate submissions.
+        if (isSubmitting) {
+            return;
+        }
 
-        console.log(
-            "Story submission:",
-            formData
-        );
+        setErrorMessage("");
 
 
-        setIsSubmitted(true);
+        /* ---------- Client-side validation ---------- */
+
+        if (!formData.story.trim()) {
+            setErrorMessage("Please tell us your story before submitting.");
+            return;
+        }
+
+        if (!formData.permission) {
+            setErrorMessage("Please let us know how we may share your experience.");
+            return;
+        }
+
+        if (!formData.declaration) {
+            setErrorMessage("Please confirm the declaration to submit your story.");
+            return;
+        }
+
+
+        // Email is only used (as reply-to) when the person identifies themselves.
+        let replyTo;
+
+        if (
+            formData.identification === "identified" &&
+            formData.email.trim()
+        ) {
+            const email = formData.email.trim();
+
+            if (!EMAIL_PATTERN.test(email)) {
+                setErrorMessage("Please enter a valid email address.");
+                return;
+            }
+
+            replyTo = email;
+        }
+
+
+        // Validate the optional video before doing any network work.
+        const video = formData.video;
+
+        if (video) {
+            if (!ACCEPTED_VIDEO_TYPES.includes(video.type)) {
+                setErrorMessage(
+                    "Please upload a video in MP4, WebM or MOV format."
+                );
+                return;
+            }
+
+            if (video.size > MAX_VIDEO_BYTES) {
+                setErrorMessage(
+                    "Your video is too large. Please upload a video under 50 MB."
+                );
+                return;
+            }
+        }
+
+
+        /* ---------- Submission flow ---------- */
+
+        setIsSubmitting(true);
+        setUploadProgress(0);
+
+        try {
+
+            let filePath;
+
+            // 1. If a video was selected, upload it directly to Supabase.
+            if (video) {
+                setUploadStatus("uploading");
+
+                const upload = await requestUploadUrl(video);
+
+                await uploadVideo(upload.signedUrl, video);
+
+                filePath = upload.path;
+            }
+
+            // 2. Submit the form fields (+ stored file path) to the backend.
+            setUploadStatus("submitting");
+
+            const response = await fetch("/api/forms/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    formKey: FORM_KEY,
+                    fields: buildFields(formData),
+                    ...(replyTo ? { replyTo } : {}),
+                    ...(filePath ? { filePath } : {}),
+                }),
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok || !result.success) {
+                throw new Error(
+                    result.error ||
+                    "We couldn't submit your story. Please try again."
+                );
+            }
+
+            // 3. Existing success state.
+            setIsSubmitted(true);
+
+        } catch (error) {
+
+            setErrorMessage(friendlyError(error));
+
+        } finally {
+
+            setIsSubmitting(false);
+            setUploadStatus("idle");
+            setUploadProgress(0);
+
+        }
 
     };
 
@@ -1156,13 +1438,50 @@ const ShareStoryModal = ({
                             </p>
 
 
+                            {errorMessage && (
+                                <p
+                                    className="share-story-error"
+                                    role="alert"
+                                >
+                                    {errorMessage}
+                                </p>
+                            )}
+
+
+                            {isSubmitting && uploadStatus === "uploading" && (
+                                <div
+                                    className="share-story-progress"
+                                    aria-live="polite"
+                                >
+                                    <div className="share-story-progress-track">
+                                        <div
+                                            className="share-story-progress-bar"
+                                            style={{
+                                                width: `${uploadProgress}%`,
+                                            }}
+                                        />
+                                    </div>
+
+                                    <span className="share-story-progress-label">
+                                        {`Uploading video… ${uploadProgress}%`}
+                                    </span>
+                                </div>
+                            )}
+
+
                             <button
                                 type="submit"
                                 className="share-story-submit"
+                                disabled={isSubmitting}
+                                aria-busy={isSubmitting}
                             >
 
                                 <span>
-                                    Submit Your Story
+                                    {uploadStatus === "uploading"
+                                        ? "Uploading video…"
+                                        : uploadStatus === "submitting"
+                                            ? "Submitting…"
+                                            : "Submit Your Story"}
                                 </span>
 
                                 <ArrowRight size={20} />

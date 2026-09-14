@@ -1661,6 +1661,82 @@
 }
 
 
+/* =========================================================
+   SUBMISSION FEEDBACK (error + upload progress)
+   Additive, functional styling for the backend-connected flow.
+========================================================= */
+
+.share-story-submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.share-story-error {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 12px 16px;
+
+    border-radius: 8px;
+
+    background: rgba(192, 57, 43, 0.08);
+
+    color: #c0392b;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 13.5px;
+
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+.share-story-progress {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.share-story-progress-track {
+    width: 100%;
+
+    height: 8px;
+
+    border-radius: 999px;
+
+    background: rgba(16, 42, 67, 0.1);
+
+    overflow: hidden;
+}
+
+.share-story-progress-bar {
+    height: 100%;
+
+    border-radius: 999px;
+
+    background: #d4af37;
+
+    transition: width 0.2s ease;
+}
+
+.share-story-progress-label {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 12.5px;
+
+    font-weight: 700;
+
+    color: #6d8499;
+}
+
+
 @keyframes storyModalIn {
 
     from {
