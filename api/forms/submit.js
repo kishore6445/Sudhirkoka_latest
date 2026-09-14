@@ -17,6 +17,7 @@ import { ok, badRequest, serverError, requireMethod, readJsonBody } from "../_li
 import { isNonEmptyString, isValidEmail, cleanString, safeSlug } from "../_lib/validation.js";
 import { createSignedDownloadUrl } from "../_lib/storage.js";
 import { sendFormNotification } from "../_lib/email.js";
+import { insertSubmission, markEmailResult } from "../_lib/submissions.js";
 
 const MAX_FIELDS = 40;
 
@@ -56,6 +57,21 @@ export default async function handler(req, res) {
     safeFields[cleanString(label, { max: 128 })] = cleanString(String(value ?? ""), { max: 5000 });
   }
 
+  // Persist the submission FIRST, so it is never lost even if email fails.
+  let submissionId;
+  try {
+    submissionId = await insertSubmission({
+      formKey: safeSlug(formKey),
+      fields: safeFields,
+      replyTo,
+      filePath,
+    });
+  } catch (cause) {
+    return serverError(res, cause, "form-submit-persist");
+  }
+
+  // Email is best-effort: the submission is already stored, so a delivery
+  // failure is recorded on the row but does not fail the request.
   try {
     let fileUrl;
     if (filePath) {
@@ -69,8 +85,10 @@ export default async function handler(req, res) {
       ...(replyTo ? { replyTo } : {}),
     });
 
-    return ok(res);
+    await markEmailResult(submissionId, { sent: true });
   } catch (cause) {
-    return serverError(res, cause, "form-submit");
+    await markEmailResult(submissionId, { sent: false, errorMessage: cause?.message });
   }
+
+  return ok(res, { id: submissionId });
 }
