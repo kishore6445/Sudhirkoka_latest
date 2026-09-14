@@ -50,21 +50,20 @@ function Hero() {
 
 
     /* =========================================================
-       INTRO PRESENTATION
+       INTRO PDF
     ========================================================= */
 
-    const introPresentationUrl =
-        "/Winspiring Minds PPT (1).pptx";
+    const introPdfUrl = "/Winspiring Minds PPT (1).pdf";
 
 
     /* =========================================================
-       OPEN INTRO PRESENTATION
+       OPEN INTRO PDF
     ========================================================= */
 
-    const handleOpenIntroPresentation = () => {
+    const handleOpenIntroPdf = () => {
 
         window.open(
-            introPresentationUrl,
+            introPdfUrl,
             "_blank",
             "noopener,noreferrer"
         );
@@ -155,7 +154,7 @@ function Hero() {
 
 
                         {/* =================================================
-                            INTRO PRESENTATION
+                            INTRO PDF
                         ================================================= */}
 
                         <div className="hero__actions">
@@ -163,11 +162,11 @@ function Hero() {
                             <button
                                 className="hero__video-button"
                                 type="button"
-                                onClick={handleOpenIntroPresentation}
-                                aria-label="View Winspiring Minds presentation"
+                                onClick={handleOpenIntroPdf}
+                                aria-label="View Winspiring Minds introduction"
                             >
 
-                                {/* Thumbnail */}
+                                {/* PDF Thumbnail */}
 
                                 <span className="hero__video-thumbnail">
 
@@ -186,7 +185,7 @@ function Hero() {
                                 </span>
 
 
-                                {/* Presentation Information */}
+                                {/* PDF Information */}
 
                                 <span className="hero__video-content">
 
@@ -195,8 +194,8 @@ function Hero() {
                                     </span>
 
                                     <span className="hero__video-description">
-                                        Discover Winspiring Minds and our approach
-                                        to people, leadership & growth
+                                        Discover how we approach people,
+                                        leadership & growth
                                     </span>
 
                                 </span>
