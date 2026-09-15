@@ -101,8 +101,14 @@ const Footer = () => {
 
                     <div className="footer-social-links">
 
+                        {/* =================================================
+                            LINKEDIN
+                        ================================================= */}
+
                         <a
-                            href="#"
+                            href="https://www.linkedin.com/in/sudhir-koka-53086328/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             aria-label="LinkedIn"
                             className="footer-social"
                         >
@@ -110,8 +116,15 @@ const Footer = () => {
                             <span>LinkedIn</span>
                         </a>
 
+
+                        {/* =================================================
+                            YOUTUBE
+                        ================================================= */}
+
                         <a
-                            href="#"
+                            href="https://www.youtube.com/@winspiringminds"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             aria-label="YouTube"
                             className="footer-social"
                         >
@@ -119,8 +132,16 @@ const Footer = () => {
                             <span>YouTube</span>
                         </a>
 
+
+                        {/* =================================================
+                            EMAIL
+                        ================================================= */}
+
                         <a
-                            href="mailto:hello@sudhirkoka.com"
+                            href="https://mail.google.com/mail/?view=cm&fs=1&to=reachout@winspiringminds.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Email"
                             className="footer-social"
                         >
                             <Mail size={17} />
