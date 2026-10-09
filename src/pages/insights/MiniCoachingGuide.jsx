@@ -7,15 +7,8 @@ import {
     Lightbulb,
     UsersRound,
 } from "lucide-react";
-
+import { Link } from "react-router-dom";
 import CoachingGuideModal from "./CoachingGuideModal";
-
-import guide1Cover from "../../assets/images/coaching-guides/guide-1.jpg";
-import guide2Cover from "../../assets/images/coaching-guides/guide-2.jpg";
-import guide3Cover from "../../assets/images/coaching-guides/guide-3.jpg";
-import guide1Pdf from "../../assets/documents/coaching-guides/guide-1.pdf";
-import guide2Pdf from "../../assets/documents/coaching-guides/guide-2.pdf";
-import guide3Pdf from "../../assets/documents/coaching-guides/guide-3.pdf";
 
 import "../../styles/mini-coaching-guide.css";
 
@@ -28,32 +21,32 @@ const coachingGuides = [
     {
         id: 1,
         number: "01",
-        category: "TALENT",
-        title: "You Don’t Have a Talent Shortage",
-        description:
-            "A practical perspective on why organisations may be struggling to unlock the talent they already have.",
-        cover: guide1Cover,
-        pdf: guide1Pdf,
-    },
-    {
-        id: 2,
-        number: "02",
-        category: "RETENTION",
-        title: "Why Do Good Employees Quit?",
-        description:
-            "Understanding the deeper reasons good employees leave, even when compensation is not the problem.",
-        cover: guide2Cover,
-        pdf: guide2Pdf,
-    },
-    {
-        id: 3,
-        number: "03",
         category: "TEAM PERFORMANCE",
         title: "Why High-Performing Teams Stop Performing",
         description:
             "What changes when a strong team starts losing momentum, accountability and performance.",
-        cover: guide3Cover,
-        pdf: guide3Pdf,
+        cover: "/src/assets/images/coaching-guides/guide-1.jpg",
+        pdf: "/src/assets/documents/coaching-guides/guide-1.pdf",
+    },
+    {
+        id: 2,
+        number: "02",
+        category: "TALENT",
+        title: "You Don’t Have a Talent Shortage",
+        description:
+            "A practical perspective on why organisations may be struggling to unlock the talent they already have.",
+        cover: "/src/assets/images/coaching-guides/guide-2.jpg",
+        pdf: "/src/assets/documents/coaching-guides/guide-2.pdf",
+    },
+    {
+        id: 3,
+        number: "03",
+        category: "RETENTION",
+        title: "Why Do Good Employees Quit?",
+        description:
+            "Understanding the deeper reasons good employees leave, even when compensation is not the problem.",
+        cover: "/src/assets/images/coaching-guides/guide-3.jpg",
+        pdf: "/src/assets/documents/coaching-guides/guide-3.pdf",
     },
 ];
 
@@ -443,9 +436,13 @@ function MiniCoachingGuide() {
                                         teams and business.
                                     </p>
 
-
-                                   
-
+<Link
+    to="/insights/carousels"
+    className="mini-coaching-guide__browse"
+>
+    <span>Browse All Resources</span>
+    <ArrowRight size={19} />
+</Link>
                                 </div>
 
                             </div>

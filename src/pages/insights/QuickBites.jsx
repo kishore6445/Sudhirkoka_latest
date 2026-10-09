@@ -4,42 +4,20 @@ import {
     Lightbulb,
     Play,
     Zap,
-    PlayCircle,
 } from "lucide-react";
 
-import { useEffect } from "react";
-// import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-import {
-    Link,
-} from "react-router-dom";
-
-
-// =========================================================
-// QUICK BITES DATA
-// =========================================================
-// Keep this import commented for now.
-// Uncomment when the Quick Bite videos are ready.
-
-/*
-import {
-    quickBites,
-} from "../../data/insightsData";
-*/
-
-
-// =========================================================
-// YOUTUBE MODAL
-// =========================================================
-// Keep commented for now.
-// Uncomment together with the video grid later.
-
-/*
+import { quickBites } from "../../data/insightsData";
 import YouTubeModal from "../../components/insights/YouTubeModal";
-*/
-
 
 import "../../styles/quick-bites.css";
+
+
+
+
+
 
 
 // =========================================================
@@ -47,7 +25,7 @@ import "../../styles/quick-bites.css";
 // =========================================================
 // Kept commented so you can restore the cards later.
 
-/*
+
 function QuickBiteCard({
     bite,
     index,
@@ -59,9 +37,6 @@ function QuickBiteCard({
         <article className="quick-bite-card">
 
 
-            {/!* =================================================
-                IMAGE
-            ================================================= *!/}
 
             <div className="quick-bite-card__media">
 
@@ -77,7 +52,7 @@ function QuickBiteCard({
                 </span>
 
 
-                {/!* Play Button *!/}
+               
 
                 <button
                     type="button"
@@ -102,9 +77,7 @@ function QuickBiteCard({
             </div>
 
 
-            {/!* =================================================
-                CONTENT
-            ================================================= *!/}
+          
 
             <div className="quick-bite-card__content">
 
@@ -147,7 +120,7 @@ function QuickBiteCard({
 
     );
 }
-*/
+
 
 
 // =========================================================
@@ -163,12 +136,12 @@ function QuickBites() {
     // Kept commented for now.
     // Uncomment when video cards are restored.
 
-    /*
+   
     const [
         selectedBite,
         setSelectedBite
     ] = useState(null);
-    */
+   
 
 
     // =====================================================
@@ -191,7 +164,7 @@ function QuickBites() {
     // =====================================================
     // Keep these commented until videos are restored.
 
-    /*
+    
     const handleOpenVideo = (bite) => {
         setSelectedBite(bite);
     };
@@ -200,7 +173,7 @@ function QuickBites() {
     const handleCloseVideo = () => {
         setSelectedBite(null);
     };
-    */
+    
 
 
     return (
@@ -547,35 +520,18 @@ function QuickBites() {
                     </div>
 
 
-                    {/* =================================================
-                        COMING SOON
-                    ================================================= */}
+<div className="quick-bites-grid">
+    {quickBites.map((bite, index) => (
+        <QuickBiteCard
+            key={bite.id}
+            bite={bite}
+            index={index}
+            onOpen={handleOpenVideo}
+        />
+    ))}
+</div>
 
-                    <div className="quick-bites-coming-soon">
-
-
-                        <div className="quick-bites-coming-soon__icon">
-
-                            <PlayCircle
-                                size={30}
-                            />
-
-                        </div>
-
-
-                        <h3>
-                            Short videos will be coming soon.
-                        </h3>
-
-
-                        <p>
-                            Stay tuned for practical ideas, useful
-                            perspectives and quick leadership insights.
-                        </p>
-
-
-                    </div>
-
+                   
 
                     {/* =================================================
                         QUICK BITE GRID
@@ -700,14 +656,14 @@ function QuickBites() {
                 - video handlers
             ================================================= */}
 
-            {/*
+            
             <YouTubeModal
                 isOpen={Boolean(selectedBite)}
                 videoUrl={selectedBite?.youtubeUrl}
                 title={selectedBite?.title}
                 onClose={handleCloseVideo}
             />
-            */}
+            
 
         </main>
     );

@@ -3,13 +3,11 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import CoachingGuideModal from "./CoachingGuideModal";
+// import guide4Cover from "../../assets/images/coaching-guides/guide-4.jpg";
+// import guide5Cover from "../../assets/images/coaching-guides/guide-5.jpg";
 
-import guide1Cover from "../../assets/images/coaching-guides/guide-1.jpg";
-import guide2Cover from "../../assets/images/coaching-guides/guide-2.jpg";
-import guide3Cover from "../../assets/images/coaching-guides/guide-3.jpg";
-import guide1Pdf from "../../assets/documents/coaching-guides/guide-1.pdf";
-import guide2Pdf from "../../assets/documents/coaching-guides/guide-2.pdf";
-import guide3Pdf from "../../assets/documents/coaching-guides/guide-3.pdf";
+// import guide4Pdf from "../../assets/documents/coaching-guides/guide-4.pdf";
+// import guide5Pdf from "../../assets/documents/coaching-guides/guide-5.pdf";
 
 import "../../styles/carousel-library.css";
 
@@ -21,27 +19,43 @@ const carouselGuides = [
     {
         id: 1,
         number: "01",
-        category: "TALENT",
-        title: "You Don’t Have a Talent Shortage",
-        cover: guide1Cover,
-        pdf: guide1Pdf,
+        category: "TEAM PERFORMANCE",
+        title: "Why High-Performing Teams Stop Performing",
+        cover: "/src/assets/images/coaching-guides/guide-1.jpg",
+        pdf: "/src/assets/documents/coaching-guides/guide-1.pdf",
     },
     {
         id: 2,
         number: "02",
-        category: "RETENTION",
-        title: "Why Do Good Employees Quit?",
-        cover: guide2Cover,
-        pdf: guide2Pdf,
+        category: "TALENT",
+        title: "You Don’t Have a Talent Shortage",
+        cover: "/src/assets/images/coaching-guides/guide-2.jpg",
+        pdf: "/src/assets/documents/coaching-guides/guide-2.pdf",
     },
     {
         id: 3,
         number: "03",
-        category: "TEAM PERFORMANCE",
-        title: "Why High-Performing Teams Stop Performing",
-        cover: guide3Cover,
-        pdf: guide3Pdf,
+        category: "RETENTION",
+        title: "Why Do Good Employees Quit?",
+        cover: "/src/assets/images/coaching-guides/guide-3.jpg",
+        pdf: "/src/assets/documents/coaching-guides/guide-3.pdf",
     },
+    {
+    id: 4,
+    number: "04",
+    category: "LEADERSHIP",
+    title: "The Most Common Leadership Mistake",
+    cover: "/src/assets/images/coaching-guides/guide-4.jpg",
+    pdf: "/src/assets/documents/coaching-guides/guide-4.pdf",
+},
+{
+    id: 5,
+    number: "05",
+    category: "LEADERSHIP",
+    title: "5 Things Great Leaders Do Before Making a Decision",
+    cover: "/src/assets/images/coaching-guides/guide-5.jpg",
+    pdf: "/src/assets/documents/coaching-guides/guide-5.pdf",
+},
 
     // ========================================================
     // ADD MORE CAROUSELS HERE
@@ -52,8 +66,8 @@ const carouselGuides = [
     //     number: "04",
     //     category: "LEADERSHIP",
     //     title: "Your Carousel Title",
-    //     cover: guide4Cover,
-    //     pdf: guide4Pdf,
+    //     cover: "/src/assets/images/coaching-guides/guide-4.jpg",
+    //     pdf: "/src/assets/documents/coaching-guides/guide-4.pdf",
     // },
 ];
 
@@ -96,7 +110,7 @@ function CarouselLibrary() {
                         className="carousel-library__back"
                     >
                         <ArrowLeft size={18} />
-                        <span>Back to Manager  as a Coach</span>
+                        <span>Back to Manegarial Resources</span>
                     </Link>
 
 

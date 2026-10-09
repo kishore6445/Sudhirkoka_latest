@@ -4,59 +4,25 @@
 
 export const videoCategories = [
     {
-        id: "leadership-voices",
+        id: "johari-window",
         number: "01",
-        title: "Leadership Voices",
+        title: "Johari Window",
         description:
-            "Conversations, experiences and perspectives from leaders shaping better organisations.",
-        highlightedTitle: "worth hearing.",
+            "The Johari Window is a powerful framework that everyone should take the time to learn",
+        highlightedTitle: "worth exploring.",
     },
 
     {
-        id: "skills-to-improve",
+        id: "skill-series",
         number: "02",
-        title: "Skills to Improve",
+        title: "Skill Series",
         description:
-            "Practical skills and ideas to help you become a stronger, more effective leader.",
-        highlightedTitle: "every day.",
-    },
-
-    {
-        id: "teams-culture",
-        number: "03",
-        title: "Teams & Culture",
-        description:
-            "Ideas for building stronger teams, better collaboration and healthier workplace cultures.",
-        highlightedTitle: "that grow together.",
-    },
-
-    {
-        id: "organisation",
-        number: "04",
-        title: "Organisation",
-        description:
-            "Perspectives on people, systems and organisational conditions that enable growth.",
-        highlightedTitle: "that grow.",
-    },
-
-    {
-        id: "practical-frameworks",
-        number: "05",
-        title: "Practical Frameworks",
-        description:
-            "Simple frameworks, tools and approaches you can take from insight to action.",
+            "Practical skills and ideas to help professionals communicate better, build stronger relationships and grow at work.",
         highlightedTitle: "you can use.",
     },
-
-    {
-        id: "growth-performance",
-        number: "06",
-        title: "Growth & Performance",
-        description:
-            "Ideas for developing people, improving performance and creating sustainable growth.",
-        highlightedTitle: "with purpose.",
-    },
 ];
+
+
 
 
 /* =========================================================
@@ -64,353 +30,54 @@ export const videoCategories = [
 ========================================================= */
 
 export const videos = [
-
-    /* =====================================================
-       LEADERSHIP VOICES
-    ===================================================== */
-
     {
-        id: "lv-01",
-        category: "leadership-voices",
-        categoryLabel: "LEADERSHIP",
-
-        title:
-            "Why Great Performers Don't Always Become Great Leaders",
-
+        id: "jw-01",
+        category: "johari-window",
+        categoryLabel: "JOHARI WINDOW",
+        title: "The Johari Window",
         description:
-            "The instincts that make someone excellent individually can actively work against them when they lead others.",
-
-        duration: "06:24",
-
-        image: "/images/insights/featured-video.jpg",
-
+            "The Johari Window is a powerful framework for developing self-awareness, communication and interpersonal relationships.",
+        image: "https://img.youtube.com/vi/9W2ZXFbIqOo/maxresdefault.jpg",
+        duration: "12:21",
         featured: true,
-
-        publishedDate: "May 12, 2024",
-
-        speaker: "Sudhir",
-        youtubeUrl: "https://www.youtube.com/watch?v=vsx-UJ4TzWQ",
+        youtubeUrl: "https://www.youtube.com/watch?v=9W2ZXFbIqOo",
     },
 
     {
-        id: "lv-02",
-        category: "leadership-voices",
-        categoryLabel: "LEADERSHIP",
-
-        title:
-            "The Leadership Mistakes That Destroy Team Performance",
-
+        id: "ss-01",
+        category: "skill-series",
+        categoryLabel: "SKILL SERIES",
+        title: "Skill 1: Blow Your Own Trumpet",
         description:
-            "Small leadership mistakes can create large consequences for trust, accountability and team performance.",
-
-        duration: "07:15",
-
-        image: "/images/insights/video-3.jpg",
-
-        publishedDate: "April 28, 2024",
-
-        speaker: "Sudhir",
-        youtubeUrl:"https://www.youtube.com/watch?v=7toK3gr0cLE&list=PLdWpKTCL4Fma47hiNFED20YSKMri_U696&index=3"
-
+            "Learn why recognising and communicating your own achievements is an important professional skill.",
+        image: "https://img.youtube.com/vi/aIDVOa43efo/maxresdefault.jpg",
+        duration: "4:41",
+        featured: true,
+        youtubeUrl: "https://www.youtube.com/watch?v=aIDVOa43efo",
     },
 
     {
-        id: "lv-03",
-        category: "leadership-voices",
-        categoryLabel: "LEADERSHIP",
-
-        title:
-            "Why Good Leaders Ask Better Questions",
-
+        id: "ss-02",
+        category: "skill-series",
+        categoryLabel: "SKILL SERIES",
+        title: "Skill 2: Listen Beyond Work",
         description:
-            "The questions leaders ask can shape conversations, decisions and the confidence of their teams.",
-
-        duration: "05:42",
-
-        image: "/images/insights/video-2.jpg",
-
-        publishedDate: "April 15, 2024",
-
-        speaker: "Sudhir",
-
+            "Many professionals and managers believe they should only focus on dashboards and formal discussions, completely ignoring the informal network around them.",
+        image: "https://img.youtube.com/vi/ptWfd4AwbbI/maxresdefault.jpg",
+        duration: "7:00",
+        youtubeUrl: "https://www.youtube.com/watch?v=ptWfd4AwbbI",
     },
 
     {
-        id: "lv-04",
-        category: "leadership-voices",
-        categoryLabel: "LEADERSHIP",
-
-        title:
-            "Leading People Through Change",
-
+        id: "ss-03",
+        category: "skill-series",
+        categoryLabel: "SKILL SERIES",
+        title: "Skill 3: Butter Your Boss",
         description:
-            "How leaders can create clarity, confidence and ownership when organisations are changing.",
-
-        duration: "08:16",
-
-        image: "/images/insights/featured-video.jpg",
-
-        publishedDate: "April 02, 2024",
-
-        speaker: "Sudhir",
-
-    },
-
-
-    /* =====================================================
-       SKILLS TO IMPROVE
-    ===================================================== */
-
-    {
-        id: "si-01",
-        category: "skills-to-improve",
-        categoryLabel: "SKILLS",
-
-        title:
-            "How to Give Better Feedback",
-
-        description:
-            "A practical approach to giving feedback that helps people understand, improve and grow.",
-
-        duration: "05:18",
-
-        image: "/images/insights/video-2.jpg",
-
-        publishedDate: "March 25, 2024",
-
-        speaker: "Sudhir",
-
-    },
-
-    {
-        id: "si-02",
-        category: "skills-to-improve",
-        categoryLabel: "SKILLS",
-
-        title:
-            "The Art of Difficult Conversations",
-
-        description:
-            "How to approach difficult conversations with clarity, empathy and confidence.",
-
-        duration: "07:04",
-
-        image: "/images/insights/video-3.jpg",
-
-        publishedDate: "March 18, 2024",
-
-        speaker: "Sudhir",
-
-    },
-
-    {
-        id: "si-03",
-        category: "skills-to-improve",
-        categoryLabel: "SKILLS",
-
-        title:
-            "How Leaders Build Trust",
-
-        description:
-            "Small leadership behaviours that create stronger relationships and more trust within teams.",
-
-        duration: "06:41",
-
-        image: "/images/insights/featured-video.jpg",
-
-        publishedDate: "March 10, 2024",
-
-        speaker: "Sudhir",
-
-    },
-
-
-    /* =====================================================
-       TEAMS & CULTURE
-    ===================================================== */
-
-    {
-        id: "tc-01",
-        category: "teams-culture",
-        categoryLabel: "TEAMS",
-
-        title:
-            "What Makes a High-Performing Team?",
-
-        description:
-            "Understanding the behaviours and conditions that allow teams to perform at their best.",
-
-        duration: "06:28",
-
-        image: "/images/insights/video-3.jpg",
-
-        publishedDate: "March 04, 2024",
-
-        speaker: "Sudhir",
-
-    },
-
-    {
-        id: "tc-02",
-        category: "teams-culture",
-        categoryLabel: "CULTURE",
-
-        title:
-            "Culture Is Built Through Everyday Behaviour",
-
-        description:
-            "Why organisational culture is shaped by what people do every day, not just what is written down.",
-
-        duration: "05:56",
-
-        image: "/images/insights/video-2.jpg",
-
-        publishedDate: "February 25, 2024",
-
-        speaker: "Sudhir",
-
-    },
-
-
-    /* =====================================================
-       ORGANISATION
-    ===================================================== */
-
-    {
-        id: "org-01",
-        category: "organisation",
-        categoryLabel: "ORGANISATION",
-
-        title:
-            "Every Business Problem Has a People Story",
-
-        description:
-            "Understanding the people behind a business challenge can reveal what systems and processes often miss.",
-
-        duration: "05:31",
-
-        image: "/images/insights/featured-video.jpg",
-
-        publishedDate: "February 18, 2024",
-
-        speaker: "Sudhir",
-        youtubeUrl:"https://www.youtube.com/watch?v=7toK3gr0cLE"
-
-    },
-
-    {
-        id: "org-02",
-        category: "organisation",
-        categoryLabel: "ORGANISATION",
-
-        title:
-            "Why Systems Alone Don't Create Change",
-
-        description:
-            "Real organisational change happens when systems, behaviours and people move together.",
-
-        duration: "07:12",
-
-        image: "/images/insights/video-3.jpg",
-
-        publishedDate: "February 10, 2024",
-
-        speaker: "Sudhir",
-
-    },
-
-
-    /* =====================================================
-       PRACTICAL FRAMEWORKS
-    ===================================================== */
-
-    {
-        id: "pf-01",
-        category: "practical-frameworks",
-        categoryLabel: "FRAMEWORKS",
-
-        title:
-            "A Simple Framework for Better Decisions",
-
-        description:
-            "A practical way to bring clarity and structure to important leadership decisions.",
-
-        duration: "04:48",
-
-        image: "/images/insights/video-2.jpg",
-
-        publishedDate: "February 02, 2024",
-
-        speaker: "Sudhir",
-
-    },
-
-    {
-        id: "pf-02",
-        category: "practical-frameworks",
-        categoryLabel: "FRAMEWORKS",
-
-        title:
-            "From Problem to Action",
-
-        description:
-            "A simple framework for turning complex organisational problems into practical next steps.",
-
-        duration: "06:03",
-
-        image: "/images/insights/video-3.jpg",
-
-        publishedDate: "January 26, 2024",
-
-        speaker: "Sudhir",
-
-    },
-
-
-    /* =====================================================
-       GROWTH & PERFORMANCE
-    ===================================================== */
-
-    {
-        id: "gp-01",
-        category: "growth-performance",
-        categoryLabel: "PERFORMANCE",
-
-        title:
-            "Developing People for Better Performance",
-
-        description:
-            "Why developing people is one of the most important drivers of sustainable organisational performance.",
-
-        duration: "06:52",
-
-        image: "/images/insights/featured-video.jpg",
-
-        publishedDate: "January 18, 2024",
-
-        speaker: "Sudhir",
-
-    },
-
-    {
-        id: "gp-02",
-        category: "growth-performance",
-        categoryLabel: "GROWTH",
-
-        title:
-            "Performance Without Losing the Human Side",
-
-        description:
-            "How organisations can pursue stronger performance while keeping people at the centre.",
-
-        duration: "05:47",
-
-        image: "/images/insights/video-2.jpg",
-
-        publishedDate: "January 10, 2024",
-
-        speaker: "Sudhir",
-
+            "Do you butter your boss? Where do you draw the line between professional relationship-building and simply flattering your boss?",
+        image: "https://img.youtube.com/vi/1aND1VE5T2I/maxresdefault.jpg",
+        duration: "2:42",
+        youtubeUrl: "https://www.youtube.com/watch?v=1aND1VE5T2I",
     },
 ];
 
@@ -467,9 +134,6 @@ export const articleCategories = [
    ARTICLES
 ========================================================= */
 
-/* =========================================================
-   ARTICLES
-========================================================= */
 
 export const articles = [
     {
@@ -478,7 +142,6 @@ export const articles = [
         title: "A Stitch in Time Saves Nine",
         excerpt:
             "Small problems are often the signals of bigger management issues. Solve them before they become crises.",
-        readTime: "8 min read",
         image: "/images/insights/article-2.jpg",
     },
 
@@ -488,7 +151,6 @@ export const articles = [
         title: "If You Have to Check Everything Your Employee Does… Congratulations, You're the CCTV.",
         excerpt:
             "Good management isn't about checking everything. It's about creating confidence, ownership and independence.",
-        readTime: "6 min read",
         image: "/images/insights/article-1.jpg",
     },
 
@@ -498,107 +160,48 @@ export const articles = [
         title: "Too Many Cooks Spoil the Broth",
         excerpt:
             "When everyone is responsible, accountability can quickly become nobody's responsibility.",
-        readTime: "5 min read",
         image: "/images/insights/article-3.jpg",
     },
+    
+{
+    id: "dont-counteroffer-every-resignation",
+    category: "people-culture",
+    title: "Don't Counteroffer Every Resignation",
+    excerpt:
+        "Not every resignation is a problem to solve. Good people management means understanding why people leave and knowing when to let them go gracefully.",
+    
+    image: "/images/insights/article-4.jpg",
+},
+
 ];
 
-/* =========================================================
-   REFLECTION CATEGORIES
-========================================================= */
-
-export const reflectionCategories = [
-
-    {
-        id: "leadership",
-        number: "01",
-        title: "Leadership",
-        description:
-            "Thoughts on the choices and responsibilities that shape leadership.",
-    },
-
-    {
-        id: "people",
-        number: "02",
-        title: "People",
-        description:
-            "Observations on people, potential and the ways we grow together.",
-    },
-
-    {
-        id: "growth",
-        number: "03",
-        title: "Growth",
-        description:
-            "Reflections on growth, learning and continuous development.",
-    },
-
-    {
-        id: "work-life",
-        number: "04",
-        title: "Work & Life",
-        description:
-            "Notes on balance, purpose and the relationship between work and life.",
-    },
-];
-
-
-/* =========================================================
-   REFLECTIONS
-========================================================= */
-
-export const reflections = [
-
-    {
-        id: "leadership-answers",
-        category: "leadership",
-        quote:
-            "Leadership isn't about having all the answers. It's about creating the conditions for others to find theirs.",
-        author: "Sudhir",
-    },
-
-    {
-        id: "clarity-leadership",
-        category: "leadership",
-        quote:
-            "Clarity is the greatest kindness a leader can offer their team.",
-        author: "Sudhir",
-    },
-];
 
 
 /* =========================================================
    QUICK BITES
 ========================================================= */
 
+
 export const quickBites = [
-
     {
-        id: "habit-great-leaders",
-        title: "One Habit Great Leaders Practice",
-        duration: "00:45",
-        image: "/images/insights/bite-1.jpg",
-        youtubeUrl: "https://www.youtube.com/shorts/IZ9Qht7a6Ko",
+        id: "qb-01",
+        title: "Is There a Hole in the Bucket?",
+        duration: "1:07",
+        image: "https://img.youtube.com/vi/Krf0t7NW6LE/maxresdefault.jpg",
+        youtubeUrl: "https://www.youtube.com/shorts/Krf0t7NW6LE",
     },
-
     {
-        id: "build-trust",
-        title: "A Simple Way to Build Trust",
-        duration: "01:02",
-        image: "/images/insights/bite-2.jpg",
+        id: "qb-02",
+        title: "HR Is About Business",
+        duration: "1:21",
+        image: "https://img.youtube.com/vi/ywMTUqVkaJo/maxresdefault.jpg",
+        youtubeUrl: "https://www.youtube.com/shorts/ywMTUqVkaJo",
     },
-
     {
-        id: "leaders-differently",
-        title: "What Great Leaders Do Differently",
-        duration: "00:58",
-        image: "/images/insights/bite-3.jpg",
-    },
-
-    {
-        id: "focus-matters",
-        title: "Focus on What Matters",
-        duration: "01:10",
-        image: "/images/insights/bite-4.jpg",
+        id: "qb-03",
+        title: "Star Performer, Poor Manager?",
+        duration: "1:23",
+        image: "https://img.youtube.com/vi/tA6HpsrQiRQ/maxresdefault.jpg",
+        youtubeUrl: "https://www.youtube.com/shorts/tA6HpsrQiRQ",
     },
 ];
