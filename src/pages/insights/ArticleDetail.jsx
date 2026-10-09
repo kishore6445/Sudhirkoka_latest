@@ -514,6 +514,75 @@ function ArticleDetail() {
                 "Because collaboration may require a team. **Accountability requires a name.**",
 
         },
+        
+"dont-counteroffer-every-resignation": {
+    sections: [
+        {
+            heading:
+                "The sentence every manager hates hearing.",
+            paragraphs: [
+                "One of your best employees walks into your office.",
+                "He closes the door.",
+                "And says the sentence every manager hates hearing:",
+                "\"I've decided to move on.\"",
+                "Immediately, your mind starts calculating.",
+                "Projects … Customers … Replacement time … Knowledge loss.",
+                "Then comes the natural question:",
+                "\"What will it take for you to stay?\"",
+                "Twenty percent more salary? A new designation? Work from home? A promotion?",
+                "A counteroffer feels like the most responsible thing to do.",
+                "But sometimes, the best response to a resignation is:",
+                "\"I understand. How can we make this transition work well for both of us?\"",
+            ],
+        },
+        {
+            heading:
+                "Sometimes, a good employee has outgrown the role.",
+            paragraphs: [
+                "Because not every resignation is a problem that needs to be solved.",
+                "Sometimes, a good employee has simply outgrown the role.",
+                "Maybe the organization cannot provide the next opportunity they need.",
+                "Maybe their ambitions have changed.",
+                "Maybe they want a different industry.",
+                "Maybe they simply need a new challenge.",
+                "Maybe a personal issue.",
+                "Trying desperately to retain every good employee can create another problem.",
+                "You may solve the salary issue without solving the reason they wanted to leave.",
+                "Six months later, you're having the same conversation again.",
+            ],
+        },
+        {
+            heading:
+                "Understand healthy and unhealthy attrition.",
+            paragraphs: [
+                "Good people management is not about achieving zero attrition.",
+                "It's about understanding healthy and unhealthy attrition.",
+                "Of course, if great employees are repeatedly leaving because of poor managers, unfair compensation, work or role related issue or a toxic culture, you have a serious problem.",
+                "Investigate it. Fix it.",
+                "But don't automatically treat every resignation as organizational failure.",
+                "People grow. Careers change.",
+                "Sometimes people need to leave your organization to take their next step.",
+            ],
+        },
+        {
+            heading:
+                "How you let people leave matters.",
+            paragraphs: [
+                "And the way you treat them while they leave may determine what they say about your company for the next ten years.",
+                "They could become a future customer.",
+                "A referral source.",
+                "A business partner.",
+                "Or even return someday with greater experience.",
+                "Retention matters.",
+                "But so does knowing when to let go gracefully.",
+                "Not every resignation needs a counteroffer.",
+            ],
+        },
+    ],
+    closing:
+        "Retention matters. But so does knowing when to let go gracefully.",
+},
+
 
     };
 
@@ -641,16 +710,10 @@ function ArticleDetail() {
                         <div className="article-detail-meta-divider" />
 
 
-                        <div className="article-detail-meta-item">
-
-                            <span>
-                                {article.readTime}
-                            </span>
-
-                        </div>
+                       
 
 
-                        <div className="article-detail-meta-divider" />
+                   
 
 
                         <div className="article-detail-meta-item">
