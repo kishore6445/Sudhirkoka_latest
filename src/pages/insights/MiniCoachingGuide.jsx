@@ -25,8 +25,8 @@ const coachingGuides = [
         title: "Why High-Performing Teams Stop Performing",
         description:
             "What changes when a strong team starts losing momentum, accountability and performance.",
-        cover: "/src/assets/images/coaching-guides/guide-1.jpg",
-        pdf: "/src/assets/documents/coaching-guides/guide-1.pdf",
+        cover: "/images/coaching-guides/guide-1.jpg",
+        pdf: "/documents/coaching-guides/guide-1.pdf",
     },
     {
         id: 2,
@@ -35,8 +35,8 @@ const coachingGuides = [
         title: "You Don’t Have a Talent Shortage",
         description:
             "A practical perspective on why organisations may be struggling to unlock the talent they already have.",
-        cover: "/src/assets/images/coaching-guides/guide-2.jpg",
-        pdf: "/src/assets/documents/coaching-guides/guide-2.pdf",
+        cover: "/images/coaching-guides/guide-2.jpg",
+        pdf: "/documents/coaching-guides/guide-2.pdf",
     },
     {
         id: 3,
@@ -45,8 +45,8 @@ const coachingGuides = [
         title: "Why Do Good Employees Quit?",
         description:
             "Understanding the deeper reasons good employees leave, even when compensation is not the problem.",
-        cover: "/src/assets/images/coaching-guides/guide-3.jpg",
-        pdf: "/src/assets/documents/coaching-guides/guide-3.pdf",
+        cover: "/images/coaching-guides/guide-3.jpg",
+        pdf: "/documents/coaching-guides/guide-3.pdf",
     },
 ];
 
