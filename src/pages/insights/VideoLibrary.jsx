@@ -10,32 +10,21 @@ import {
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-// import YouTubeModal from "../../components/insights/YouTubeModal";
-
-// =========================================================
-// VIDEO DATA
-// Keep commented for now.
-// Uncomment when video cards are brought back.
-// =========================================================
-
-// import {
-//     videoCategories,
-//     videos,
-// } from "../../data/insightsData";
+import {
+    videoCategories,
+    videos,
+} from "../../data/insightsData";
 
 import "../../styles/video-library.css";
+
+// import YouTubeModal from "../../components/insights/YouTubeModal";
+
 
 
 // =========================================================
 // CATEGORY CARD
 // =========================================================
-// Kept here for future use.
-// Uncomment this entire section when category cards
-// are required again.
-
-/*
 function CategoryCard({ category }) {
-
     const categoryVideos = videos.filter(
         (video) => video.category === category.id
     );
@@ -45,8 +34,7 @@ function CategoryCard({ category }) {
             to={`/insights/videos/${category.id}`}
             className="video-library-category-card"
         >
-
-            {/!* NUMBER RAIL *!/}
+            {/* NUMBER RAIL */}
 
             <div className="video-library-category-top">
 
@@ -57,7 +45,7 @@ function CategoryCard({ category }) {
             </div>
 
 
-            {/!* CONTENT *!/}
+            {/* CONTENT */}
 
             <div className="video-library-category-body">
 
@@ -72,7 +60,7 @@ function CategoryCard({ category }) {
             </div>
 
 
-            {/!* FOOTER *!/}
+            {/* FOOTER */}
 
             <div className="video-library-category-footer">
 
@@ -93,7 +81,6 @@ function CategoryCard({ category }) {
         </Link>
     );
 }
-*/
 
 
 // =========================================================
@@ -446,26 +433,9 @@ function VideoLibrary() {
                     </div>
 
 
-                    {/* =================================================
-                        VIDEOS COMING SOON
-                    ================================================= */}
+                 
 
-                    <div className="video-library-coming-soon">
-
-                        <div className="video-library-coming-soon-icon">
-                            <PlayCircle size={28} />
-                        </div>
-
-                        <h3>
-                            Videos will be updated.
-                        </h3>
-
-                        <p>
-                            Stay tuned for conversations, practical ideas
-                            and leadership perspectives.
-                        </p>
-
-                    </div>
+                   
 
 
                     {/* =================================================
@@ -475,7 +445,7 @@ function VideoLibrary() {
                         the category cards back.
                     ================================================= */}
 
-                    {/*
+                    
                     <div className="video-library-category-grid">
 
                         {videoCategories.map((category) => (
@@ -488,7 +458,7 @@ function VideoLibrary() {
                         ))}
 
                     </div>
-                    */}
+                    
 
                 </div>
 
